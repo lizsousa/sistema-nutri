@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema Comercial#{empty tituloPagina?'':' - '.concat(tituloPagina)}</title>
+        <meta name="viewport" content="width=device-width"></meta>
+        <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
+
+        <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+        <!--Spinkit retirado de: https://tobiasahlin.com/spinkit/-->
+        <h:outputStylesheet library="css" name="spinkit.css"></h:outputStylesheet>
+
+        <h:outputScript library="js" name="primefaces-locales.js"></h:outputScript>
+    </h:head>
+    <h:body class="sidebar-active">
+        <f:view locale="pt_BR"></f:view>
+        <header>
+            <div>
+                <a href="#" class="menu-button-toggle">
+                    <i class="fa fa-navicon"></i>
+                </a>
+            </div>
+            <div>
+                <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
+            </div>
+            <div class="extras">
+                <div class="extras-item">
+                    <a href="#"><i class="fa fa-bell"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sidebar sidebar-mob">
+            <div class="usuario">
+                <div class="foto">
+                    <img src="https://www.gravatar.com/avatar/#usuario.emailHash}?s=56&amp;d=mp"></img>
+                </div>
+                <div class="nome">
+                    #{usuario.nome}
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-dashboard"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-cadastros">
+                        <i class="fa fa-fw fa-file-text-o"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-cadastros">
+                        <li>
+                            <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-users"></i>Gerenciar Usuarios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-cliente.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cliente.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Gerenciar Cliente
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-estoque">
+                        <i class="fa fa-fw fa-cubes"></i>Estoque<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-estoque">
+                        <li>
+                            <a href="gerenciar-categoria.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-categoria.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sitemap"></i>Gerenciar Categoria
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-cube"></i>Gerenciar Produto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-truck"></i>Gerenciar Fornecedor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-archive"></i>Movimento Estoque
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="gerenciar-pedido.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-pedido.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-shopping-cart"></i>Gerenciar Pedido
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-financeiro">
+                        <i class="fa fa-fw fa-money"></i>Financeiro<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-financeiro">
+                        <li>
+                            <a href="gerenciar-fluxo-caixa.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fluxo-caixa.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-calculator"></i>Fluxo Caixa
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-conta.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-conta.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-bank"></i>Gerenciar Conta
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
+                        <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+
+                    <ul class="submenu" id="submenu-configuracao">
+
+                        <li>
+                            <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                            </a>
+                        </li>
+                        <li>
+                            <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Gerais
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-relatorio">
+                        <i class="fa fa-fw fa-gear"></i>Relatórios<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-relatorio">
+
+                        <li>
+                            <a href="relatorio-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Relatorio Usuario
+                            </a>
+                        </li>
+                        <li>
+                            <a href="relatorio-cliente.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-cliente.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Relatorio Cliente
+                            </a>
+                        </li>
+                        <li>
+                            <a href="relatorio-categoria.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-categoria.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Relatorio Categoria
+                            </a>
+                        </li>
+                        <li>
+                            <a href="relatorio-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-produto.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Relatorio Produto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="relatorio-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-fornecedor.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Relatorio Fornecedor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="relatorio-pedido.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-pedido.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Relatorio Pedido
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="sair.xhtml" class="sidebar-item #{view.viewId.endsWith('sair.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-sign-out"></i>Sair
+                    </a>
+                </li>
+
+            </ul>
+
+
+        </nav>
+
+        <main>
+            <!-- Mensagem em linha em baixo da toolbar -->
+            <p:messages showDetail="true" closable="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <!-- Mensagem flutuante no canto superior direito -->
+            <p:growl autoUpdate="true" showDetail="true">
+                <p:autoUpdate/>
+            </p:growl>
+            <ui:insert></ui:insert>
+        </main>
+
+        <footer>
+            <div class="copyright">
+                Sicom - Sistema Comercial do TADS©
+            </div>
+        </footer>
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+            <div class="sk-fading-circle">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+            <div class="texto-processando">Processando...</div>
+        </p:dialog>
+
+        <!-- Componentes Extras -->
+        <h:form>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-trash-o" />
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-undo" />
+            </p:confirmDialog> 
+        </h:form>
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
+        <h:outputScript library="js" name="geral.js"></h:outputScript>
+        <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
+    </h:body>
+</html>
+

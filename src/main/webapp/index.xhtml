@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+
+    <p:fieldset legend="Dasboard">       
+        
+        <div class="ui-grid">
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <div class="card c1">
+                    <i class="card-icon fa fa-usd"></i>
+                    <div class="card-title">
+                        Vendas
+                    </div>
+                    <div class="card-content">
+                        25 vendas
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <div class="card c2">
+                    <i class="card-icon fa fa-line-chart"></i>
+                    <div class="card-title">
+                        Resumo do mês
+                    </div>
+                    <div class="card-content">
+                        <div class="despesa">R$ 9.000,00 <i class="fa fa-caret-down"></i></div>
+                        <div class="receita">R$ 13.000,00 <i class="fa fa-caret-up"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <div class="card c3">
+                    <i class="card-icon fa fa-battery-quarter"></i>
+                    <div class="card-title">
+                        Estoque baixo
+                    </div>
+                    <div class="card-content">
+                        13 itens estoque mínimo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p:fieldset>
+
+</ui:composition>
+
