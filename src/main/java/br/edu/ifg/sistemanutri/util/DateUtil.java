@@ -1,4 +1,4 @@
-package br.edu.ifg.sistemacomercial.util;
+package br.edu.ifg.sistemanutri.util;
 
 import java.util.Calendar;
 import java.util.Date;

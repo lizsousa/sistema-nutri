@@ -1,4 +1,4 @@
-package br.edu.ifg.sistemacomercial.util;
+package br.edu.ifg.sistemanutri.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

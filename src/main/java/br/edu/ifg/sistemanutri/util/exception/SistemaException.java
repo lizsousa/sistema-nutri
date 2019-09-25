@@ -1,4 +1,4 @@
-package br.edu.ifg.sistemacomercial.util.exception;
+package br.edu.ifg.sistemanutri.util.exception;
 
 /**
  *

@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml"
+                xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Gerenciar Usuários"></ui:param>
+    <h:form>
+        <p:fieldset legend="Dashboard">
+
+            <si:toolbar-crud crudBean="#{usuarioBean}">
+                <f:facet name="opcoes">
+                    <p:commandButton value="#{usuarioBean.entity.dataDesativacao == null?'Desativar':'Ativar'}"
+                                     update="@form" rendered="#{usuarioBean.statusTela == 'EDITANDO'}"
+                                     actionListener="#{usuarioBean.ativarDesativar(usuarioBean.entity)}"
+                                     style="color: #{usuarioBean.entity.dataDesativacao == null?'green':'red'}"
+                                     icon="fa #{usuarioBean.entity.dataDesativacao == null?'fa-check-circle-o':'fa-close'}"
+                    ></p:commandButton>
+                </f:facet>
+
+            </si:toolbar-crud>
+            <p:panelGrid columns="2" styleClass="ui-noborder" 
+                         rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
+
+                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.entity.nome}"></p:inputText>
+        
+                
+                <p:outputLabel value="Login"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.entity.login}"></p:inputText>
+        
+                
+                <p:outputLabel value="Senha"></p:outputLabel>
+                <p:inputText value="#{usuarioBean.entity.senha}"></p:inputText>
+        
+
+            </p:panelGrid>
+            <p:spacer height="20px"></p:spacer>
+
+
+            <p:dataTable value="#{usuarioBean.entitys}" var="user"
+                         rendered="#{usuarioBean.statusTela == 'PESQUISANDO'}">
+
+                <p:column width="135">
+                    <si:colunaAcoes crudBean="#{usuarioBean}" entity="#{user}" rederedDelete="true">
+                        <p:commandButton icon="fa #{user.dataDesativacao == null?'fa-check-circle-o':'fa-close'}" update="@form"
+                                         actionListener="#{usuarioBean.ativarDesativar(user)}"
+                                         style="color: #{user.dataDesativacao == null?'green':'red'}">
+                            <p:tooltip for="@parent" value="#{user.dataDesativacao == null?'Desativar':'Ativar'}"></p:tooltip>
+                        </p:commandButton>
+                    </si:colunaAcoes>
+                </p:column>
+                
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
+                
+                <p:column headerText="Login">
+                    <h:outputText value="#{user.login}"></h:outputText>
+                </p:column>
+                
+                <p:column headerText="Senha">
+                    <h:outputText value="#{user.senha}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:composition>
+

@@ -1,4 +1,4 @@
-package br.edu.ifg.sistemacomercial.entity.enums;
+package br.edu.ifg.sistemanutri.entity.enums;
 
 /**
  *

@@ -1,9 +1,9 @@
-package br.edu.ifg.sistemacomercial.bean;
+package br.edu.ifg.sistemanutri.bean;
 
-import br.edu.ifg.sistemacomercial.logic.GenericLogic;
-import br.edu.ifg.sistemacomercial.util.JsfUtil;
-import br.edu.ifg.sistemacomercial.util.exception.NegocioException;
-import br.edu.ifg.sistemacomercial.util.exception.SistemaException;
+import br.edu.ifg.sistemanutri.logic.GenericLogic;
+import br.edu.ifg.sistemanutri.util.JsfUtil;
+import br.edu.ifg.sistemanutri.util.exception.NegocioException;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;

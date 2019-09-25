@@ -1,7 +1,7 @@
-package br.edu.ifg.sistemacomercial.util;
+package br.edu.ifg.sistemanutri.util;
 
-import br.edu.ifg.sistemacomercial.util.exception.NegocioException;
-import br.edu.ifg.sistemacomercial.util.exception.SistemaException;
+import br.edu.ifg.sistemanutri.util.exception.NegocioException;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;

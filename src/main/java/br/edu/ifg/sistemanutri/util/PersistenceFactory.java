@@ -1,4 +1,4 @@
-package br.edu.ifg.sistemacomercial.util;
+package br.edu.ifg.sistemanutri.util;
 
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
@@ -15,14 +15,14 @@ public class PersistenceFactory {
         EntityManager entityManager;
                 
         entityManager = Persistence
-                .createEntityManagerFactory("sistema_comercial_tads_PU")
+                .createEntityManagerFactory("sistema_nutri_pu")
                 .createEntityManager();
 
         
-        if(flyway == null){
-            this.flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5432/siscom", "root","ifg").load();
-            flyway.migrate();
-        }
+//        if(flyway == null){
+//            this.flyway = Flyway.configure().dataSource("jdbc:postgresql://localhost:5432/siscom", "root","ifg").load();
+//            flyway.migrate();
+//        }
 //        Flyway flyway = Flyway.configure().dataSource(
 //                entityManager.getEntityManagerFactory().getProperties().get("javax.persistence.jdbc.url").toString(), 
 //                entityManager.getEntityManagerFactory().getProperties().get("javax.persistence.jdbc.user").toString(),

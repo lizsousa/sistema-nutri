@@ -1,6 +1,6 @@
-package br.edu.ifg.sistemacomercial.dao;
+package br.edu.ifg.sistemanutri.dao;
 
-import br.edu.ifg.sistemacomercial.util.exception.SistemaException;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
