@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml"
+                xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom">
+
+    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Gerenciar Unidade de Medida"></ui:param>
+    <h:form>
+        <p:fieldset legend="Dashboard">
+
+            <si:toolbar-crud crudBean="#{unidadeMedidaBean}"/>                
+
+
+            <p:panelGrid columns="2" styleClass="ui-noborder" 
+                         rendered="#{unidadeMedidaBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
+
+                <p:outputLabel value="Sigla:" ></p:outputLabel>
+                <p:inputText value="#{unidadeMedidaBean.entity.sigla}"></p:inputText>
+                
+
+            </p:panelGrid>
+            <p:spacer height="20px"></p:spacer>
+
+            <p:dataTable value="#{unidadeMedidaBean.entitys}" var="unidademedida"
+                         rendered="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'}">
+
+                <p:column width="100">
+                    <si:colunaAcoes crudBean="#{unidadeMedidaBean}" entity="#{unidademedida}"></si:colunaAcoes>
+                </p:column> 
+
+                <p:column headerText="Sigla">
+                    <h:outputText value="#{unidademedida.sigla}"></h:outputText>
+                </p:column>
+                
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+   
+</ui:composition>
+

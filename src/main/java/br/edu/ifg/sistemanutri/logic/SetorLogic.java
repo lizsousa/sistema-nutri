@@ -34,8 +34,8 @@ public class SetorLogic implements GenericLogic<Setor, Integer> {
 
     @Override
     public List<Setor> buscar(Setor entity) throws  NegocioException, SistemaException {
-        List<Setor> setors = dao.listar();
-        return setors;
+        List<Setor> setores = dao.listar();
+        return setores;
     }
     
 }
