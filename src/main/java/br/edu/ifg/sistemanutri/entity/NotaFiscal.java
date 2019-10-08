@@ -1,7 +1,6 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,15 +15,18 @@ public class NotaFiscal implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer id;
     private Integer numero;
+   
     @ManyToOne
     @JoinColumn(name = "produto_id")
-    private Produto produto_id;
+    private Produto produto;
     @ManyToOne
     @JoinColumn(name = "fornecedor_id")
-    private Fornecedor fornecedor_id;
+    private Fornecedor fornecedor;
 
+    
     public Integer getId() {
         return id;
     }
@@ -41,26 +43,26 @@ public class NotaFiscal implements Serializable {
         this.numero = numero;
     }
 
-    public Produto getProduto_id() {
-        return produto_id;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProduto_id(Produto produto_id) {
-        this.produto_id = produto_id;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
-    public Fornecedor getFornecedor_id() {
-        return fornecedor_id;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setFornecedor_id(Fornecedor fornecedor_id) {
-        this.fornecedor_id = fornecedor_id;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 73 * hash + this.id;
         return hash;
     }
 
@@ -76,13 +78,10 @@ public class NotaFiscal implements Serializable {
             return false;
         }
         final NotaFiscal other = (NotaFiscal) obj;
-        
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
     
 }

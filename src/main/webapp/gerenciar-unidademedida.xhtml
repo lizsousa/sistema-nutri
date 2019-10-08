@@ -8,37 +8,34 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Gerenciar Unidade de Medida"></ui:param>
+
     <h:form>
-        <p:fieldset legend="Dashboard">
-
-            <si:toolbar-crud crudBean="#{unidadeMedidaBean}"/>                
-
+        <p:fieldset legend="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'?'Pesquisa de':unidadeMedidaBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Unidade de Medida">
+            <si:toolbar-crud crudBean="#{unidadeMedidaBean}"/>
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
-                         rendered="#{unidadeMedidaBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
+                         rendered="#{unidadeMedidaBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Sigla:" ></p:outputLabel>
+                <p:outputLabel value="Descricao"></p:outputLabel>
                 <p:inputText value="#{unidadeMedidaBean.entity.sigla}"></p:inputText>
-                
-
+              
             </p:panelGrid>
-            <p:spacer height="20px"></p:spacer>
 
-            <p:dataTable value="#{unidadeMedidaBean.entitys}" var="unidademedida"
+            <p:dataTable value="#{unidadeMedidaBean.entitys}" var="unidadeMedida"
                          rendered="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">
-                    <si:colunaAcoes crudBean="#{unidadeMedidaBean}" entity="#{unidademedida}"></si:colunaAcoes>
-                </p:column> 
-
-                <p:column headerText="Sigla">
-                    <h:outputText value="#{unidademedida.sigla}"></h:outputText>
+                    <si:colunaAcoes crudBean="#{unidadeMedidaBean}" entity="#{unidadeMedida}"></si:colunaAcoes>
+                </p:column>                    
+                <p:column headerText="Descricao">
+                    <h:outputText value="#{unidadeMedida.sigla}"></h:outputText>
                 </p:column>
+                
                 
             </p:dataTable>
         </p:fieldset>
+
     </h:form>
-   
+
 </ui:composition>
 

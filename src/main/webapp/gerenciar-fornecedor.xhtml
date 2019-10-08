@@ -11,14 +11,13 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Fornecedores"></ui:param>
     <h:form>
-        <p:fieldset legend="Dashboard">
-
+ 
+           <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
             <si:toolbar-crud crudBean="#{fornecedorBean}"/>                
 
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
-                         rendered="#{fornecedorBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
-
+                         rendered="#{fornecedorBean.statusTela != 'PESQUISANDO'}">
                 
                 <p:outputLabel value="Tipo Fornecedor"></p:outputLabel>
                 <p:selectOneRadio value="#{fornecedorBean.tipoFornecedor}">
@@ -30,20 +29,20 @@
                 </p:selectOneRadio>
                 
                 <p:outputLabel value="Nome Fantasia" ></p:outputLabel>
-                <p:inputText value="#{fornecedorBean.entity.nome_fantasia}"></p:inputText>
+                <p:inputText value="#{fornecedorBean.entity.razaoSocial}"></p:inputText>
                 
                 <p:outputLabel value="Razao Social" ></p:outputLabel>
-                <p:inputText value="#{fornecedorBean.entity.razao_social}"></p:inputText>
+                <p:inputText value="#{fornecedorBean.entity.nomeFantasia}"></p:inputText>
 
                 <p:outputLabel value="Inscricao Estadual" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.inscricao}"></p:inputText>
 
-                <p:outputLabel value="Cnpj:" rendered="#{fornecedorBean.tipoFornecedor == 0}"></p:outputLabel>
-                <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpj}" rendered="#{fornecedorBean.tipoFornecedor == 0}"></p:inputMask>
+                <p:outputLabel value="Cnpjcpf:" rendered="#{fornecedorBean.tipoFornecedor == 0}"></p:outputLabel>
+                <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoFornecedor == 0}"></p:inputMask>
                 
                 
-                <p:outputLabel value="CPF:" rendered="#{fornecedorBean.tipoFornecedor == 1}"></p:outputLabel>
-                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cpf}" rendered="#{fornecedorBean.tipoFornecedor == 1}"></p:inputMask>
+                <p:outputLabel value="Cnpjcpf:" rendered="#{fornecedorBean.tipoFornecedor == 1}"></p:outputLabel>
+                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoFornecedor == 1}"></p:inputMask>
                 
                 <p:outputLabel value="Endereco:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.endereco}"></p:inputText>
@@ -67,11 +66,11 @@
                 </p:column> 
                 
                 <p:column headerText="Razao social">
-                    <h:outputText value="#{fornecedor.razao_social}"></h:outputText>
+                    <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
                 </p:column>
 
                 <p:column headerText="Nome Fantasia">
-                    <h:outputText value="#{fornecedor.nome_fantasia}"></h:outputText>
+                    <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
                 </p:column>
                 
                 <p:column headerText="Inscricao Estadual">
@@ -88,7 +87,7 @@
                 
                 </p:column>
                 <p:column headerText="CNPJ/CPF">
-                    <h:outputText value="#{fornecedor.cnpj.isEmpty() || null ? fornecedor.cpf : fornecedor.cnpj}"></h:outputText>
+                    <h:outputText value="#{fornecedor.cnpjCpf.isEmpty() || null ? fornecedor.cnpjCpf : fornecedor.cnpjCpf}"></h:outputText>
                 </p:column>
 
                 <p:column headerText="Telefone">

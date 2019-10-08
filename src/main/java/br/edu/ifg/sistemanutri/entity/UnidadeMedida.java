@@ -1,7 +1,6 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,14 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "unidademedida")
+@Table(name = "unidade_medida")
 public class UnidadeMedida implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String sigla;
- 
 
     public Integer getId() {
         return id;
@@ -36,8 +34,8 @@ public class UnidadeMedida implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 37 * hash + this.id;
         return hash;
     }
 
@@ -53,12 +51,10 @@ public class UnidadeMedida implements Serializable {
             return false;
         }
         final UnidadeMedida other = (UnidadeMedida) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
-    
+ 
 }

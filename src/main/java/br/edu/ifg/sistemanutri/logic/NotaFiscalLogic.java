@@ -32,8 +32,8 @@ public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
 
     @Override
     public List<NotaFiscal> buscar(NotaFiscal entity) throws  NegocioException, SistemaException {
-        List<NotaFiscal> notafiscaies = dao.listar();
-        return notafiscaies;
+        List<NotaFiscal> notafiscais = dao.listar();
+        return notafiscais;
     }
     
 }

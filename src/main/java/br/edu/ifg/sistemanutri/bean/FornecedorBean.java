@@ -11,25 +11,46 @@ import javax.inject.Named;
 @SessionScoped
 public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     
+    private Integer tipoFornecedor;
+    private String razaoSocial;
+
     @Inject
     private FornecedorLogic logic;
-    
-    private int tipoFornecedor;
-
-    public int getTipoFornecedor() {
-        return tipoFornecedor;
-    }
-
-    public void setTipoFornecedor(int tipoFornecedor) {
-        this.tipoFornecedor = tipoFornecedor;
-    }
     
     @Override
     public FornecedorLogic getLogic() {
         return logic;
     }
+
+    public Integer getTipoFornecedor() {
+        return tipoFornecedor;
+    }
+
+    public void setTipoFornecedor(Integer tipoFornecedor) {
+        this.tipoFornecedor = tipoFornecedor;
+    }
+       
+    @Override
+    public void salvar() {
+        if(razaoSocial != null && !"".equals(razaoSocial.trim())){
+            getEntity().setRazaoSocial(razaoSocial);
+        }
+        super.salvar();
+    }
+
+    @Override
+    public void editar(Fornecedor entity) {
+        try {
+            entity = getLogic().buscarPorId(entity.getId());
+            super.editar(entity);
+        } catch (Exception ex) {
+            addMensagemErro(ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
     
-    public List<Fornecedor> getFornecedores(){
+    
+    public List<Fornecedor> getFornecedors(){
         try {
             return getLogic().buscar(null);
         } catch (Exception ex) {
@@ -37,4 +58,15 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
             return null;
         }
     }
-}
+
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+    }
+
+    
+

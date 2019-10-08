@@ -9,37 +9,57 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Gerenciar NotaFiscal"></ui:param>
+
     <h:form>
-        <p:fieldset legend="Dashboard">
-
-            <si:toolbar-crud crudBean="#{notaFiscalBean}"/>                
-
+        <p:fieldset legend="#{notaFiscalBean.statusTela == 'PESQUISANDO'?'Pesquisa de':notaFiscalBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Notas Fiscais">
+            <si:toolbar-crud crudBean="#{notaFiscalBean}"/>
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
-                         rendered="#{notafiscalBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
+                         rendered="#{notaFiscalBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Numero:"></p:outputLabel>
+                <p:outputLabel value="Numero"></p:outputLabel>
                 <p:inputText value="#{notaFiscalBean.entity.numero}"></p:inputText>
-
-
+              
+                
+                <p:outputLabel value="Nome Produto"></p:outputLabel>
+                <p:selectOneMenu value="#{notaFiscalBean.entity.produto}">
+                    <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
+                    <f:selectItems value="#{notaFiscalBean.produtos}" var="prod" 
+                                   itemLabel="#{prod.descricao}" itemValue="#{prod}"></f:selectItems>
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Nome Fornecedor"></p:outputLabel>
+                <p:selectOneMenu value="#{notaFiscalBean.entity.fornecedor}">
+                    <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
+                    <f:selectItems value="#{notaFiscalBean.fornecedores}" var="forne" 
+                                   itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>
+                </p:selectOneMenu>
+                
+                
             </p:panelGrid>
-            <p:spacer height="20px"></p:spacer>
 
-            <p:dataTable value="#{notafiscalBean.entitys}" var="notafiscal"
-                         rendered="#{notafiscalBean.statusTela == 'PESQUISANDO'}">
+            <p:dataTable value="#{notaFiscalBean.entitys}" var="notaFiscal"
+                         rendered="#{notaFiscalBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">
-                    <si:colunaAcoes crudBean="#{notafiscalBean}" entity="#{notafiscal}"></si:colunaAcoes>
-                </p:column> 
-
+                    <si:colunaAcoes crudBean="#{notaFiscalBean}" entity="#{notaFiscal}"></si:colunaAcoes>
+                </p:column>                    
                 <p:column headerText="Numero">
-                    <h:outputText value="#{notafiscal.numero}"></h:outputText>
+                    <h:outputText value="#{notaFiscal.numero}"></h:outputText>
+                </p:column>
+                
+                <p:column headerText="Nome Fornecedor">
+                    <h:outputText value="#{notaFiscal.fornecedor.razaoSocial}"></h:outputText>
+                </p:column>
+                
+                <p:column headerText="Nome Produto">
+                    <h:outputText value="#{notaFiscal.produto.descricao}"></h:outputText>
                 </p:column>
                 
             </p:dataTable>
         </p:fieldset>
+
     </h:form>
-   
+
 </ui:composition>
 

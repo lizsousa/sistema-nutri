@@ -28,14 +28,14 @@ public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> 
 
     @Override
     public UnidadeMedida buscarPorId(Integer id) throws  NegocioException, SistemaException {
-        UnidadeMedida unidademedida = dao.buscarPorId(id);
-        return unidademedida;
+        UnidadeMedida unidadeMedida = dao.buscarPorId(id);
+        return unidadeMedida;
     }
 
     @Override
-    public List<UnidadeMedida> buscar(UnidadeMedida entity) throws  NegocioException, SistemaException {
-        List<UnidadeMedida> unidademedidas = dao.listar();
-        return unidademedidas;
+    public List<UnidadeMedida>buscar(UnidadeMedida entity) throws  NegocioException, SistemaException {
+        List<UnidadeMedida> unidadeMedidas = dao.listar();
+        return unidadeMedidas;
     }
     
 }

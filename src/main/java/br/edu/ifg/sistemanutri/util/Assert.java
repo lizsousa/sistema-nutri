@@ -155,4 +155,8 @@ public class Assert {
         return false;
     }
 
+    public static boolean isCnpjcpfValido(Object cnpjcpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

@@ -2,6 +2,7 @@ package br.edu.ifg.sistemanutri.bean;
 
 import br.edu.ifg.sistemanutri.entity.UnidadeMedida;
 import br.edu.ifg.sistemanutri.logic.UnidadeMedidaLogic;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,10 +11,17 @@ import javax.inject.Named;
 @SessionScoped
 public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaLogic>{
 
+    
+    private String sigla;
+    
     @Inject
     private UnidadeMedidaLogic logic;
     
-    private String sigla;
+    @Override
+    public UnidadeMedidaLogic getLogic() {
+        return logic;
+    }
+ 
     
     @Override
     public void salvar() {
@@ -35,9 +43,13 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
     }
     
     
-    @Override
-    public UnidadeMedidaLogic getLogic() {
-        return logic;
+    public List<UnidadeMedida> getUnidadeMedidas(){
+        try {
+            return getLogic().buscar(null);
+        } catch (Exception ex) {
+            addMensagemErro(ex.getMessage());
+            return null;
+        }
     }
 
     public String getSigla() {
@@ -50,4 +62,3 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
     
 
 }
-

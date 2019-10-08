@@ -11,7 +11,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Cardapio"></ui:param>
     <h:form>
-        <p:fieldset legend="Dashboard">
+        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardapios">
 
             <si:toolbar-crud crudBean="#{cardapioBean}"/>                
 

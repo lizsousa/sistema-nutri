@@ -10,7 +10,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Usuários"></ui:param>
     <h:form>
-        <p:fieldset legend="Dashboard">
+        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuarios">
 
             <si:toolbar-crud crudBean="#{usuarioBean}">
                 <f:facet name="opcoes">

@@ -19,14 +19,17 @@
 
                 <p:outputLabel value="Descricao"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.descricao}"></p:inputText>
-               sss
+              
                 <p:outputLabel value="Unidade Medida"></p:outputLabel>
-                <p:selectOneMenu value="#{produtoBean.entity.unidademedida}">
+                <p:selectOneMenu value="#{produtoBean.entity.unidadeMedida}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
-                    <f:selectItems value="#{produtoBean.unidademedidas}" var="cat" 
-                                   itemLabel="#{cat.sigla}" itemValue="#{cat}"></f:selectItems>
+                    <f:selectItems value="#{produtoBean.unidadeMedidas}" var="prod" 
+                                   itemLabel="#{prod.sigla}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
-
+                
+                <p:outputLabel for="dataValidade" value="Data Validade"></p:outputLabel>
+                <p:calendar id="dataValidade" value="#{produtoBean.entity.dataValidade}"></p:calendar>
+              
             </p:panelGrid>
 
             <p:dataTable value="#{produtoBean.entitys}" var="produto"
@@ -38,9 +41,15 @@
                 <p:column headerText="Descricao">
                     <h:outputText value="#{produto.descricao}"></h:outputText>
                 </p:column>
+                
                 <p:column headerText="Unidade Medida">
-                    <h:outputText value="#{produto.unidademedida.sigla}"></h:outputText>
+                    <h:outputText value="#{produto.unidadeMedida.sigla}"></h:outputText>
                 </p:column>
+                
+                <p:column headerText="Data Validade">
+                    <h:outputText value="#{produto.dataValidade}"></h:outputText>
+                </p:column>
+                
             </p:dataTable>
         </p:fieldset>
 

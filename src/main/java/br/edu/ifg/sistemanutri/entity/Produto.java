@@ -1,7 +1,9 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "produto")
@@ -17,11 +21,15 @@ public class Produto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
     private String descricao;
+    @Temporal(TemporalType.DATE)
+    @Column(name="data_validade")
+    private Date dataValidade;
+   
     @ManyToOne
     @JoinColumn(name = "unidade_medida_id")
-    private UnidadeMedida unidademedida;
+    private UnidadeMedida unidadeMedida;
+
 
     public Integer getId() {
         return id;
@@ -29,14 +37,6 @@ public class Produto implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -47,19 +47,26 @@ public class Produto implements Serializable{
         this.descricao = descricao;
     }
 
-    public UnidadeMedida getUnidademedida() {
-        return unidademedida;
+    public UnidadeMedida getUnidadeMedida() {
+        return unidadeMedida;
     }
 
-    public void setUnidademedida(UnidadeMedida unidademedida) {
-        this.unidademedida = unidademedida;
+    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
 
-    
+    public Date getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(Date dataValidade) {
+        this.dataValidade = dataValidade;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

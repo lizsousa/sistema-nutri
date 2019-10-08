@@ -31,11 +31,12 @@ public class ProdutoLogic implements GenericLogic<Produto, Integer> {
         Produto produto = dao.buscarPorId(id);
         return produto;
     }
-
+    
     @Override
-    public List<Produto> buscar(Produto entity) throws  NegocioException, SistemaException {
-        List<Produto> produtoes = dao.listar();
-        return produtoes;
+    public List<Produto>buscar(Produto entity) throws  NegocioException, SistemaException {
+        List<Produto> produtos = dao.listar();
+        return produtos;
     }
+ 
     
 }

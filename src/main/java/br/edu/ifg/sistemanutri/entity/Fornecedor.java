@@ -1,26 +1,29 @@
+
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
-import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "fornecedor")
 public class Fornecedor implements Serializable {
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String razao_social;
-    private String nome_fantasia;
-    private String cnpj;
-    private String cpf;
+    private Integer id;
+    @Column(name = "razao_social")
+    private String razaoSocial;
+
+    @Column(name = "nome_fantasia")
+    private String nomeFantasia;
+    @Column(name = "cnpj_cpf")
+    private String cnpjCpf;
     private String inscricao;
     private String endereco;
     private String telefone;
@@ -34,36 +37,28 @@ public class Fornecedor implements Serializable {
         this.id = id;
     }
 
-    public String getRazao_social() {
-        return razao_social;
+    public String getRazaoSocial() {
+        return razaoSocial;
     }
 
-    public void setRazao_social(String razao_social) {
-        this.razao_social = razao_social;
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
     }
 
-    public String getNome_fantasia() {
-        return nome_fantasia;
+    public String getNomeFantasia() {
+        return nomeFantasia;
     }
 
-    public void setNome_fantasia(String nome_fantasia) {
-        this.nome_fantasia = nome_fantasia;
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getCnpjCpf() {
+        return cnpjCpf;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpjCpf(String cnpjCpf) {
+        this.cnpjCpf = cnpjCpf;
     }
 
     public String getInscricao() {
@@ -73,7 +68,6 @@ public class Fornecedor implements Serializable {
     public void setInscricao(String inscricao) {
         this.inscricao = inscricao;
     }
-    
 
     public String getEndereco() {
         return endereco;
@@ -81,6 +75,14 @@ public class Fornecedor implements Serializable {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getEmail() {
@@ -91,19 +93,10 @@ public class Fornecedor implements Serializable {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-   
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 53 * hash + this.id;
         return hash;
     }
 
@@ -119,14 +112,10 @@ public class Fornecedor implements Serializable {
             return false;
         }
         final Fornecedor other = (Fornecedor) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
 
 }

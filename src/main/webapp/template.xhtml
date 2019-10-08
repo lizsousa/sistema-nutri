@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Sistema Comercial#{empty tituloPagina?'':' - '.concat(tituloPagina)}</title>
+        <title>Sistema Nutri#{empty tituloPagina?'':' - '.concat(tituloPagina)}</title>
         <meta name="viewport" content="width=device-width"></meta>
         <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
 
@@ -46,7 +46,7 @@
             <ul>
                 <li>
                     <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-dashboard"></i>Dashboard
+                        <i class="fa fa-fw fa-dashboard"></i>HOME
                     </a>
                 </li>
                 <li>
@@ -56,37 +56,37 @@
                     <ul class="submenu" id="submenu-cadastros">
                         <li>
                             <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-users"></i>Gerenciar Usuarios
+                                <i class="fa fa-fw fa-users"></i>Usuarios
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar Produto
+                                <i class="fa fa-fw fa-tags"></i>Produto
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar Fornecedor
+                                <i class="fa fa-fw fa-tags"></i>Fornecedor
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar Cardapio
+                                <i class="fa fa-fw fa-tags"></i>Cardapio
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-setor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-setor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar Setor
+                                <i class="fa fa-fw fa-tags"></i>Setor
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar Unidade de Medida
+                                <i class="fa fa-fw fa-tags"></i>Unidade de Medida
                             </a>
                         </li>
-                        <li>s
+                        <li>
                             <a href="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Gerenciar nota fiscal
+                                <i class="fa fa-fw fa-tags"></i>Notas Fiscais
                             </a>
                         </li>
                     </ul>
@@ -118,28 +118,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="gerenciar-pedido.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-pedido.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-shopping-cart"></i>Gerenciar Pedido
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-financeiro">
-                        <i class="fa fa-fw fa-money"></i>Financeiro<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-financeiro">
-                        <li>
-                            <a href="gerenciar-fluxo-caixa.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fluxo-caixa.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-calculator"></i>Fluxo Caixa
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-conta.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-conta.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-bank"></i>Gerenciar Conta
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
                         <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
@@ -190,11 +169,7 @@
                                 <i class="fa fa-fw fa-sliders"></i>Relatorio Fornecedor
                             </a>
                         </li>
-                        <li>
-                            <a href="relatorio-pedido.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-pedido.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Relatorio Pedido
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
                 <li>
