@@ -66,7 +66,8 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
-    }
+    
+ }
 
     
 

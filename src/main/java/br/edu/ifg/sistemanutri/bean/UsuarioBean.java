@@ -1,8 +1,11 @@
 package br.edu.ifg.sistemanutri.bean;
 
+import br.edu.ifg.sistemanutri.entity.Permissao;
 import br.edu.ifg.sistemanutri.entity.Usuario;
+import br.edu.ifg.sistemanutri.logic.PermissaoLogic;
 import br.edu.ifg.sistemanutri.logic.UsuarioLogic;
 import java.util.Date;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,6 +16,9 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
 
     @Inject
     private UsuarioLogic logic;
+    
+    @Inject
+    private PermissaoLogic permissaoLogic;
     
     private String nome;
     private String login;
@@ -59,6 +65,17 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
         }
     }
     
+       
+    public List<Permissao> getPermissoes(){
+        try {
+            return getPermissaoLogic().buscar(null);
+        } catch (Exception ex) {
+            addMensagemErro(ex.getMessage());
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
     
     @Override
     public UsuarioLogic getLogic() {
@@ -88,6 +105,11 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public PermissaoLogic getPermissaoLogic() {
+        return permissaoLogic;
+    }
+    
     
 }
 

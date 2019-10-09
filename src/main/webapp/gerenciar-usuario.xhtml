@@ -36,7 +36,16 @@
                 
                 <p:outputLabel value="Senha"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.senha}"></p:inputText>
-        
+                
+                <p:spacer height="20px"></p:spacer>
+            <p:fieldset legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+                <p:selectManyCheckbox value="#{usuarioBean.entity.permissoes}"  class="p-grid" converter="permissaoConverter" layout="responsive" columns="3">
+                <!-- collectionType="" - Também funciona, porém o Netbeans não reconhece o atributo -->
+                    <f:selectItems value="#{usuarioBean.permissoes}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
+                    <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                </p:selectManyCheckbox>
+            </p:fieldset>
+
 
             </p:panelGrid>
             <p:spacer height="20px"></p:spacer>
@@ -65,6 +74,11 @@
                 
                 <p:column headerText="Senha">
                     <h:outputText value="#{user.senha}"></h:outputText>
+                </p:column>
+                
+                
+                <p:column headerText="Permissoes">
+                    <h:outputText value="#{user.permissoesString}"></h:outputText>
                 </p:column>
             </p:dataTable>
         </p:fieldset>

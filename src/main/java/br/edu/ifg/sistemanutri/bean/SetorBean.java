@@ -2,6 +2,9 @@ package br.edu.ifg.sistemanutri.bean;
 
 import br.edu.ifg.sistemanutri.entity.Setor;
 import br.edu.ifg.sistemanutri.logic.SetorLogic;
+import br.edu.ifg.sistemanutri.util.exception.NegocioException;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -38,7 +41,19 @@ public class SetorBean extends GenericCrud<Setor, SetorLogic>{
             ex.printStackTrace();
         }
     }
-    
+            
+    public List<Setor> getSetors(){
+        try {
+            return logic.buscar(null);
+        } catch (SistemaException ex) {
+            addMensagemFatal(ex);
+        } catch (NegocioException ex) {
+            addMensagemErro(ex);
+        }
+        return null;
+    }
+
+
     
     @Override
     public SetorLogic getLogic() {
