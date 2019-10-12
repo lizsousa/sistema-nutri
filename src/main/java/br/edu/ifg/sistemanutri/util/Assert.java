@@ -73,7 +73,7 @@ public class Assert {
         return dv == (d1 * 10 + d2);
     }
 
-    public static boolean isCnpjValido(String cnpj) {
+    public static boolean isCnpjcpfValido(String cnpj) {
         if (!cnpj.substring(0, 1).equals("")) {
             try {
                 cnpj = cnpj.replaceAll("\\.", "");

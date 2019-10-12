@@ -61,13 +61,10 @@ public class Cardapio implements Serializable {
             return false;
         }
         final Cardapio other = (Cardapio) obj;
-        
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-    
-    
-    
+
 }

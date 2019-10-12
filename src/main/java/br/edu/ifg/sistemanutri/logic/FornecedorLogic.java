@@ -2,7 +2,6 @@ package br.edu.ifg.sistemanutri.logic;
 
 import br.edu.ifg.sistemanutri.dao.FornecedorDAO;
 import br.edu.ifg.sistemanutri.entity.Fornecedor;
-import br.edu.ifg.sistemanutri.entity.Produto;
 import br.edu.ifg.sistemanutri.util.Assert;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
@@ -16,16 +15,32 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
     
     @Override
     public Fornecedor salvar(Fornecedor entity) throws NegocioException, SistemaException{
-        if("".equals(entity.getNomeFantasia().trim())){
-            throw new NegocioException("Nome do fornecedor é obrigatório.");
-        }
+        
+            if("".equals(entity.getNomeFantasia().trim())){
+                throw new NegocioException("Nome do fornecedor é obrigatório.");
+            }
+            if(entity.getCnpjCpf()== null){
+                if(!Assert.isCnpjcpfValido(entity.getCnpjCpf())){
+                    throw new NegocioException("CNPJ ou CPF inválido.");
+                }
+            }else{
+                if(entity.getCnpjCpf()== null && !Assert.isCnpjcpfValido(entity.getCnpjCpf())){
+                    throw new NegocioException("CNPJ ou CPF inválido.");
+                }
+
+            }
+            if(entity.getCnpjCpf()!= null && Assert.isCnpjcpfValido(entity.getCnpjCpf())){
+                entity.setInscricao("");
+
+             }
+        
          if(!Assert.isValidEmail(entity.getEmail())){
              throw new NegocioException("Email inválido.");
-        }                  
-        if(entity.getCnpjCpf()== null) entity.setCnpjCpf("");
+        }               
         dao.salvar(entity);
         return null;    
     }
+
 
     @Override
     public void deletar(Fornecedor entity) throws NegocioException, SistemaException {

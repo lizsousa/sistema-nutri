@@ -1,10 +1,10 @@
 -- Script Postgress
 
--- Database: sistema-comercial
+-- Database: sistema-nutri
 
--- DROP DATABASE "sistema-comercial";
+-- DROP DATABASE "sistema-nutri";
 
-CREATE DATABASE "sistema-comercial"
+CREATE DATABASE "sistema-nutri"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -15,7 +15,7 @@ CREATE DATABASE "sistema-comercial"
 
 
 -- Selecionando a base de dados
-\c "sistema-comercial";
+\c "sistema-nutri";
 
 -- Table: public.usuario
 

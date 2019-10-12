@@ -17,6 +17,9 @@ public class Fornecedor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "tipo_fornecedor")
+    private Boolean tipoFornecedor;
+    
     @Column(name = "razao_social")
     private String razaoSocial;
 
@@ -37,6 +40,15 @@ public class Fornecedor implements Serializable {
         this.id = id;
     }
 
+    public Boolean getTipoFornecedor() {
+        return tipoFornecedor;
+    }
+
+    public void setTipoFornecedor(Boolean tipoFornecedor) {
+        this.tipoFornecedor = tipoFornecedor;
+    }
+
+    
     public String getRazaoSocial() {
         return razaoSocial;
     }
@@ -117,5 +129,13 @@ public class Fornecedor implements Serializable {
         }
         return true;
     }
+public Object getCnpjcpf() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    public void setCnpjcpf(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+
+

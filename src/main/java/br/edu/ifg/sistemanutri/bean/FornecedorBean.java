@@ -11,9 +11,11 @@ import javax.inject.Named;
 @SessionScoped
 public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     
-    private Integer tipoFornecedor;
+    private Integer tipoPessoa = 0;
+    private Boolean tipoFornecedor; 
     private String razaoSocial;
-
+    
+   
     @Inject
     private FornecedorLogic logic;
     
@@ -22,13 +24,22 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
         return logic;
     }
 
-    public Integer getTipoFornecedor() {
+    public Integer getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(Integer tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    public Boolean getTipoFornecedor() {
         return tipoFornecedor;
     }
 
-    public void setTipoFornecedor(Integer tipoFornecedor) {
+    public void setTipoFornecedor(Boolean tipoFornecedor) {
         this.tipoFornecedor = tipoFornecedor;
     }
+
        
     @Override
     public void salvar() {
