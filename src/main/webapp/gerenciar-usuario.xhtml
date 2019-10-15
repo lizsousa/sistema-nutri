@@ -5,12 +5,12 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="template.xhtml"
-                xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom"
+                xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Usuários"></ui:param>
     <h:form>
-        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuarios">
+        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
             <si:toolbar-crud crudBean="#{usuarioBean}">
                 <f:facet name="opcoes">
@@ -33,19 +33,18 @@
                 <p:outputLabel value="Login"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.login}"></p:inputText>
         
+                <h:outputLabel value="Senha" />
+                <p:password value="#{usuarioBean.entity.senha}"/>
+ 
                 
-                <p:outputLabel value="Senha"></p:outputLabel>
-                <p:inputText value="#{usuarioBean.entity.senha}"></p:inputText>
-                
-                <p:spacer height="20px"></p:spacer>
-            <p:fieldset legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+             <p:spacer height="20px"></p:spacer> 
+           <p:fieldset legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
                 <p:selectManyCheckbox value="#{usuarioBean.entity.permissoes}"  class="p-grid" converter="permissaoConverter" layout="responsive" columns="3">
                 <!-- collectionType="" - Também funciona, porém o Netbeans não reconhece o atributo -->
-                    <f:selectItems value="#{usuarioBean.permissoes}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
+                   <f:selectItems value="#{usuarioBean.permissoes}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
                     <f:attribute name="collectionType" value="java.util.ArrayList"/>
                 </p:selectManyCheckbox>
             </p:fieldset>
-
 
             </p:panelGrid>
             <p:spacer height="20px"></p:spacer>
@@ -70,15 +69,6 @@
                 
                 <p:column headerText="Login">
                     <h:outputText value="#{user.login}"></h:outputText>
-                </p:column>
-                
-                <p:column headerText="Senha">
-                    <h:outputText value="#{user.senha}"></h:outputText>
-                </p:column>
-                
-                
-                <p:column headerText="Permissoes">
-                    <h:outputText value="#{user.permissoesString}"></h:outputText>
                 </p:column>
             </p:dataTable>
         </p:fieldset>
