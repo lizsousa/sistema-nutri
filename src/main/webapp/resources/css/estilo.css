@@ -20,9 +20,9 @@ header{
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     background-color: #344f63;
-    background-image: -webkit-gradient(linear, left top, right top, from(#22506B), to(#123A52));
-    background-image: -webkit-linear-gradient(left, #22506B, #123A52);
-    background-image: linear-gradient(to right, #22506B, #123A52);
+    background-image: -webkit-gradient(linear, left top, right top, from(#2E8B57), to(#2F4F4F));
+    background-image: -webkit-linear-gradient(left, #2E8B57, #2F4F4F);
+    background-image: linear-gradient(to right, #2E8B57, #2F4F4F);
 }
 header > div {
     float: left;
@@ -93,14 +93,14 @@ nav.sidebar {
     transition: left 0.5s;
     position: fixed;
     overflow: auto;
-    background-color: #142837;
+    background-color: #2E8B57;
     z-index: 10;
 }
 nav.sidebar::-webkit-scrollbar {
     width: 5px;
 }
 nav.sidebar::-webkit-scrollbar-thumb {
-    background: #6a91a4; 
+    background: #8FBC8F; /*barra de rolagem*/
 }
 nav.sidebar > ul {
     padding-bottom: 80px;
@@ -138,10 +138,10 @@ nav.sidebar ul li ul.submenu.open {
     padding-left: 20px;
 }*/
 nav.sidebar a.sidebar-item.active{
-    border-left: 8px solid #22506B;
+    border-left: 8px solid #8FBC8F;/*qnd clica em home*/
 }
 nav.sidebar a.sidebar-item:hover{
-    background-color: #33779E;
+    background-color: #8FBC8F;/*na hora q passa o mouse*/
     color: white;
     transition: 0.3s;
 }
@@ -182,9 +182,9 @@ nav.sidebar a.sidebar-item:hover{
 nav.sidebar .usuario {
     padding-top: 20px;
     margin-bottom: 20px;
-    background-image: -webkit-gradient(linear, left top, right top, from(#57b690), to(#146fab));
-    background-image: -webkit-linear-gradient(left top, #57b690, #146fab);
-    background-image: linear-gradient(to right bottom, #33779E, #22506B);
+    background-image: -webkit-gradient(linear, left top, right top, from(#2E8B57), to(#2E8B57));
+    background-image: -webkit-linear-gradient(left top, #2E8B57, #2E8B57);
+    background-image: linear-gradient(to right bottom, #2E8B57, #2E8B57);
     color: white;
 }
 
