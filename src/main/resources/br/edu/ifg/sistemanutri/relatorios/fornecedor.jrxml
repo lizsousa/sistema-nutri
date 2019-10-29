@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fornecedor" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c6fa240-5034-4f8b-9143-126e6c29e581">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="Zm9ybmVjZWRvciAsMTUsMTUsMGNkZmU3OTUtMDE1Ni00MmQ5LTgxMTEtM2ZmODc0YTJiZTBiOw==&#xA;"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="siscom"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sisnut"/>
         <parameter name="LOGO_IMG" class="java.io.InputStream"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT fornecedor.nome,

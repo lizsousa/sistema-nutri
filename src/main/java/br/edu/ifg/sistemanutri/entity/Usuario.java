@@ -1,6 +1,5 @@
 package br.edu.ifg.sistemanutri.entity;
 
-import br.edu.ifg.sistemanutri.util.MD5Util;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,19 +26,19 @@ public class Usuario implements Serializable{
     private String senha;
     private String login;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="data_cadastro")
     private Date dataCadastro;
+    
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="data_desativacao")
     private Date dataDesativacao;
     
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_has_permissao", 
-            joinColumns = @JoinColumn(name="usuario_id"),
-            inverseJoinColumns = @JoinColumn(name="permissao_id"))
-    private List<Permissao> permissoes;
+    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<UsuarioHasPermissao> usuariosHasPermissoes;
 
+    
     public Integer getId() {
         return id;
     }
@@ -91,30 +88,18 @@ public class Usuario implements Serializable{
         this.dataDesativacao = dataDesativacao;
     }
 
-    public List<Permissao> getPermissoes() {
-        return permissoes;
+    public List<UsuarioHasPermissao> getUsuariosHasPermissoes() {
+        return usuariosHasPermissoes;
     }
 
-    public void setPermissoes(List<Permissao> permissoes) {
-        this.permissoes = permissoes;
+    public void setUsuariosHasPermissoes(List<UsuarioHasPermissao> usuariosHasPermissoes) {
+        this.usuariosHasPermissoes = usuariosHasPermissoes;
     }
-    
 
-    public String getPermissoesString(){
-        StringBuilder builder = new StringBuilder();
-        if(permissoes == null){
-            return null;
-        }
-        for (Permissao permissao : permissoes) {
-            builder.append(permissao.getNome()).append(",");
-        }
-        return builder.toString();
-    }
-    
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -135,7 +120,8 @@ public class Usuario implements Serializable{
         }
         return true;
     }
-    
+
+ 
     
     
 }

@@ -1,9 +1,5 @@
 package br.edu.ifg.sistemanutri.util.exception;
 
-/**
- *
- * @author danilo
- */
 public class SistemaException extends Exception {
 
     public SistemaException(String message) {

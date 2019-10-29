@@ -1,9 +1,5 @@
 package br.edu.ifg.sistemanutri.entity.enums;
 
-/**
- *
- * @author felurye
- */
 public enum EstadosEnum {
 
     AC("Acre"),

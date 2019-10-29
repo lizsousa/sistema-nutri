@@ -24,22 +24,6 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
         return logic;
     }
 
-    public Integer getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    public void setTipoPessoa(Integer tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
-    }
-
-    public Boolean getTipoFornecedor() {
-        return tipoFornecedor;
-    }
-
-    public void setTipoFornecedor(Boolean tipoFornecedor) {
-        this.tipoFornecedor = tipoFornecedor;
-    }
-
        
     @Override
     public void salvar() {
@@ -77,6 +61,23 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     public void setRazaoSocial(String razaoSocial) {
         this.razaoSocial = razaoSocial;
     }
+    
+    public Integer getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(Integer tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    public Boolean getTipoFornecedor() {
+        return tipoFornecedor;
+    }
+
+    public void setTipoFornecedor(Boolean tipoFornecedor) {
+        this.tipoFornecedor = tipoFornecedor;
+    }
+
     
  }
 

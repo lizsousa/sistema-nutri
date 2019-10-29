@@ -12,7 +12,8 @@ public class ProdutoConverter implements Converter<Produto>{
     @Override
     public Produto getAsObject(FacesContext fc, UIComponent uic, String id) {
         if(id != null && !"".equals(id)){
-            Produto produto = (Produto)uic.getAttributes().get("produto_"+id);
+            Produto produto = 
+                    (Produto)uic.getAttributes().get("produto_"+id);
             return produto;
             
         }

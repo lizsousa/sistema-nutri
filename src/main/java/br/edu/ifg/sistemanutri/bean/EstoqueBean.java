@@ -8,6 +8,7 @@ import br.edu.ifg.sistemanutri.logic.FornecedorLogic;
 import br.edu.ifg.sistemanutri.entity.Fornecedor;
 import br.edu.ifg.sistemanutri.logic.ProdutoLogic;
 import br.edu.ifg.sistemanutri.entity.Produto;
+import br.edu.ifg.sistemanutri.logic.enuns.TipoEstoque;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.math.BigDecimal;
@@ -21,7 +22,7 @@ import javax.inject.Named;
 public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
     @Inject
-    private EstoqueLogic logic;
+    private EstoqueLogic estoquelogic;
     
     @Inject
     private FornecedorLogic fornecedorLogic;
@@ -72,6 +73,16 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     }
     
     
+    public List<Estoque> geEstoques(){
+        try {
+            return estoquelogic.buscar(null);
+        } catch (NegocioException ex){
+            addMensagemErro(ex);
+        }catch(SistemaException ex) {
+            addMensagemFatal(ex);
+        }
+        return null;
+    }
         
     public List<Setor> getSetors(){
         try {
@@ -83,6 +94,10 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
         }
         return null;
     }
+    
+    public TipoEstoque[] getTiposEstoque(){
+        return TipoEstoque.values();
+    }
 
 
     @Override
@@ -92,7 +107,7 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
     @Override
     public EstoqueLogic getLogic() {
-        return logic;
+        return estoquelogic;
     }
     
 
