@@ -24,14 +24,20 @@
                     <i class="fa fa-navicon"></i>
                 </a>
             </div>
-<!--            
+            
+            
             <div>
                 <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
-            </div>-->
+            </div>
             
             <div class="extras">
                 <div class="extras-item">
-                    <a href="#"><i class="fa fa-bell"></i></a>
+                    <!--<a href="#"><i class="fa fa-bell"></i></a>-->
+                    <div>
+                    <a href="sair.xhtml" class="sidebar-item #{view.viewId.endsWith('sair.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-sign-out"></i>Sair
+                    </a>
+                </div>
                 </div>
             </div>
         </header>
@@ -50,17 +56,17 @@
             <ul>
                 <li>
                     <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-dashboard"></i>HOME
+                        <i class="fa fa-fw fa-home"></i>HOME
                     </a>
                 </li>
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-cadastros">
-                        <i class="fa fa-fw fa-file-text-o"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
+                        <i class="fa fa-fw fa-edit"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
                     </a>
                     <ul class="submenu" id="submenu-cadastros">
                         <li>
                             <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-users"></i>Usuarios
+                                <i class="fa fa-fw fa-users"></i>Usuários
                             </a>
                         </li>
                         <li>
@@ -75,7 +81,7 @@
                         </li>
                         <li>
                             <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Cardapio
+                                <i class="fa fa-fw fa-tags"></i>Cardápio
                             </a>
                         </li>
                         <li>
@@ -97,7 +103,7 @@
                 </li>
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-estoque">
-                        <i class="fa fa-fw fa-cubes"></i>Estoque<i class="fa fa-fw fa-angle-down"></i>
+                        <i class="fa fa-fw fa-bar-chart-o"></i>Estoque<i class="fa fa-fw fa-angle-down"></i>
                     </a>
                     <ul class="submenu" id="submenu-estoque">
                         <li>
@@ -105,6 +111,21 @@
                                 <i class="fa fa-fw fa-archive"></i>Movimento Estoque
                             </a>
                         </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-relatorio">
+                        <i class="fa fa-fw fa-file-pdf-o"></i>Relatórios<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-relatorio">
+
+                        <li>
+                            <a href="relatorio-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Movimento de Estoque
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -127,45 +148,8 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-relatorio">
-                        <i class="fa fa-fw fa-gear"></i>Relatórios<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-relatorio">
-
-                        <li>
-                            <a href="relatorio-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-list"></i>Relatorio Usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a href="relatorio-cliente.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-cliente.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Relatorio Cliente
-                            </a>
-                        </li>
-                        <li>
-                            <a href="relatorio-categoria.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-categoria.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Relatorio Categoria
-                            </a>
-                        </li>
-                        <li>
-                            <a href="relatorio-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-produto.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Relatorio Produto
-                            </a>
-                        </li>
-                        <li>
-                            <a href="relatorio-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-fornecedor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Relatorio Fornecedor
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="sair.xhtml" class="sidebar-item #{view.viewId.endsWith('sair.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-sign-out"></i>Sair
-                    </a>
-                </li>
+                
+               
 
             </ul>
 

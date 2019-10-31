@@ -7,9 +7,9 @@
     
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/controleestoque"/>
-      <property name="javax.persistence.jdbc.user" value="lizandra"/>
+      <property name="javax.persistence.jdbc.user" value="nutri"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="aluno"/>
+      <property name="javax.persistence.jdbc.password" value="sistemanutri"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.show_sql" value="true"/>

@@ -17,7 +17,7 @@
             <p:panelGrid columns="2" styleClass="ui-noborder" 
                          rendered="#{produtoBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Descricao"></p:outputLabel>
+                <p:outputLabel value="Descrição"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.descricao}"></p:inputText>
               
                 <p:outputLabel value="Unidade Medida"></p:outputLabel>
@@ -35,7 +35,7 @@
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{produtoBean}" entity="#{produto}"></si:colunaAcoes>
                 </p:column>                    
-                <p:column headerText="Descricao">
+                <p:column headerText="Descrição">
                     <h:outputText value="#{produto.descricao}"></h:outputText>
                 </p:column>
                 

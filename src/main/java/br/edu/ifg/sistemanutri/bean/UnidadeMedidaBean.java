@@ -11,8 +11,8 @@ import javax.inject.Named;
 @SessionScoped
 public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaLogic>{
 
-    
     private String sigla;
+    private String nome;
     
     @Inject
     private UnidadeMedidaLogic logic;
@@ -21,7 +21,6 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
     public UnidadeMedidaLogic getLogic() {
         return logic;
     }
- 
     
     @Override
     public void salvar() {
@@ -42,7 +41,6 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
         }
     }
     
-    
     public List<UnidadeMedida> getUnidadeMedidas(){
         try {
             return getLogic().buscar(null);
@@ -60,5 +58,11 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
         this.sigla = sigla;
     }
     
+    public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

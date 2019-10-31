@@ -12,7 +12,11 @@
 
     <h:form>
         <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Pesquisa de':estoqueBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Estoque">
-            <si:toolbar-crud crudBean="#{estoqueBean}"/>
+            <si:toolbar-crud crudBean="#{estoqueBean}">
+            <p:commandButton value="Cadastrar novo produto" ajax="false" action="gerenciar-produto.xhtml" 
+                             onclick="this.form.target='_blank'"></p:commandButton> 
+           
+            </si:toolbar-crud>
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
                          rendered="#{estoqueBean.statusTela != 'PESQUISANDO'}">

@@ -9,8 +9,8 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <h:form>
-       <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuario">
-            
+        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
+
             <si:toolbar-crud crudBean="#{usuarioBean}">
                 <f:facet name="opcoes">
                     <p:commandButton value="#{usuarioBean.entity.dataDesativacao == null?'Desativar':'Ativar'}"
@@ -32,16 +32,19 @@
 
                 <p:outputLabel value="Login"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.login}"></p:inputText>
-
-                <p:outputLabel value="Senha"></p:outputLabel>
-                <p:inputText value="#{usuarioBean.entity.senha}"></p:inputText>
+        
+                <h:outputLabel value="Senha" />
+                <p:password value="#{usuarioBean.entity.senha}"/>
+ 
                 
-                <p:outputLabel for="button" value="Data Cadastro:" />
-                <p:calendar id="button" value="#{usuarioBean.entity.dataCadastro}" showOn="button" />
-                
-
-                <h:outputText></h:outputText>
-                <p:commandButton value="Adicionar Permissao" oncomplete="PF('dialodAddPermissao').show();" icon="fa fa-plus"></p:commandButton>
+             <p:spacer height="20px"></p:spacer> 
+           <p:fieldset legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+                <p:selectManyCheckbox value="#{usuarioBean.entity.permissoes}"  class="p-grid" converter="permissaoConverter" layout="responsive" columns="3">
+                <!-- collectionType="" - Também funciona, porém o Netbeans não reconhece o atributo -->
+                   <f:selectItems value="#{usuarioBean.permissoes}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
+                    <f:attribute name="collectionType" value="java.util.ArrayList"/>
+                </p:selectManyCheckbox>
+            </p:fieldset>
 
             </p:panelGrid>
             
@@ -80,27 +83,23 @@
             <p:dataTable  value="#{usuarioBean.entitys}" var="usuario"
                          rendered="#{usuarioBean.statusTela == 'PESQUISANDO'}">
 
-                <p:column width="100">
-                    <si:colunaAcoes crudBean="#{usuarioBean}" entity="#{usuario}"></si:colunaAcoes>
-                </p:column>                    
-
-                    <p:column headerText="Nome">
-                        <h:outputText value="#{usuario.nome}"></h:outputText>
-                    </p:column>
+                <p:column width="135">
+                    <si:colunaAcoes crudBean="#{usuarioBean}" entity="#{user}" rederedDelete="true">
+                        <p:commandButton icon="fa #{user.dataDesativacao == null?'fa-check-circle-o':'fa-close'}" update="@form"
+                                         actionListener="#{usuarioBean.ativarDesativar(user)}"
+                                         style="color: #{user.dataDesativacao == null?'green':'red'}">
+                            <p:tooltip for="@parent" value="#{user.dataDesativacao == null?'Desativar':'Ativar'}"></p:tooltip>
+                        </p:commandButton>
+                    </si:colunaAcoes>
+                </p:column>
                 
+                <p:column headerText="Nome">
+                    <h:outputText value="#{user.nome}"></h:outputText>
+                </p:column>
                 
-                    <p:column headerText="Login">
-                        <h:outputText value="#{usuario.login}"></h:outputText>
-                    </p:column>
-                
-                
-
-                    <p:column headerText="Permissao">
-                        <h:outputText value="#{usuarioBean.usuarioHasPermissao.permissao.nome}"></h:outputText>
-                    </p:column>
-
-                    
-                
+                <p:column headerText="Login">
+                    <h:outputText value="#{user.login}"></h:outputText>
+                </p:column>
             </p:dataTable>
         </p:fieldset>
     </h:form>
