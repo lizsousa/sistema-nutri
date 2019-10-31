@@ -12,36 +12,37 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
 
-    @Inject
+    @Autowired
     private UsuarioLogic logic;
     
-    @Inject
+    @Autowired
     private PermissaoLogic permissaoLogic;
     
-    private UsuarioHasPermissao usuarioHasPermissao = new UsuarioHasPermissao();
+    private Permissao Permissao = new Permissao();
     
-    public void novoUsuarioHasPermissao(){
-        usuarioHasPermissao = new UsuarioHasPermissao();
+    public void novaPermissao(){
+        Permissao = new Permissao();
     }
     
     
     public void adicionarPermissao(){
-        if(getEntity().getUsuariosHasPermissoes()== null){
-            getEntity().setUsuariosHasPermissoes(new ArrayList<UsuarioHasPermissao>());
+        if(getEntity().getPermissoes()== null){
+            getEntity().setPermissoes(new ArrayList<Permissao>());
         }
-        if(!getEntity().getUsuariosHasPermissoes().contains(usuarioHasPermissao)){
-            getEntity().getUsuariosHasPermissoes().add(usuarioHasPermissao);
+        if(!getEntity().getPermissoes().contains(Permissao)){
+            getEntity().getPermissoes().add(Permissao);
         }
-        novoUsuarioHasPermissao();
+        novaPermissao();
     }
-    public void removerPermissao(UsuarioHasPermissao permissao){
-         if(getEntity().getUsuariosHasPermissoes().contains(permissao)){
-            getEntity().getUsuariosHasPermissoes().remove(permissao);
+    public void removerPermissao(Permissao permissao){
+         if(getEntity().getPermissoes().contains(permissao)){
+            getEntity().getPermissoes().remove(permissao);
         }
        
         
@@ -65,8 +66,8 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
     }
     
     
-    public UsuarioHasPermissao getUsuarioHasPermissao() {
-        return usuarioHasPermissao;
+    public Permissao getPermissao() {
+        return Permissao;
     }
     
 }

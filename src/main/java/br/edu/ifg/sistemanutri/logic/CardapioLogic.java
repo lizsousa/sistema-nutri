@@ -7,14 +7,16 @@ import br.edu.ifg.sistemanutri.entity.CardapioHasProduto;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.List;
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
 
-    @Inject
+    @Autowired
     private CardapioDAO dao;
     
-    @Inject
+    @Autowired
     private CardapioHasProdutoDAO peidHasProdutoDAO;
     
     @Override

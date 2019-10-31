@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
@@ -14,7 +15,7 @@ public class UnidadeMedidaBean extends GenericCrud<UnidadeMedida, UnidadeMedidaL
     private String sigla;
     private String nome;
     
-    @Inject
+    @Autowired
     private UnidadeMedidaLogic logic;
     
     @Override

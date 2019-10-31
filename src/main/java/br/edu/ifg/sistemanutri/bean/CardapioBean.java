@@ -12,15 +12,16 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic>{
 
-    @Inject
+    @Autowired
     private CardapioLogic logic;
 
-    @Inject
+    @Autowired
     private ProdutoLogic produtoLogic;
     
     private CardapioHasProduto cardapioHasProduto = new CardapioHasProduto();

@@ -10,19 +10,18 @@ import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+@Service
 public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
 
-    @Inject
+    @Autowired
     private NotaFiscalDAO dao;
     
-    @Inject
+    @Autowired
     private NotaFiscalHasProdutoDAO nfeHasProdutoDAO;
     
-        @Inject
+    @Autowired
     private EstoqueLogic estoquelogic;
     
     @Override

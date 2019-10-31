@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -96,6 +98,17 @@ public class Usuario implements Serializable{
     public void setPermissoes(List<Permissao> permissoes) {
         this.permissoes = permissoes;
     }
+        public String getPermissoesString(){
+        StringBuilder builder = new StringBuilder();
+        if(permissoes == null){
+            return null;
+        }
+        for (Permissao permissao : permissoes) {
+            builder.append(permissao.getNome()).append(",");
+        }
+        return builder.toString();
+    }
+    
 
     @Override
     public int hashCode() {

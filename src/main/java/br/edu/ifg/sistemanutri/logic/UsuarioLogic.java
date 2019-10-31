@@ -1,35 +1,29 @@
 package br.edu.ifg.sistemanutri.logic;
 
 import br.edu.ifg.sistemanutri.dao.UsuarioDAO;
-import br.edu.ifg.sistemanutri.dao.UsuarioHasPermissaoDAO;
 import br.edu.ifg.sistemanutri.entity.Usuario;
-import br.edu.ifg.sistemanutri.entity.UsuarioHasPermissao;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
+import java.util.Date;
 import java.util.List;
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
 
-    @Inject
+    @Autowired
     private UsuarioDAO dao;
     
-    @Inject
-    private UsuarioHasPermissaoDAO nfeHasPermissaoDAO;
-    
     @Override
-    public Usuario salvar(Usuario entity) throws  NegocioException, SistemaException {        
-
-        List<UsuarioHasPermissao> listaUsuarioPermissao = entity.getUsuariosHasPermissoes();
-        entity.setUsuariosHasPermissoes(null);
-        entity = dao.salvar(entity);
-        if(listaUsuarioPermissao != null && !listaUsuarioPermissao.isEmpty()){
-            for (UsuarioHasPermissao notaFiscalPermissao : listaUsuarioPermissao) {
-                notaFiscalPermissao.setUsuario(entity);
-                notaFiscalPermissao = nfeHasPermissaoDAO.salvar(notaFiscalPermissao);
-            }
-            entity.setUsuariosHasPermissoes(listaUsuarioPermissao);
+    public Usuario salvar(Usuario entity) throws  NegocioException, SistemaException {
+        if("".equals(entity.getNome().trim())){
+            throw new NegocioException("Nome do usuário é obrigatório.");
         }
+        if(entity.getDataCadastro() == null){
+            entity.setDataCadastro(new Date());
+        }
+        entity = dao.salvar(entity);
         return entity;
     }
 
@@ -40,12 +34,16 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
 
     @Override
     public Usuario buscarPorId(Integer id) throws  NegocioException, SistemaException {
-        return dao.buscarPorId(id);
+        Usuario usuario = dao.buscarPorId(id);
+        usuario.getPermissoes().size();
+        return usuario;
     }
 
     @Override
     public List<Usuario> buscar(Usuario entity) throws  NegocioException, SistemaException {
-        return dao.listar();
+        List<Usuario> usuarios = dao.listar();
+        return usuarios;
     }
     
 }
+

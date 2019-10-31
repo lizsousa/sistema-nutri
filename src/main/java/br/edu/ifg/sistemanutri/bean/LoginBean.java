@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
@@ -30,13 +31,13 @@ public class LoginBean implements Serializable{
     @Email(message = "E-mail inválido")
     private String email;
  
-    @Inject
+    @Autowired
     private SecurityContext securityContext;
  
-    @Inject
+    @Autowired
     private ExternalContext externalContext;
  
-    @Inject
+    @Autowired
     private FacesContext facesContext;
  
     public void submit() throws IOException {

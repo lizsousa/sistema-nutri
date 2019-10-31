@@ -14,18 +14,19 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class NotaFiscalBean extends GenericCrud<NotaFiscal, NotaFiscalLogic>{
 
-    @Inject
+    @Autowired
     private NotaFiscalLogic logic;
     
-    @Inject
+    @Autowired
     private FornecedorLogic fornecedorLogic;
 
-    @Inject
+    @Autowired
     private ProdutoLogic produtoLogic;
     
     private NotaFiscalHasProduto notaFiscalHasProduto = new NotaFiscalHasProduto();

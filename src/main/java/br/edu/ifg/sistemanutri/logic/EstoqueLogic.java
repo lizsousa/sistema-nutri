@@ -7,11 +7,13 @@ import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EstoqueLogic implements GenericLogic<Estoque, Integer>{
 
-    @Inject
+    @Autowired
     private EstoqueDAO dao;
     
     @Override

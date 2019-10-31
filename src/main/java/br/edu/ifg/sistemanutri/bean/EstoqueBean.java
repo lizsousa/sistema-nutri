@@ -16,22 +16,23 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
-    @Inject
+    @Autowired
     private EstoqueLogic estoquelogic;
     
-    @Inject
+    @Autowired
     private FornecedorLogic fornecedorLogic;
     
     
-    @Inject
+    @Autowired
     private SetorLogic setorLogic;
     
-    @Inject
+    @Autowired
     private ProdutoLogic produtoLogic;
     
     private BigDecimal quantidade;

@@ -17,8 +17,8 @@ public class JsfSpringWebApplicationInitializer implements WebApplicationInitial
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
 
-//        applicationContext.scan(JsfSpringWebApplicationInitializer.class.getPackage().getName()); //pacote raiz no qual o Spring irá procurar por suas classes. Como temos somente um pacote, então já foi colocado diretamente o pacote em que está classe aqui está inserida.
-        applicationContext.scan("br.edu.ifg.sistemanutri.util", "br.edu.ifg.sistemanutri.service", "br.edu.ifg.sistemanutri.dao"); //pacote raiz no qual o Spring irá procurar por suas classes. Como temos somente um pacote, então já foi colocado diretamente o pacote em que está classe aqui está inserida.
+        applicationContext.scan(JsfSpringWebApplicationInitializer.class.getPackage().getName()); //pacote raiz no qual o Spring irá procurar por suas classes. Como temos somente um pacote, então já foi colocado diretamente o pacote em que está classe aqui está inserida.
+//        applicationContext.scan("br.edu.ifg.sistemanutri.util", "br.edu.ifg.sistemanutri.service", "br.edu.ifg.sistemanutri.dao"); //pacote raiz no qual o Spring irá procurar por suas classes. Como temos somente um pacote, então já foi colocado diretamente o pacote em que está classe aqui está inserida.
         
         servletContext.addListener(new ContextLoaderListener(applicationContext));
         servletContext.addListener(new RequestContextListener());
