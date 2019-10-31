@@ -4,10 +4,13 @@ import br.edu.ifg.sistemanutri.logic.GenericLogic;
 import br.edu.ifg.sistemanutri.util.JsfUtil;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUtil {
@@ -31,9 +34,9 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
     
     public void novo(){
         try {
-            entity = getEntityClass().newInstance();
+            entity = getEntityClass().getDeclaredConstructor().newInstance();
             statusTela = Status.INSERINDO;
-        } catch (IllegalAccessException | InstantiationException ex) {
+        } catch (IllegalAccessException | InstantiationException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException ex) {
             addMensagemFatal(new SistemaException("Erro ao instanciar uma nova Classe "+getEntityClass().getName(), ex));
         }
         

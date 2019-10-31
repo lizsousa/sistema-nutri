@@ -7,10 +7,13 @@ import java.lang.reflect.Type;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class GenericDAO<E, ID extends Serializable> implements Serializable {
 
     @Inject
+    @PersistenceContext(name = "sistema_nutri_pu")
     private EntityManager entityManager;
 
     public E salvar(E entity) throws SistemaException {

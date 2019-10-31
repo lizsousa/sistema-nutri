@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>    
+        <p:outputPanel>
+            <div class="ui-g">
+                <div class="ui-g-4"/>
+                <h:form h:action="@{/login}" h:method="post">
+                    <input name="username" class="form-control" placeholder="Usuário"/>
+
+                    <input type="password" name="password" class="form-control" placeholder="Senha"/>
+
+                    <button class="btn btn-primary btn-block">Entrar</button>
+
+                </h:form>
+
+        </p:outputPanel>
+    </h:body>
+</html>

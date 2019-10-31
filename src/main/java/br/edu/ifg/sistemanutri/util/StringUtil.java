@@ -113,7 +113,7 @@ public class StringUtil {
         for (int c = 0; c < length; c++) {
             int nRand;
             do {
-                nRand = new Double((Math.random() * (upper - lower)) + lower).intValue();
+                nRand = Double.valueOf((Math.random() * (upper - lower)) + lower).intValue();
             } while(!Character.isLetterOrDigit(nRand));
             builder.append((char)nRand);
         }
