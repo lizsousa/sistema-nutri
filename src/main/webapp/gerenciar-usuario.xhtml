@@ -8,7 +8,6 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Gerenciar Usuários"></ui:param>
     <h:form>
         <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
@@ -23,13 +22,14 @@
                 </f:facet>
 
             </si:toolbar-crud>
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
-                         rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
 
+
+            <p:panelGrid columns="2" styleClass="ui-noborder" 
+                         rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+                
                 <p:outputLabel value="Nome"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.nome}"></p:inputText>
-        
-                
+
                 <p:outputLabel value="Login"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.login}"></p:inputText>
         
@@ -47,10 +47,40 @@
             </p:fieldset>
 
             </p:panelGrid>
-            <p:spacer height="20px"></p:spacer>
+            
+            
+            <p:dialog header="Adicionar Permissao" widgetVar="dialodAddPermissao" modal="true">
+                <p:panelGrid id="pnlgusuarioPermissao" columns="2" styleClass="ui-noborder">
+                    <p:outputLabel value="Permissao"></p:outputLabel>
+                    <p:selectOneMenu id="advanced" value="#{usuarioBean.usuarioHasPermissao.permissao}" panelStyle="width:180px"
+                                     effect="fade" var="userDetalhe" style="width:160px" filter="true" filterMatchMode="startsWith">
 
+                        <f:selectItems value="#{usuarioBean.permissaos}" var="user" itemLabel="#{user.nome}" itemValue="#{user}" />
+                              
+                        <p:column headerText="Nome do permissao">
+                            <h:outputText value="${userDetalhe.nome}"></h:outputText>
+                        </p:column>  
+                        
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton value="Adiconar" update="pnlgusuarioPermissao tblusuarioPermissaos " actionListener="#{usuarioBean.adicionarPermissao()}" icon="fa fa-plus"></p:commandButton>
+            </p:dialog>
+            
+            <p:dataTable  value="#{usuarioBean.entity.usuariosHasPermissoes}" var="uhp" id="tblusuarioPermissaos" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+                
+                 <p:column>
+                    <p:commandButton icon="fa fa-trash" update="@form"
+                                     actionListener="#{usuarioBean.removerPermissao(uhp)}">
+                    </p:commandButton>
+                </p:column>
+                
+                    <p:column headerText="Permissao">
+                    <h:outputText value="#{uhp.permissao.nome}"></h:outputText>
+                    </p:column>
 
-            <p:dataTable value="#{usuarioBean.entitys}" var="user"
+            </p:dataTable>
+
+            <p:dataTable  value="#{usuarioBean.entitys}" var="usuario"
                          rendered="#{usuarioBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="135">

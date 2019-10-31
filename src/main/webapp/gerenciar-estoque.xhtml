@@ -21,36 +21,54 @@
             <p:panelGrid columns="2" styleClass="ui-noborder" 
                          rendered="#{estoqueBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Quantidade"></p:outputLabel>
-                <p:inputText value="#{estoqueBean.entity.quantidade}"></p:inputText>
-              
-                <p:outputLabel value="Tipo Estoque"></p:outputLabel>
-                <p:inputText value="#{estoqueBean.entity.tipoEstoque}"></p:inputText>
-              
+
+                <h3>Tipo Movimento</h3>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <!--<p:outputLabel value="Tipo Movimento:" />-->
+                    <p:selectOneRadio id="console" value="#{estoqueBean.entity.tipoEstoque}">
+                        <p:ajax update="@form"></p:ajax>
+                        <f:selectItems value="#{estoqueBean.tiposEstoque}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"></f:selectItems>
+                    </p:selectOneRadio>
+                </h:panelGrid>
+
+
                 <p:outputLabel value="Nome Produto"></p:outputLabel>
-                <p:selectOneMenu value="#{estoqueBean.entity.produto}">
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.produto}">
+                    <p:ajax update="@form"></p:ajax>
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.produtos}" var="prod" 
                                    itemLabel="#{prod.descricao}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
-                
+
+                <p:outputLabel style="width:20px" value="Quantidade"  rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
+                <h:panelGroup rendered="#{estoqueBean.entity.produto != null}">
+                    <div class="ui-inputgroup">
+                        <p:inputText value="#{estoqueBean.entity.quantidade}"></p:inputText>
+                        <span class="ui-inputgroup-addon">#{estoqueBean.entity.produto.unidadeMedida.sigla}</span>      
+                    </div>
+                </h:panelGroup>
+
+
                 <p:outputLabel value="Nome Fornecedor"></p:outputLabel>
-                <p:selectOneMenu value="#{estoqueBean.entity.fornecedor}">
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.fornecedores}" var="forne" 
                                    itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>
                 </p:selectOneMenu>
-                
-                
-                <p:outputLabel value="Nome Setor"></p:outputLabel>
-                <p:selectOneMenu value="#{estoqueBean.entity.setor}">
+
+
+                <p:outputLabel for="button" value="Data Movimento:" />
+                <p:calendar id="button" value="#{estoqueBean.entity.dataMovimento}" showOn="button" />
+
+                <p:outputLabel value="Nome Setor"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.setors}" var="set" 
                                    itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
                 </p:selectOneMenu>
-                
-                
-                
+
+
+
             </p:panelGrid>
 
             <p:dataTable value="#{estoqueBean.entitys}" var="estoque"
@@ -59,28 +77,28 @@
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{estoqueBean}" entity="#{estoque}"></si:colunaAcoes>
                 </p:column>                    
-                
+
                 <p:column headerText="Quantidade">
                     <h:outputText value="#{estoque.quantidade}"></h:outputText>
                 </p:column>
-                
-                
+
+
                 <p:column headerText="Tipo Estoque">
-                    <h:outputText value="#{estoque.tipoEstoque}"></h:outputText>
+                    <h:outputText value="#{estoque.tipoEstoque.descricao}"></h:outputText>
                 </p:column>
-                
+
                 <p:column headerText="Nome Fornecedor">
                     <h:outputText value="#{estoque.fornecedor.razaoSocial}"></h:outputText>
                 </p:column>
-                
+
                 <p:column headerText="Nome Produto">
                     <h:outputText value="#{estoque.produto.descricao}"></h:outputText>
                 </p:column>
-               
+
                 <p:column headerText="Nome Setor">
                     <h:outputText value="#{estoque.setor.nome}"></h:outputText>
                 </p:column>
-                
+
             </p:dataTable>
         </p:fieldset>
 

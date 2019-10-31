@@ -1,15 +1,22 @@
 package br.edu.ifg.sistemanutri.entity;
 
+import br.edu.ifg.sistemanutri.logic.enuns.TipoEstoque;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "estoque")
@@ -20,8 +27,12 @@ public class Estoque implements Serializable{
     
     private Integer id;
     private BigDecimal quantidade;
-    private String tipoEstoque;
     
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_movimento")
+    private Date dataMovimento;
+   
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
@@ -31,6 +42,14 @@ public class Estoque implements Serializable{
     @ManyToOne
     @JoinColumn(name = "setor_id")
     private Setor setor;
+
+    @ManyToOne
+    @JoinColumn(name = "nota_fiscal_id")
+    private NotaFiscal notaFiscal;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_estoque")
+    private TipoEstoque tipoEstoque = TipoEstoque.ENTRADA;
 
     public Integer getId() {
         return id;
@@ -46,14 +65,6 @@ public class Estoque implements Serializable{
 
     public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public String getTipoEstoque() {
-        return tipoEstoque;
-    }
-
-    public void setTipoEstoque(String tipoEstoque) {
-        this.tipoEstoque = tipoEstoque;
     }
 
     public Produto getProduto() {
@@ -80,6 +91,30 @@ public class Estoque implements Serializable{
         this.setor = setor;
     }
 
+    public NotaFiscal getNotaFiscal() {
+        return notaFiscal;
+    }
+
+    public void setNotaFiscal(NotaFiscal notaFiscal) {
+        this.notaFiscal = notaFiscal;
+    }
+
+    public Date getDataMovimento() {
+        return dataMovimento;
+    }
+
+    public void setDataMovimento(Date dataMovimento) {
+        this.dataMovimento = dataMovimento;
+    }
+
+    public TipoEstoque getTipoEstoque() {
+        return tipoEstoque;
+    }
+
+    public void setTipoEstoque(TipoEstoque tipoEstoque) {
+        this.tipoEstoque = tipoEstoque;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -104,7 +139,7 @@ public class Estoque implements Serializable{
         }
         return true;
     }
-    
+
     
     
 }

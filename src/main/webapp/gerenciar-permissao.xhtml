@@ -9,8 +9,10 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <h:form>
-        <p:fieldset legend="Dashboard">
+         <p:fieldset legend="#{permissaoBean.statusTela == 'PESQUISANDO'?'Pesquisa de':permissaoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} permissao">
             <si:toolbar-crud crudBean="#{permissaoBean}"/>
+       
+       
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
                          rendered="#{permissaoBean.statusTela != 'PESQUISANDO'}">

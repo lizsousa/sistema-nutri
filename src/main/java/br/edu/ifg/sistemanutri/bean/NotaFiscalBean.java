@@ -1,13 +1,15 @@
 package br.edu.ifg.sistemanutri.bean;
 
-import br.edu.ifg.sistemanutri.entity.NotaFiscal;
 import br.edu.ifg.sistemanutri.entity.Fornecedor;
+import br.edu.ifg.sistemanutri.entity.NotaFiscal;
+import br.edu.ifg.sistemanutri.entity.NotaFiscalHasProduto;
 import br.edu.ifg.sistemanutri.entity.Produto;
-import br.edu.ifg.sistemanutri.logic.NotaFiscalLogic;
 import br.edu.ifg.sistemanutri.logic.FornecedorLogic;
+import br.edu.ifg.sistemanutri.logic.NotaFiscalLogic;
 import br.edu.ifg.sistemanutri.logic.ProdutoLogic;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -18,65 +20,69 @@ import javax.inject.Named;
 public class NotaFiscalBean extends GenericCrud<NotaFiscal, NotaFiscalLogic>{
 
     @Inject
-    private ProdutoLogic produtologic;
-
-    @Inject
-    private FornecedorLogic fornecedorlogic;
-
-    @Inject
     private NotaFiscalLogic logic;
     
-    private Integer numero;
-    @Override
-    public void salvar() {
-        super.salvar();
-    }
+    @Inject
+    private FornecedorLogic fornecedorLogic;
 
-    @Override
-    public void editar(NotaFiscal entity) {
-        try {
-            entity = getLogic().buscarPorId(entity.getId());
-            super.editar(entity);
-        } catch (Exception ex) {
-            addMensagemErro(ex.getMessage());
-            ex.printStackTrace();
-        }
+    @Inject
+    private ProdutoLogic produtoLogic;
+    
+    private NotaFiscalHasProduto notaFiscalHasProduto = new NotaFiscalHasProduto();
+    
+    public void novoNotaFiscalHasProduto(){
+        notaFiscalHasProduto = new NotaFiscalHasProduto();
     }
+    
+    
+    public void adicionarProduto(){
+        if(getEntity().getNotaFiscalsHasProdutos() == null){
+            getEntity().setNotaFiscalsHasProdutos(new ArrayList<NotaFiscalHasProduto>());
+        }
+        if(!getEntity().getNotaFiscalsHasProdutos().contains(notaFiscalHasProduto)){
+            getEntity().getNotaFiscalsHasProdutos().add(notaFiscalHasProduto);
+        }
+        novoNotaFiscalHasProduto();
+    }
+    public void removerProduto(NotaFiscalHasProduto produto){
+         if(getEntity().getNotaFiscalsHasProdutos().contains(produto)){
+            getEntity().getNotaFiscalsHasProdutos().remove(produto);
+        }
+       
         
-    public List<Fornecedor> getFornecedores(){
-        try {
-            return fornecedorlogic.buscar(null);
-        } catch (SistemaException ex) {
-            addMensagemFatal(ex);
-        } catch (NegocioException ex) {
-            addMensagemErro(ex);
-        }
-        return null;
     }
-        
-    public List<Produto> getProdutos(){
-        try {
-            return produtologic.buscar(null);
-        } catch (SistemaException ex) {
-            addMensagemFatal(ex);
-        } catch (NegocioException ex) {
-            addMensagemErro(ex);
-        }
-        return null;
-    }
-
+    
     
     @Override
     public NotaFiscalLogic getLogic() {
         return logic;
     }
-
-    public Integer getNumero() {
-        return numero;
+    
+    public List<Produto> getProdutos(){
+        try {
+            return produtoLogic.buscar(null);
+        } catch (NegocioException ex){
+            addMensagemErro(ex);
+        }catch(SistemaException ex) {
+            addMensagemFatal(ex);
+        }
+        return null;
     }
-
-    public void setNumero(Integer numero) {
-        this.numero = numero;
+    
+    
+    public List<Fornecedor> getFornecedor(){
+        try {
+            return fornecedorLogic.buscar(null);
+        } catch (NegocioException ex){
+            addMensagemErro(ex);
+        }catch(SistemaException ex) {
+            addMensagemFatal(ex);
+        }
+        return null;
     }
+    
+    public NotaFiscalHasProduto getNotaFiscalHasProduto() {
+        return notaFiscalHasProduto;
+    }
+    
 }
-

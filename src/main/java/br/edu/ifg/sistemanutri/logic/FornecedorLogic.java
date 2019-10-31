@@ -49,7 +49,6 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
     @Override
     public Fornecedor buscarPorId(Integer id) throws NegocioException, SistemaException {
         Fornecedor fornecedor = dao.buscarPorId(id);
-  
         return fornecedor;
         
     }
