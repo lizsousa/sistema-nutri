@@ -5,12 +5,11 @@ import br.edu.ifg.sistemanutri.entity.UnidadeMedida;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-@Service
+import javax.inject.Inject;
+
 public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> {
 
-    @Autowired
+    @Inject
     private UnidadeMedidaDAO dao;
     
     @Override

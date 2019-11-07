@@ -6,7 +6,6 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
@@ -17,7 +16,7 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     private String razaoSocial;
     
    
-    @Autowired
+    @Inject
     private FornecedorLogic logic;
     
     @Override

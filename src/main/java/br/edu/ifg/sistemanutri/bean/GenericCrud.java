@@ -65,6 +65,16 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
             addMensagemFatal(ex);
         }
     }
+    public void baixarEstoque(E entity){
+        try {
+            getLogic().deletar(entity);
+            addMensagem("Removido com sucesso!");
+        } catch (NegocioException ex) {
+            addMensagemErro(ex);
+        } catch(SistemaException ex){
+            addMensagemFatal(ex);
+        }
+    }
     public void editar(E entity){
         this.entity = entity;
         statusTela = Status.EDITANDO;

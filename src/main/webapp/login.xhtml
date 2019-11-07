@@ -1,22 +1,23 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login - Sistema Nutri</title>         
+    </h:head>
+    <h:body>
+        <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
+            <h:form prependId="false">
+                <h:panelGrid style="margin: 0 auto;" columns="1">
+                    <h:outputText styleClass="fa fa-lock fa-5x"/>
 
-    <h:body>    
-        <p:outputPanel>
-            <div class="ui-g">
-                <div class="ui-g-4"/>
-                <h:form h:action="@{/login}" h:method="post">
-                    <input name="username" class="form-control" placeholder="Usuário"/>
+                    <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Usuário"/>
+                    <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
 
-                    <input type="password" name="password" class="form-control" placeholder="Senha"/>
+                    <p:commandButton ajax="false" value="Submeter"></p:commandButton>
+                </h:panelGrid>
+                
+              </h:form>
+        </p:dialog>
 
-                    <button class="btn btn-primary btn-block">Entrar</button>
-
-                </h:form>
-
-        </p:outputPanel>
     </h:body>
 </html>

@@ -40,17 +40,16 @@
                                    itemLabel="#{prod.descricao}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
 
-                <p:outputLabel style="width:20px" value="Quantidade"  rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
+                <p:outputLabel style="width:20px" value="Quantidade" rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
                 <h:panelGroup rendered="#{estoqueBean.entity.produto != null}">
                     <div class="ui-inputgroup">
                         <p:inputText value="#{estoqueBean.entity.quantidade}"></p:inputText>
                         <span class="ui-inputgroup-addon">#{estoqueBean.entity.produto.unidadeMedida.sigla}</span>      
                     </div>
                 </h:panelGroup>
-
-
-                <p:outputLabel value="Nome Fornecedor"></p:outputLabel>
-                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}">
+              
+                <p:outputLabel value="Nome Fornecedor"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}" rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.fornecedores}" var="forne" 
                                    itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>

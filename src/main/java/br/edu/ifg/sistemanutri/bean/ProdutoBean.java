@@ -11,15 +11,14 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
 
-    @Autowired
+    @Inject
     private ProdutoLogic logic;
-    @Autowired
+    @Inject
     private UnidadeMedidaLogic unidadeMedidalogic;
     
     

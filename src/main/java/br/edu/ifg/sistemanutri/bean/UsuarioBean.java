@@ -1,7 +1,6 @@
 package br.edu.ifg.sistemanutri.bean;
 
 import br.edu.ifg.sistemanutri.entity.Usuario;
-import br.edu.ifg.sistemanutri.entity.UsuarioHasPermissao;
 import br.edu.ifg.sistemanutri.entity.Permissao;
 import br.edu.ifg.sistemanutri.logic.UsuarioLogic;
 import br.edu.ifg.sistemanutri.logic.PermissaoLogic;
@@ -12,16 +11,15 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
 
-    @Autowired
+    @Inject
     private UsuarioLogic logic;
     
-    @Autowired
+    @Inject
     private PermissaoLogic permissaoLogic;
     
     private Permissao Permissao = new Permissao();

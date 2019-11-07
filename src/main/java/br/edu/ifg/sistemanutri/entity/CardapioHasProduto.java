@@ -1,6 +1,7 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ public class CardapioHasProduto implements Serializable {
 
     @EmbeddedId
     private CardapioHasProdutoPk id;
-    private Double quantidade;
+    private BigDecimal quantidade;
 
     @ManyToOne
     @JoinColumn(updatable = false, insertable = false, name = "produto_id")
@@ -31,11 +32,11 @@ public class CardapioHasProduto implements Serializable {
         this.id = id;
     }
 
-    public Double getQuantidade() {
+    public BigDecimal getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Double quantidade) {
+    public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
     }
 

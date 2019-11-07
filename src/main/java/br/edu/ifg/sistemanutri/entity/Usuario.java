@@ -1,12 +1,15 @@
 package br.edu.ifg.sistemanutri.entity;
 
+import br.edu.ifg.sistemanutri.util.MD5Util;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,10 +19,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable{
+public class Usuario implements Serializable, UserDetails{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +44,8 @@ public class Usuario implements Serializable{
     @Column(name="data_desativacao")
     private Date dataDesativacao;
     
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "usuario_has_permissao", 
             joinColumns = @JoinColumn(name="usuario_id"),
             inverseJoinColumns = @JoinColumn(name="permissao_id"))
@@ -59,6 +68,9 @@ public class Usuario implements Serializable{
     }
 
     public String getSenha() {
+        if("123".equals(senha)){
+            senha = new BCryptPasswordEncoder().encode(senha);
+        }
         return senha;
     }
 
@@ -87,18 +99,22 @@ public class Usuario implements Serializable{
         return dataDesativacao;
     }
 
-    public void setDataDesativacao(Date dataDesativacao) {
-        this.dataDesativacao = dataDesativacao;
-    }
-
-    public List<Permissao> getPermissoes() {
+     public List<Permissao> getPermissoes() {
         return permissoes;
     }
 
     public void setPermissoes(List<Permissao> permissoes) {
         this.permissoes = permissoes;
     }
-        public String getPermissoesString(){
+    
+    public String getLoginHash(){
+        if(login == null){
+            return null;
+        }
+        return MD5Util.md5Hex(login);
+    }
+    
+    public String getPermissoesString(){
         StringBuilder builder = new StringBuilder();
         if(permissoes == null){
             return null;
@@ -134,7 +150,41 @@ public class Usuario implements Serializable{
         }
         return true;
     }
+@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.permissoes;
+    }
 
+    @Override
+    public String getPassword() {
+        return getSenha();
+    }
+
+    @Override
+    public String getUsername() {
+        return this.login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isEnabled();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return dataDesativacao == null;
+    }
+    
  
     
 }

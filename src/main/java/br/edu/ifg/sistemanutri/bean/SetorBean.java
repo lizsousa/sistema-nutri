@@ -8,13 +8,12 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Named
 @SessionScoped
 public class SetorBean extends GenericCrud<Setor, SetorLogic>{
 
-    @Autowired
+    @Inject
     private SetorLogic logic;
     
     private String nome;

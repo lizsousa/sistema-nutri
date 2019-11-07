@@ -1,9 +1,12 @@
 package br.edu.ifg.sistemanutri.util;
 
+import javax.enterprise.inject.Disposes;
+import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import org.flywaydb.core.Flyway;
+import org.springframework.context.annotation.Bean;
 
 public class PersistenceFactory {
 
@@ -13,6 +16,8 @@ public class PersistenceFactory {
         return factory.createEntityManager();
     }
 
+    @Bean
+    @Produces
     public EntityManager getEntityManager() {
         EntityManager entityManager;
 
@@ -31,7 +36,7 @@ public class PersistenceFactory {
         return entityManager;
     }
 //
-//    public void close(@Disposes EntityManager entityManager) {
-//        entityManager.close();
-//    }
+    public void close(@Disposes EntityManager entityManager) {
+        entityManager.close();
+    }
 }

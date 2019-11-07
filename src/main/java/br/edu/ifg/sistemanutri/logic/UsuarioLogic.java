@@ -6,13 +6,11 @@ import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.Date;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.inject.Inject;
 
-@Service
 public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
 
-    @Autowired
+    @Inject
     private UsuarioDAO dao;
     
     @Override
