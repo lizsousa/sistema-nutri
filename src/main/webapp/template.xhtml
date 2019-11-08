@@ -16,94 +16,83 @@
 
         <h:outputScript library="js" name="primefaces-locales.js"></h:outputScript>
     </h:head>
-    <h:body class="sidebar-active">
+    <h:body> <!--class="sidebar-active"-->
         <f:view locale="pt_BR"></f:view>
         <header>
-            <div>
+            
+            <h:form>  
+            <p:growl id="messages"/>
+ 
+                <p:menubar>
+                    
+                    <p:submenu class="submenu" label="Cadastrar" icon="pi pi-file">
+                        <p:menuitem value="Produto" url="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}"/>
+                        <p:separator />
+                        <p:menuitem value="Unidade de Medida" url="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}" />
+                        <p:separator />
+                        <p:menuitem value="Fornecedor" url="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}" />
+                        <p:separator />
+                        <p:menuitem value="Nota Fiscal" url="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}" />
+                        <p:separator />
+                        <p:menuitem value="Setor" url="gerenciar-setor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-setor.xhtml')?'active':''}" />
+                        <p:separator />
+                        <p:menuitem value="Cardápio" url="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}" />
+                        <p:separator />
+                        <p:menuitem value="Usuário" url="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}" />
+                    </p:submenu>
+
+                    <p:submenu label="Estoque" icon="pi pi-pencil">
+                        <p:menuitem value="Movimento Estoque" url="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}"
+                                    icon="pi pi-angle-double-left" />
+                    </p:submenu>
+
+                    <p:submenu label="Relatórios" icon="pi pi-question">
+                        <p:menuitem value="Entrada de Produto" url="relatorio-entrada.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-entreda.xhtml')?'active':''}" />
+                        <p:menuitem value="Saída de Produto" url="relatorio-saida.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-saida.xhtml')?'active':''}" />
+                    </p:submenu>
+
+             <f:facet name="options">
+             <i class="fa fa-fw fa-search"></i>
+             <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Pesquisar"/>
+             <p:commandButton type="button" value="Sair" icon="pi pi-home" />
+             </f:facet>
+               
+           
+                </p:menubar>
+            </h:form>
+           
+            <!--<div>
                 <a href="#" class="menu-button-toggle">
                     <i class="fa fa-navicon"></i>
                 </a>
-            </div>
+                
+            </div>-->
             
             
             <div>
                 <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
             </div>
-            
+            <!--
             <div class="extras">
                 <div class="extras-item">
-                    <!--<a href="#"><i class="fa fa-bell"></i></a>-->
-<!--                               
-            <h:form>  
-            <p:growl id="messages"/>
- 
-                <p:menubar>
-                    <p:submenu label="Cadastros" icon="pi pi-file">
-                        <p:menuitem value="Produto" url="#{view.viewId.endsWith('gerenciar-produto')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Unidade de Medida" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Fornecedor" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Nota Fiscal" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Setor" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Cardapio" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Usuário" url="#" />
-                    </p:submenu>
-
-                    <p:submenu label="Edit" icon="pi pi-pencil">
-                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
-                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
-                    </p:submenu>
-
-                    <p:submenu label="Help" icon="pi pi-question">
-                        <p:menuitem value="Contents" url="#" />
-                        <p:submenu label="Search" icon="pi pi-search">
-                            <p:submenu label="Text">
-                                <p:menuitem value="Workspace" url="#" />
-                            </p:submenu>
-                            <p:menuitem value="File" url="#" />
-                        </p:submenu>
-                    </p:submenu>
-
-                    <p:submenu label="Actions" icon="pi pi-cog">
-                        <p:submenu label="Ajax" icon="pi pi-refresh">
-                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
-                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
-                        </p:submenu>
-                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
-                        </p:submenu>
-                    </p:submenu>
-
-                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
-
-                    <f:facet name="options">
-                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-                        <p:commandButton type="button" value="Logout" icon="pi pi-home" />
-                    </f:facet>
-                </p:menubar>
-            </h:form>-->
-
+                    <a href="#"><i class="fa fa-bell"></i></a>
+                 
                 <div>
-                    <a href="sair.xhtml" class="sidebar-item #{view.viewId.endsWith('sair.xhtml')?'active':''}">
+                    <a href=>
                         <i class="fa fa-fw fa-sign-out"></i>Sair
                     </a>
                 </div>
                 </div>
-            </div>
+            </div>-->
         </header>
 
-        <nav class="sidebar sidebar-mob">
+        <!--<nav class="sidebar sidebar-mob">
             <div class="usuario">
-                <!--
+               
                 <div class="foto">
                     <img src="https://www.gravatar.com/avatar/#usuario.emailHash}?s=56&amp;d=mp"></img>
                 </div>
-                -->
+                
                 <div class="nome">
                     #{usuario.nome}
                 </div>
@@ -117,82 +106,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-cadastros">
-                        <i class="fa fa-fw fa-edit"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-cadastros">
-                        <li>
-                            <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-users"></i>Usuários
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Produto
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Fornecedor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Cardápio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-setor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-setor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Setor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Unidade de Medida
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Notas Fiscais
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-estoque">
-                        <i class="fa fa-fw fa-bar-chart-o"></i>Estoque<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-estoque">
-                        <li>
-                            <a href="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-archive"></i>Movimento Estoque
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-relatorio">
-                        <i class="fa fa-fw fa-file-pdf-o"></i>Relatórios<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-relatorio">
-
-                        <li>
-                            <a href="relatorio-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-list"></i>Movimento de Estoque
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-
-                <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
                         <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
                     </a>
-
                     <ul class="submenu" id="submenu-configuracao">
-
                         <li>
                             <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
                                 <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
@@ -206,9 +123,7 @@
                     </ul>
                 </li>
             </ul>
-
-
-        </nav>
+        </nav> -->
 
         <main>
             <!-- Mensagem em linha em baixo da toolbar -->
