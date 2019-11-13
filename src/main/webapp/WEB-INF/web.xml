@@ -18,7 +18,7 @@
     </context-param>
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>afterdark</param-value>
+        <param-value>aristo</param-value>
     </context-param>
     <context-param>
         <param-name>org.jepsar.primefaces.theme.APPEND_CSS_RESOURCE</param-name>

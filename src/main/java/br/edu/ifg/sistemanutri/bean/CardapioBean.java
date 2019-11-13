@@ -56,6 +56,7 @@ public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
     public void baixarCardapio(){
         try {
             logic.baixarEstoque(cardapioTemp);
+            cardapioTemp = null;
       } catch (NegocioException ex) {
             addMensagemErro(ex);
         } catch (SistemaException ex) {

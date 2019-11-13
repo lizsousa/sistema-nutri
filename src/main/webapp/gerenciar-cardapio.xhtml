@@ -74,7 +74,7 @@
 
             </p:dataTable>
 
-            <p:dialog width="300px" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dlg2" modal="true" height="100">
+            <p:dialog width="300px" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio" modal="true" height="100">
                 <p:ajax event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
 
                 <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" var="card" >
@@ -88,7 +88,7 @@
                     </p:column>
 
                 </p:dataTable>
-                <p:commandButton  value="Baixar Estoque" actionListener="#{cardapioBean.baixarCardapio()}"></p:commandButton>
+                <p:commandButton  value="Baixar Estoque" update="@form" actionListener="#{cardapioBean.baixarCardapio()}"></p:commandButton>
             </p:dialog>
 
 
@@ -98,7 +98,7 @@
 
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{cardapioBean}" entity="#{cardapio}"></si:colunaAcoes>
-                    <p:commandButton icon="fa fa-line-chart" update="@form" actionListener="#{cardapioBean.usarReceita(cardapio)}">
+                    <p:commandButton icon="fa fa-line-chart" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
                         <p:tooltip for="@parent" value="Usar Receita"></p:tooltip>
                     </p:commandButton>
 
