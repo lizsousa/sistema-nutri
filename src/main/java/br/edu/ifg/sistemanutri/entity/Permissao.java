@@ -22,8 +22,8 @@ public class Permissao implements Serializable,GrantedAuthority {
     private String nome;
     private String descricao;
     
-    @ManyToMany(mappedBy = "permissoes")
-	private List<Usuario> usuarios;
+    @ManyToMany(mappedBy = "permissoes")	
+    private List<Usuario> usuarios;
 
     
     public Integer getId() {

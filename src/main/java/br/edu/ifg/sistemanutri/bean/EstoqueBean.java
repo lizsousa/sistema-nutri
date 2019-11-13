@@ -1,5 +1,6 @@
 package br.edu.ifg.sistemanutri.bean;
 
+import br.edu.ifg.sistemanutri.dao.EstoqueDAO;
 import br.edu.ifg.sistemanutri.logic.EstoqueLogic;
 import br.edu.ifg.sistemanutri.entity.Estoque;
 import br.edu.ifg.sistemanutri.logic.SetorLogic;
@@ -23,6 +24,9 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
     @Inject
     private EstoqueLogic estoquelogic;
+    
+    @Inject
+    private EstoqueDAO estoquedao;
     
     @Inject
     private FornecedorLogic fornecedorLogic;
@@ -71,7 +75,17 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
         }
         return null;
     }
-    
+//        public void consultarEstoque(Estoque estoqueAtual){
+//        try {  
+//            estoqueAtual = estoquedao.buscarEstoque();
+//        } catch (NegocioException ex) {
+//            addMensagemErro(ex);
+//        } catch (SistemaException ex) {
+//            addMensagemFatal(ex);
+//        }
+//     
+//    }
+
     
     public List<Estoque> geEstoques(){
         try {
@@ -93,12 +107,12 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
             addMensagemErro(ex);
         }
         return null;
-    }
+   }
+
     
     public TipoEstoque[] getTiposEstoque(){
         return TipoEstoque.values();
     }
-
 
     @Override
     public void salvar(){

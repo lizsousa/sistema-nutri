@@ -17,22 +17,23 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import org.hibernate.annotations.Formula;
 
 @Entity
 @Table(name = "estoque")
-public class Estoque implements Serializable{
-    
+public class Estoque implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+
     private Integer id;
     private BigDecimal quantidade;
-    
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_movimento")
     private Date dataMovimento;
-   
+
     @ManyToOne
     @JoinColumn(name = "produto_id")
     private Produto produto;
@@ -114,7 +115,7 @@ public class Estoque implements Serializable{
     public void setTipoEstoque(TipoEstoque tipoEstoque) {
         this.tipoEstoque = tipoEstoque;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -140,6 +141,4 @@ public class Estoque implements Serializable{
         return true;
     }
 
-    
-    
 }

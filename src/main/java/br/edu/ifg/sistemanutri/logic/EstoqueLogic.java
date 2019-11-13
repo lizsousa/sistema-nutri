@@ -8,6 +8,7 @@ import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 
 public class EstoqueLogic implements GenericLogic<Estoque, Integer>{
 
@@ -27,6 +28,7 @@ public class EstoqueLogic implements GenericLogic<Estoque, Integer>{
         entity = dao.salvar(entity);
         return entity;
     }
+    
 
     @Override
     public void deletar(Estoque entity) throws  NegocioException, SistemaException {

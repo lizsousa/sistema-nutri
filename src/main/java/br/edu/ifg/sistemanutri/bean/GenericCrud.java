@@ -9,8 +9,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUtil {
@@ -65,16 +63,7 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
             addMensagemFatal(ex);
         }
     }
-    public void baixarEstoque(E entity){
-        try {
-            getLogic().deletar(entity);
-            addMensagem("Removido com sucesso!");
-        } catch (NegocioException ex) {
-            addMensagemErro(ex);
-        } catch(SistemaException ex){
-            addMensagemFatal(ex);
-        }
-    }
+
     public void editar(E entity){
         this.entity = entity;
         statusTela = Status.EDITANDO;

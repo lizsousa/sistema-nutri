@@ -9,35 +9,35 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <h:form>
-       <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardapio">
+        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardapio">
             <si:toolbar-crud crudBean="#{cardapioBean}"/>
 
 
             <p:panelGrid columns="2" styleClass="ui-noborder" 
                          rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
-                
-                
+
+
                 <p:outputLabel value="Nome do Cardapio"></p:outputLabel>
                 <p:inputText value="#{cardapioBean.entity.nomeCardapio}"></p:inputText>
-               
-                
+
+
                 <h:outputLabel value="Data Pedido"></h:outputLabel>
                 <h:outputText value="#{cardapioBean.entity.dataCardapio}">
                     <f:convertDateTime></f:convertDateTime>
                 </h:outputText>
-                
+
                 <p:outputLabel value="Quantidade Redimento"></p:outputLabel>
                 <p:inputText value="#{cardapioBean.entity.quantidadeRendimento}"></p:inputText>
 
                 <p:outputLabel value="Modo de Preparo"></p:outputLabel>
                 <p:inputTextarea value="#{cardapioBean.entity.modoPreparo}"></p:inputTextarea>
-               
+
                 <h:outputText></h:outputText>
                 <p:commandButton value="Adicionar Produto" oncomplete="PF('dialodAddProduto').show();" icon="fa fa-plus"></p:commandButton>
 
             </p:panelGrid>
-            
-            
+
+
             <p:dialog header="Adicionar Produto" widgetVar="dialodAddProduto" modal="true">
                 <p:panelGrid id="pnlgPedidoProduto" columns="2" styleClass="ui-noborder">
                     <p:outputLabel value="Produto"></p:outputLabel>
@@ -45,49 +45,75 @@
                                      effect="fade" var="prodDetalhe" style="width:160px" filter="true" filterMatchMode="startsWith">
 
                         <f:selectItems value="#{cardapioBean.produtos}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
-                              
+
                         <p:column headerText="Nome do produto">
                             <h:outputText value="${prodDetalhe.descricao}"></h:outputText>
                         </p:column>   
-                     
+
                     </p:selectOneMenu>
                     <p:outputLabel value="Quantidade"></p:outputLabel>
                     <p:inputText value="#{cardapioBean.cardapioHasProduto.quantidade}"></p:inputText>
-               
+
                 </p:panelGrid>
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{cardapioBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>
             </p:dialog>
-            
+
             <p:dataTable  value="#{cardapioBean.entity.cardapiosHasProdutos}" var="chp" id="tblPedidoProdutos" rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
-                
-                 <p:column>
+
+                <p:column>
                     <p:commandButton icon="fa fa-trash" update="@form"
                                      actionListener="#{cardapioBean.removerProduto(chp)}">
                     </p:commandButton>
                 </p:column>
-                    <p:column headerText="Produto">
+                <p:column headerText="Produto">
                     <h:outputText value="#{chp.produto.descricao}"></h:outputText>
-                    </p:column>
-                    <p:column headerText="Quantidade">
-                        <h:outputText value="#{chp.quantidade}"></h:outputText>
-                    </p:column>
+                </p:column>
+                <p:column headerText="Quantidade">
+                    <h:outputText value="#{chp.quantidade}"></h:outputText>
+                </p:column>
 
             </p:dataTable>
+
+            <p:dialog width="300px" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dlg2" modal="true" height="100">
+                <p:ajax event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
+
+                <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" var="card" >
+
+                    <p:column headerText="Nome do ingredientes">
+                        <h:outputText value="#{card.produto.descricao}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Quantidade">
+                        <h:outputText value="#{card.quantidade}"></h:outputText>
+                    </p:column>
+
+                </p:dataTable>
+                <p:commandButton  value="Baixar Estoque" actionListener="#{cardapioBean.baixarCardapio()}"></p:commandButton>
+            </p:dialog>
+
+
 
             <p:dataTable value="#{cardapioBean.entitys}" var="cardapio"
                          rendered="#{cardapioBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{cardapioBean}" entity="#{cardapio}"></si:colunaAcoes>
-                </p:column>                    
+                    <p:commandButton icon="fa fa-line-chart" update="@form" actionListener="#{cardapioBean.usarReceita(cardapio)}">
+                        <p:tooltip for="@parent" value="Usar Receita"></p:tooltip>
+                    </p:commandButton>
+
+                </p:column>
+
                 <p:column headerText="Nome Cardapio">
                     <h:outputText value="#{cardapio.nomeCardapio}"></h:outputText>
                 </p:column>
-                
+
                 <p:column headerText="Rendimento">
                     <h:outputText value="#{cardapio.quantidadeRendimento}"></h:outputText>
                 </p:column>
-                
+
+
+
             </p:dataTable>
         </p:fieldset>
     </h:form>

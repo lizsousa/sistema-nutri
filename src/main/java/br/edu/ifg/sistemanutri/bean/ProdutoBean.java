@@ -6,6 +6,7 @@ import br.edu.ifg.sistemanutri.logic.ProdutoLogic;
 import br.edu.ifg.sistemanutri.logic.UnidadeMedidaLogic;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -24,6 +25,8 @@ public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
     
     private String descricao;
     private Date dataValidade;
+    private BigDecimal estoqueMinimo;
+     private BigDecimal estoqueAtual;
 
     
     @Override
@@ -90,6 +93,31 @@ public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
     public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
     }
+
+    public UnidadeMedidaLogic getUnidadeMedidalogic() {
+        return unidadeMedidalogic;
+    }
+
+    public void setUnidadeMedidalogic(UnidadeMedidaLogic unidadeMedidalogic) {
+        this.unidadeMedidalogic = unidadeMedidalogic;
+    }
+
+    public BigDecimal getEstoqueMinimo() {
+        return estoqueMinimo;
+    }
+
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
+    }
+
+    public BigDecimal getEstoqueAtual() {
+        return estoqueAtual;
+    }
+
+    public void setEstoqueAtual(BigDecimal estoqueAtual) {
+        this.estoqueAtual = estoqueAtual;
+    }
+    
 
 
 }

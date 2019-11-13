@@ -16,7 +16,7 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
 
     @Inject
     private CardapioDAO dao;
-    
+  
     @Inject
     private CardapioHasProdutoDAO cardHasProdutoDAO;
     
@@ -29,6 +29,7 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
         List<CardapioHasProduto> listaCardapioProduto = entity.getCardapiosHasProdutos();
         entity.setCardapiosHasProdutos(null);
         entity = dao.salvar(entity);
+        
         if(listaCardapioProduto != null && !listaCardapioProduto.isEmpty()){
             for (CardapioHasProduto cardapioProduto : listaCardapioProduto) {
                 cardapioProduto.setCardapio(entity);
@@ -39,32 +40,22 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
         return entity;
     }
     public Cardapio baixarEstoque(Cardapio cardapio) throws  NegocioException, SistemaException {        
-        boolean novaNota = cardapio.getId() == null;
-        
-        List<CardapioHasProduto> listaCardapioProduto = cardapio.getCardapiosHasProdutos();
-        cardapio.setCardapiosHasProdutos(null);
-        cardapio = dao.salvar(cardapio);
-        
-        if(listaCardapioProduto != null && !listaCardapioProduto.isEmpty()){
-            for (CardapioHasProduto cardapioProduto : listaCardapioProduto) {
-                cardapioProduto.setCardapio(cardapio);
-                cardapioProduto = cardHasProdutoDAO.salvar(cardapioProduto);
-            }
-            cardapio.setCardapiosHasProdutos(listaCardapioProduto);
-        }
-        if(novaNota){
+       
             for(CardapioHasProduto chp : cardapio.getCardapiosHasProdutos()){
                 Estoque estoque = new Estoque();
+                Estoque estoqueAtual = new Estoque();
                 estoque.setTipoEstoque(TipoEstoque.SAIDA);
                 estoque.setProduto(chp.getProduto());
                 estoque.setQuantidade(chp.getQuantidade());
                 estoque.setDataMovimento(new Date());
                 estoquelogic.salvar(estoque);
             }
-        }
+     
         return cardapio;
     }
-
+    
+  
+    
     @Override
     public void deletar(Cardapio entity) throws  NegocioException, SistemaException {
         dao.deletar(entity);

@@ -12,8 +12,8 @@ public class UsuarioDAO extends GenericDAO<Usuario,  Integer> implements UserDet
         try{
             Usuario usuario = (Usuario) getEntityManager().createQuery(
                         "from " + getEntityClass().getName()
-                        +" where login = '"+login
-                        +"' and data_desativacao is null").getSingleResult();
+                        +" where login = "+login
+                        +" and data_desativacao is null").getSingleResult();
             return usuario;
         } catch (NoResultException ex){
             return null;

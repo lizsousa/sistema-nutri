@@ -19,12 +19,12 @@
     <h:body> <!--class="sidebar-active"-->
         <f:view locale="pt_BR"></f:view>
         <header>
-            
+
             <h:form>  
-            <p:growl id="messages"/>
- 
+                <p:growl id="messages"/>
+
                 <p:menubar>
-                    
+
                     <p:submenu class="submenu" label="Cadastrar" icon="pi pi-file">
                         <p:menuitem value="Produto" url="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}"/>
                         <p:separator />
@@ -51,24 +51,24 @@
                         <p:menuitem value="Saída de Produto" url="relatorio-saida.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-saida.xhtml')?'active':''}" />
                     </p:submenu>
 
-             <f:facet name="options">
-             <i class="fa fa-fw fa-search"></i>
-             <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Pesquisar"/>
-             <p:commandButton type="button" value="Sair" icon="pi pi-home" />
-             </f:facet>
-               
-           
+                    <f:facet name="options">
+                        <i class="fa fa-fw fa-search"></i>
+                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Pesquisar"/>
+                        <p:commandButton type="button" value="Sair" icon="pi pi-home" />
+                    </f:facet>
+
+
                 </p:menubar>
             </h:form>
-           
+
             <!--<div>
                 <a href="#" class="menu-button-toggle">
                     <i class="fa fa-navicon"></i>
                 </a>
                 
             </div>-->
-            
-            
+
+
             <div>
                 <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
             </div>
@@ -94,36 +94,36 @@
                 </div>
                 
                 <div class="nome">
-                    #{usuario.nome}
-                </div>
-            </div>
-            
-                    
-            <ul>
-                <li>
-                    <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-home"></i>HOME
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-                        <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
-                    </a>
-                    <ul class="submenu" id="submenu-configuracao">
-                        <li>
-                            <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
-                            </a>
-                        </li>
-                        <li>
-                            <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Gerais
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav> -->
+        #{usuario.nome}
+    </div>
+</div>
+
+        
+<ul>
+    <li>
+        <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
+            <i class="fa fa-fw fa-home"></i>HOME
+        </a>
+    </li>
+    <li>
+        <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
+            <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+        </a>
+        <ul class="submenu" id="submenu-configuracao">
+            <li>
+                <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
+                    <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                </a>
+            </li>
+            <li>
+                <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
+                    <i class="fa fa-fw fa-sliders"></i>Gerais
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+</nav> -->
 
         <main>
             <!-- Mensagem em linha em baixo da toolbar -->

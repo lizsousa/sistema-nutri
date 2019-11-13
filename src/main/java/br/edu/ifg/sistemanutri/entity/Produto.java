@@ -1,7 +1,9 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +20,17 @@ public class Produto implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
+    
     @ManyToOne
     @JoinColumn(name = "unidade_medida_id")
     private UnidadeMedida unidadeMedida;
-
+   
+    
+    @Column(name = "estoque_atual")
+    private BigDecimal estoqueAtual;
+    
+    @Column(name = "estoque_minimo")
+    private BigDecimal estoqueMinimo;
 
     public Integer getId() {
         return id;
@@ -47,8 +56,23 @@ public class Produto implements Serializable{
         this.unidadeMedida = unidadeMedida;
     }
 
-    
+    public BigDecimal getEstoqueAtual() {
+        return estoqueAtual;
+    }
 
+    public void setEstoqueAtual(BigDecimal estoqueAtual) {
+        this.estoqueAtual = estoqueAtual;
+    }
+    
+    public BigDecimal getEstoqueMinimo() {
+        return estoqueMinimo;
+    }
+    
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 5;
