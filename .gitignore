@@ -1,2 +1,7 @@
 /target
 /lib
+/src/main/webapp/resources/js/bootstrap.min.js
+/src/main/webapp/resources/css/bootstrap-reboot.min.css
+/src/main/webapp/resources/js/bootstrap.bundle.min.js
+/src/main/webapp/resources/css/bootstrap-grid.min.css
+/src/main/webapp/resources/css/bootstrap.min.css
