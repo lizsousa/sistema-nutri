@@ -23,50 +23,15 @@
             <h:form>  
                 <p:growl id="messages"/>
 
-                <p:menubar>
 
-                    <p:submenu class="submenu" label="Cadastrar" icon="pi pi-file">
-                        <p:menuitem value="Produto" url="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}"/>
-                        <p:separator />
-                        <p:menuitem value="Unidade de Medida" url="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Fornecedor" url="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Nota Fiscal" url="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Setor" url="gerenciar-setor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-setor.xhtml')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Cardápio" url="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}" />
-                        <p:separator />
-                        <p:menuitem value="Usuário" url="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}" />
-                    </p:submenu>
-
-                    <p:submenu label="Estoque" icon="pi pi-pencil">
-                        <p:menuitem value="Movimento Estoque" url="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}"
-                                    icon="pi pi-angle-double-left" />
-                    </p:submenu>
-
-                    <p:submenu label="Relatórios" icon="pi pi-question">
-                        <p:menuitem value="Entrada de Produto" url="relatorio-entrada.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-entreda.xhtml')?'active':''}" />
-                        <p:menuitem value="Saída de Produto" url="relatorio-saida.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio-saida.xhtml')?'active':''}" />
-                    </p:submenu>
-
-                    <f:facet name="options">
-                        <i class="fa fa-fw fa-search"></i>
-                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Pesquisar"/>
-                        <p:commandButton type="button" value="Sair" icon="pi pi-home" />
-                    </f:facet>
-
-
-                </p:menubar>
             </h:form>
 
-            <!--<div>
+            <div>
                 <a href="#" class="menu-button-toggle">
                     <i class="fa fa-navicon"></i>
                 </a>
                 
-            </div>-->
+            </div>
 
 
             <div>
@@ -86,44 +51,104 @@
             </div>-->
         </header>
 
-        <!--<nav class="sidebar sidebar-mob">
+        <nav class="sidebar sidebar-mob">
             <div class="usuario">
-               
+
                 <div class="foto">
                     <img src="https://www.gravatar.com/avatar/#usuario.emailHash}?s=56&amp;d=mp"></img>
                 </div>
-                
-                <div class="nome">
-        #{usuario.nome}
-    </div>
-</div>
 
-        
-<ul>
-    <li>
-        <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
-            <i class="fa fa-fw fa-home"></i>HOME
-        </a>
-    </li>
-    <li>
-        <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-            <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
-        </a>
-        <ul class="submenu" id="submenu-configuracao">
-            <li>
-                <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
-                    <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
-                </a>
-            </li>
-            <li>
-                <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
-                    <i class="fa fa-fw fa-sliders"></i>Gerais
-                </a>
-            </li>
-        </ul>
-    </li>
-</ul>
-</nav> -->
+                <div class="nome">
+                    #{usuario.nome}
+                </div>
+            </div>
+
+
+            <ul>
+                <li>
+                    <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-home"></i>HOME
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-cadastros">
+                        <i class="fa fa-fw fa-edit"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-cadastros">
+                        <li>
+                            <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-users"></i>Usuários
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Produto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Fornecedor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Cardápio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-setor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-setor.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Setor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Unidade de Medida
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Notas Fiscais
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-estoque">
+                        <i class="fa fa-fw fa-bar-chart-o"></i>Estoque<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-estoque">
+                        <li>
+                            <a href="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-archive"></i>Movimento Estoque
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
+                        <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+
+                    <ul class="submenu" id="submenu-configuracao">
+
+                        <li>
+                            <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                            </a>
+                        </li>
+                        <li>
+                            <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Gerais
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </nav>
 
         <main>
             <!-- Mensagem em linha em baixo da toolbar -->

@@ -20,11 +20,11 @@ header{
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
-/*    background-color: #344f63;
+    background-color: #344f63;
     background-image: -webkit-gradient(linear, left top, right top, from(#2E8B57), to(#2F4F4F));
     background-image: -webkit-linear-gradient(left, #2E8B57, #2F4F4F);
-    background-image: linear-gradient(to right, #2E8B57, #2F4F4F);*/
-    
+    background-image: linear-gradient(to right, #2E8B57, #2F4F4F);
+
 }
 header > div {
     float: left;
