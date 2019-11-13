@@ -19,7 +19,7 @@
 
                 <p:outputLabel value="Descrição"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.descricao}"></p:inputText>
-              
+
                 <p:outputLabel value="Unidade Medida"></p:outputLabel>
                 <p:selectOneMenu value="#{produtoBean.entity.unidadeMedida}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
@@ -41,7 +41,7 @@
                 <p:column headerText="Descrição">
                     <h:outputText value="#{produto.descricao}"></h:outputText>
                 </p:column>
-                
+
                 <p:column headerText="Unidade Medida">
                     <h:outputText value="#{produto.unidadeMedida.sigla}"></h:outputText>
                 </p:column>
@@ -61,4 +61,4 @@
     </h:form>
 
 </ui:composition>
-            
+
