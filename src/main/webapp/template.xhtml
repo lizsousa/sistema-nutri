@@ -9,17 +9,14 @@
         <title>Sistema Nutri#{empty tituloPagina?'':' - '.concat(tituloPagina)}</title>
         <meta name="viewport" content="width=device-width"></meta>
         <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
-
         <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
         <!--Spinkit retirado de: https://tobiasahlin.com/spinkit/-->
         <h:outputStylesheet library="css" name="spinkit.css"></h:outputStylesheet>
-
         <h:outputScript library="js" name="primefaces-locales.js"></h:outputScript>
     </h:head>
-    <h:body> <!--class="sidebar-active"-->
+    <h:body class="sidebar-active"> 
         <f:view locale="pt_BR"></f:view>
         <header>
-
             <h:form>  
                 <p:growl id="messages"/>
 
@@ -63,7 +60,7 @@
             <ul>
                 <li>
                     <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
-                        <i class="fa fa-fw fa-home"></i>HOME
+                        <i class="fa fa-fw fa-home"></i>Início
                     </a>
                 </li>
                 <li>
@@ -124,19 +121,19 @@
 
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-                        <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+                        <i class="fa fa-fw fa-file-pdf-o"></i>Relatórios<i class="fa fa-fw fa-file-pdf-o"></i>
                     </a>
 
                     <ul class="submenu" id="submenu-configuracao">
 
                         <li>
                             <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-permissao.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                                <i class="fa fa-fw fa-list"></i>Entrada de estoque
                             </a>
                         </li>
                         <li>
                             <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sliders"></i>Gerais
+                                <i class="fa fa-fw fa-sliders"></i>Saída de estoque
                             </a>
                         </li>
                     </ul>
@@ -197,5 +194,22 @@
         <h:outputScript library="js" name="geral.js"></h:outputScript>
         <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
     </h:body>
+    <!-- 
+     <div class="caixa">
+            <h2>Login</h2>
+            <form>
+                <div class="entrada">
+                    <input type="text" name="" required>
+                        <label>Nome</label>
+                </div>
+                <div class="entrada">
+                    <input type="password" name="" required>
+                        <label>Senha</label>
+                </div>
+                <input type="submit" name="" value="Entrar"/>
+            </form>
+        </div>
+
+    -->
 </html>
 
