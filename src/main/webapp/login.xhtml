@@ -5,48 +5,44 @@
         <meta charset="UTF-8"/>
         <title>Login - Sistema Nutri</title>  
         <!--<link href="resources/css/estilo.css" rel="stylesheet"/>-->
-       <meta name="viewport" content="width=device-width"></meta>
+        <meta name="viewport" content="width=device-width"></meta>
         <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="spinkit.css"></h:outputStylesheet>
         <h:outputScript library="js" name="primefaces-locales.js"></h:outputScript>
-        
+
     </h:head>
     <h:body>
-       
-        <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
-             <h:form prependId="false">
-                 <h:panelGrid style="margin: 0 auto;" columns="1">
-                     <h3>Sistema de Estoque e Cardápio - SisEc</h3>
-                     <h:outputText styleClass="fa fa-user fa-4x"/>
- 
-                     <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
-                     <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
- 
-                     <p:commandButton ajax="false" value="Entrar"></p:commandButton>
-                 </h:panelGrid>
-                 
-               </h:form>
-         </p:dialog> 
+        
+       <!--  <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
+              <h:form prependId="false">
+                  <h:panelGrid style="margin: 0 auto;" columns="1">
+                      <h3>Sistema de Estoque e Cardápio - SisEc</h3>
+                      <h:outputText styleClass="fa fa-user fa-4x"/>
+  
+                      <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
+                      <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
+                      <p:commandButton ajax="false" value="Entrar"></p:commandButton>
+                  </h:panelGrid>
+                  
+                </h:form>
+          </p:dialog> -->
 
-       <!--testelogin <div class="caixa">
-            <h2>Login</h2>
-            <form>
-                <div class="entrada">
-                    <input type="text" name="" required=""/>
-                        <label>Nome</label>
-                </div>
-                <div class="entrada">
-                    <input type="password" name="" required=""/>
-                        <label>Senha</label>
-                </div>
-                <input type="submit" name="" value="Entrar"/>
-            </form>
-        </div>-->
+         <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
 
-        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
+        <div class="login-page">
+            <div class="form" header="Acessar o Sistema" showHeader="false">          
+                <form class="login-form" action="login.xhtml">
+                    <input type="text" id="username" placeholder="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    <input type="password" id="password" placeholder="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    <input type="submit" value="Entrar"/>
+                    <p class="message">Esqueceu senha? <a href="#">Criar nova senha</a></p>
+                </form>
+            </div>
+        </div>
+
         <h:outputScript library="js" name="geral.js"></h:outputScript>
         <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
-        
+
     </h:body>
 </html>

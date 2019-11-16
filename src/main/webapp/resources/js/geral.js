@@ -13,3 +13,8 @@ $(".submenu-toogle").click(function(event){
     submenuTarget = $(this).attr("submenu_target");
     $("#"+submenuTarget).toggleClass("open");
 });
+
+$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+

@@ -34,11 +34,15 @@
             <div>
                 <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
             </div>
-            
+           
+       
             <div class="extras">
                 <div class="extras-item">
                     <a href="logout">
-                        <i class="fa fa-fw fa-sign-out"></i>Sair
+                        
+                        <p>#{request.userPrincipal.name}</p>
+                        <i class="fa fa-fw fa-sign-out"></i>
+                       
                     </a>
                 </div>
             </div>
@@ -121,7 +125,7 @@
 
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-                        <i class="fa fa-fw fa-file-pdf-o"></i>Relatórios<i class="fa fa-fw fa-file-pdf-o"></i>
+                        <i class="fa fa-fw fa-file-pdf-o">Relatórios</i>
                     </a>
 
                     <ul class="submenu" id="submenu-configuracao">

@@ -61,6 +61,10 @@ header .extras a{
     color: white;
     text-decoration: none;
 }
+usu {
+    float: left;
+    margin-left: 15px;
+}
 
 header .extras .extras-item {
     font-size: 20px;
@@ -86,7 +90,6 @@ footer .copyright {
     text-align: center;
     line-height: 50px;
 }
-
 
 /*Configurações da navbar*/
 /* Adiciona transição suave na sidebar */
@@ -344,15 +347,16 @@ i.card-icon {
 .container .info span .fa {
   color: #EF3B3A;
 }
-/*body {
-  background: #76b852;  
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+body {
+  background: #8FBC8F;
+/*  background:#DCDCDC;*/
+  background: -webkit-linear-gradient(right, #8FBC8F, #8DC26F);
+  background: -moz-linear-gradient(right, #8FBC8F, #8DC26F);
+  background: -o-linear-gradient(right,/* #76b852,*/ 8FBC8F, #8DC26F);
+  background: linear-gradient(to left, #8FBC8F, #8DC26F);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
-}*/
+}
 
 
