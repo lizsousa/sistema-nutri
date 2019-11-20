@@ -9,8 +9,6 @@ import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -36,6 +34,7 @@ public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
         if (getEntity().getCardapiosHasProdutos() == null) {
             getEntity().setCardapiosHasProdutos(new ArrayList<CardapioHasProduto>());
         }
+        cardapioHasProduto.setCardapio(getEntity());
         if (!getEntity().getCardapiosHasProdutos().contains(cardapioHasProduto)) {
             getEntity().getCardapiosHasProdutos().add(cardapioHasProduto);
         }
@@ -51,8 +50,9 @@ public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
 
     public void usarReceita(Cardapio receita) { 
         cardapioTemp = receita;
-
+      
     }
+
     public void baixarCardapio(){
         try {
             logic.baixarEstoque(cardapioTemp);
@@ -100,4 +100,5 @@ public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
         this.produtoLogic = produtoLogic;
     }
 
+    
 }

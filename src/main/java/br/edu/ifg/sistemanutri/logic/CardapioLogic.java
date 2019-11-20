@@ -43,7 +43,6 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
        
             for(CardapioHasProduto chp : cardapio.getCardapiosHasProdutos()){
                 Estoque estoque = new Estoque();
-                Estoque estoqueAtual = new Estoque();
                 estoque.setTipoEstoque(TipoEstoque.SAIDA);
                 estoque.setProduto(chp.getProduto());
                 estoque.setQuantidade(chp.getQuantidade());
@@ -54,7 +53,6 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
         return cardapio;
     }
     
-  
     
     @Override
     public void deletar(Cardapio entity) throws  NegocioException, SistemaException {

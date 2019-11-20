@@ -47,11 +47,15 @@ public class Estoque implements Serializable {
     @ManyToOne
     @JoinColumn(name = "nota_fiscal_id")
     private NotaFiscal notaFiscal;
-
+    
+    private String descricao;
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_estoque")
     private TipoEstoque tipoEstoque = TipoEstoque.ENTRADA;
 
+     public Estoque() {
+        this.dataMovimento = new Date();
+    }
     public Integer getId() {
         return id;
     }
@@ -114,6 +118,14 @@ public class Estoque implements Serializable {
 
     public void setTipoEstoque(TipoEstoque tipoEstoque) {
         this.tipoEstoque = tipoEstoque;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
     @Override

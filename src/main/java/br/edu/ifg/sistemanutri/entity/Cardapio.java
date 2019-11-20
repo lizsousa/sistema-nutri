@@ -27,12 +27,14 @@ public class Cardapio implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_cardapio")
     private Date dataCardapio;
+    
     @Column(name = "nome_cardapio")
     private String nomeCardapio;
     @Column(name = "modo_preparo")
     private String modoPreparo;
     @Column(name = "quantidade_rendimento")
     private BigDecimal quantidadeRendimento;
+
 
     @OneToMany(mappedBy = "cardapio", cascade = CascadeType.ALL)
     private List<CardapioHasProduto> cardapiosHasProdutos;
@@ -68,11 +70,11 @@ public class Cardapio implements Serializable {
     public BigDecimal getQuantidadeRendimento() {
         return quantidadeRendimento;
     }
-
+    
     public void setQuantidadeRendimento(BigDecimal quantidadeRendimento) {
         this.quantidadeRendimento = quantidadeRendimento;
     }
-    
+
 
     public Date getDataCardapio() {
         return dataCardapio;

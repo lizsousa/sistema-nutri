@@ -9,7 +9,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <h:form>
-        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardapio">
+        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardápio">
             <si:toolbar-crud crudBean="#{cardapioBean}"/>
 
 
@@ -17,11 +17,11 @@
                          rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
 
 
-                <p:outputLabel value="Nome do Cardapio"></p:outputLabel>
+                <p:outputLabel value="Nome do Cardápio"></p:outputLabel>
                 <p:inputText value="#{cardapioBean.entity.nomeCardapio}"></p:inputText>
 
 
-                <h:outputLabel value="Data Pedido"></h:outputLabel>
+                <h:outputLabel value="Data do cardapio"></h:outputLabel>
                 <h:outputText value="#{cardapioBean.entity.dataCardapio}">
                     <f:convertDateTime></f:convertDateTime>
                 </h:outputText>
@@ -30,7 +30,7 @@
                 <p:inputText value="#{cardapioBean.entity.quantidadeRendimento}"></p:inputText>
 
                 <p:outputLabel value="Modo de Preparo"></p:outputLabel>
-                <p:inputTextarea value="#{cardapioBean.entity.modoPreparo}"></p:inputTextarea>
+                <p:inputTextarea style="width:500px"  value="#{cardapioBean.entity.modoPreparo}"></p:inputTextarea>
 
                 <h:outputText></h:outputText>
                 <p:commandButton value="Adicionar Produto" oncomplete="PF('dialodAddProduto').show();" icon="fa fa-plus"></p:commandButton>
@@ -43,7 +43,8 @@
                     <p:outputLabel value="Produto"></p:outputLabel>
                     <p:selectOneMenu id="advanced" value="#{cardapioBean.cardapioHasProduto.produto}" panelStyle="width:180px"
                                      effect="fade" var="prodDetalhe" style="width:160px" filter="true" filterMatchMode="startsWith">
-
+                        <p:ajax update="pnlgPedidoProduto"></p:ajax>
+                        <f:selectItem itemLabel="Selecione"></f:selectItem>
                         <f:selectItems value="#{cardapioBean.produtos}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
 
                         <p:column headerText="Nome do produto">
@@ -51,9 +52,14 @@
                         </p:column>   
 
                     </p:selectOneMenu>
-                    <p:outputLabel value="Quantidade"></p:outputLabel>
-                    <p:inputText value="#{cardapioBean.cardapioHasProduto.quantidade}"></p:inputText>
-
+                    <p:outputLabel value="Quantidade" rendered="#{cardapioBean.cardapioHasProduto.produto != null}"></p:outputLabel>
+                    <h:panelGroup rendered="#{cardapioBean.cardapioHasProduto.produto != null}">
+                        <div class="ui-inputgroup">
+                            <p:inputText  value="#{cardapioBean.cardapioHasProduto.quantidade}"></p:inputText>
+                            <span class="ui-inputgroup-addon">#{cardapioBean.cardapioHasProduto.produto.unidadeMedida.sigla}</span>      
+                        </div>
+                    </h:panelGroup>
+                    
                 </p:panelGrid>
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{cardapioBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>
             </p:dialog>
@@ -74,7 +80,7 @@
 
             </p:dataTable>
 
-            <p:dialog width="300px" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio" modal="true" height="100">
+            <p:dialog width="500px" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio" modal="true" height="100">
                 <p:ajax event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
 
                 <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" var="card" >
@@ -88,6 +94,7 @@
                     </p:column>
 
                 </p:dataTable>
+
                 <p:commandButton  value="Baixar Estoque" update="@form" actionListener="#{cardapioBean.baixarCardapio()}"></p:commandButton>
             </p:dialog>
 
@@ -104,15 +111,13 @@
 
                 </p:column>
 
-                <p:column headerText="Nome Cardapio">
+                <p:column headerText="Nome Cardápio">
                     <h:outputText value="#{cardapio.nomeCardapio}"></h:outputText>
                 </p:column>
 
                 <p:column headerText="Rendimento">
                     <h:outputText value="#{cardapio.quantidadeRendimento}"></h:outputText>
                 </p:column>
-
-
 
             </p:dataTable>
         </p:fieldset>

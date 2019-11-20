@@ -73,7 +73,8 @@ public class Assert {
         return dv == (d1 * 10 + d2);
     }
 
-    public static boolean isCnpjcpfValido(String cnpj) {
+    
+    public static boolean isCnpjValido(String cnpj) {
         if (!cnpj.substring(0, 1).equals("")) {
             try {
                 cnpj = cnpj.replaceAll("\\.", "");
@@ -155,8 +156,6 @@ public class Assert {
         return false;
     }
 
-    public static boolean isCnpjcpfValido(Object cnpjcpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

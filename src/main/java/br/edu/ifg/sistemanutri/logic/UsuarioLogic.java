@@ -1,5 +1,6 @@
 package br.edu.ifg.sistemanutri.logic;
 
+import br.edu.ifg.sistemanutri.bean.UsuarioBean;
 import br.edu.ifg.sistemanutri.dao.UsuarioDAO;
 import br.edu.ifg.sistemanutri.entity.Usuario;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
@@ -12,6 +13,8 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
 
     @Inject
     private UsuarioDAO dao;
+    @Inject
+    private UsuarioBean bean;
     
     @Override
     public Usuario salvar(Usuario entity) throws  NegocioException, SistemaException {
@@ -24,7 +27,6 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
         entity = dao.salvar(entity);
         return entity;
     }
-
     @Override
     public void deletar(Usuario entity) throws  NegocioException, SistemaException {
         dao.deletar(entity);

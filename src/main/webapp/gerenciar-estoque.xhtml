@@ -11,20 +11,16 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
 
     <h:form>
-        <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Pesquisa de':estoqueBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Estoque">
-            <si:toolbar-crud crudBean="#{estoqueBean}">
-            <p:commandButton value="Cadastrar novo produto" ajax="false" action="gerenciar-produto.xhtml" 
-                             onclick="this.form.target='_blank'"></p:commandButton> 
-           
-            </si:toolbar-crud>
+        <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Pesquisa de':estoqueBean.statusTela == 'INSERINDO'?'Movimento de':'Editando'} Estoque">
+            <si:toolbar-crud crudBean="#{estoqueBean}"/>
+  
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid   columns="2" styleClass="ui-noborder" 
                          rendered="#{estoqueBean.statusTela != 'PESQUISANDO'}">
 
 
                 <h3>Tipo Movimento</h3>
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                    <!--<p:outputLabel value="Tipo Movimento:" />-->
                     <p:selectOneRadio id="console" value="#{estoqueBean.entity.tipoEstoque}">
                         <p:ajax update="@form"></p:ajax>
                         <f:selectItems value="#{estoqueBean.tiposEstoque}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"></f:selectItems>
@@ -40,15 +36,15 @@
                                    itemLabel="#{prod.descricao}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
 
-                <p:outputLabel style="width:20px" value="Quantidade" rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
+                <p:outputLabel value="Quantidade" rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
                 <h:panelGroup rendered="#{estoqueBean.entity.produto != null}">
                     <div class="ui-inputgroup">
-                        <p:inputText value="#{estoqueBean.entity.quantidade}"></p:inputText>
+                        <p:inputText style="width:200px" value="#{estoqueBean.entity.quantidade}"></p:inputText>
                         <span class="ui-inputgroup-addon">#{estoqueBean.entity.produto.unidadeMedida.sigla}</span>      
                     </div>
                 </h:panelGroup>
               
-                <p:outputLabel value="Nome Fornecedor"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
+                <p:outputLabel  value="Nome Fornecedor"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}" rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.fornecedores}" var="forne" 
@@ -56,8 +52,10 @@
                 </p:selectOneMenu>
 
 
-                <p:outputLabel for="button" value="Data Movimento:" />
-                <p:calendar id="button" value="#{estoqueBean.entity.dataMovimento}" showOn="button" />
+               <h:outputLabel value="Data do Movimento"></h:outputLabel>
+               <h:outputText value="#{estoqueBean.entity.dataMovimento}">
+                <f:convertDateTime></f:convertDateTime>
+                </h:outputText>
 
                 <p:outputLabel value="Nome Setor"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}">
@@ -65,6 +63,10 @@
                     <f:selectItems value="#{estoqueBean.setors}" var="set" 
                                    itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
                 </p:selectOneMenu>
+                
+                <p:outputLabel value="Discricao"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:inputText  value="#{estoqueBean.entity.descricao}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:inputText>
+            
 
 
 

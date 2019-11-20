@@ -26,9 +26,6 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     private EstoqueLogic estoquelogic;
     
     @Inject
-    private EstoqueDAO estoquedao;
-    
-    @Inject
     private FornecedorLogic fornecedorLogic;
     
     
@@ -40,6 +37,7 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
     private BigDecimal quantidade;
     private String tipoEstoque;
+    private String Discricao;
     
     
     
@@ -139,6 +137,14 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
 
     public void setTipoEstoque(String tipoEstoque) {
         this.tipoEstoque = tipoEstoque;
+    }
+
+    public String getDiscricao() {
+        return Discricao;
+    }
+
+    public void setDiscricao(String Discricao) {
+        this.Discricao = Discricao;
     }
        
 }

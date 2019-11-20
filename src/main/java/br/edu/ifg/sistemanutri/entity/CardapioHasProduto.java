@@ -45,6 +45,9 @@ public class CardapioHasProduto implements Serializable {
     }
 
     public void setProduto(Produto produto) {
+        if(produto == null){
+            return;
+        }
         this.produto = produto;
         if(id == null){
             id =  new CardapioHasProdutoPk();
@@ -57,6 +60,9 @@ public class CardapioHasProduto implements Serializable {
     }
 
     public void setCardapio(Cardapio cardapio) {
+        if(cardapio == null){
+            return;
+        }
         this.cardapio = cardapio;
         if(id == null){
             id =  new CardapioHasProdutoPk();
