@@ -77,5 +77,6 @@ public class SetorBean extends GenericCrud<Setor, SetorLogic>{
     }
 
 
+
 }
 

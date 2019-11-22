@@ -41,6 +41,7 @@ public class Setor implements Serializable {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
     
 
     @Override
