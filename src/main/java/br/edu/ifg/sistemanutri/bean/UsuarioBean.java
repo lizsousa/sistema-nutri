@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Named
 @SessionScoped
@@ -26,10 +27,21 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
     
     private Permissao Permissao = new Permissao();
     
+    private String senha;
+    
     public void novaPermissao(){
         Permissao = new Permissao();
     }
     
+    
+    @Override
+    public void salvar() {
+        if(senha != null && !"".equals(senha.trim())){
+            senha = criptografar(senha);
+            getEntity().setSenha(senha);
+        }
+        super.salvar();
+    }
     
     public void adicionarPermissao(){
         if(getEntity().getPermissoes()== null){
@@ -48,6 +60,10 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
         
     }
     
+    public String criptografar(String senha){
+        return new BCryptPasswordEncoder().encode(senha);
+        
+    }
     
     @Override
     public UsuarioLogic getLogic() {
@@ -64,7 +80,14 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
         }
         return null;
     }
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     
     public Permissao getPermissao() {
         return Permissao;

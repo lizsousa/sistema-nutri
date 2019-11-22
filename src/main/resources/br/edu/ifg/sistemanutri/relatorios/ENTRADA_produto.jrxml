@@ -3,6 +3,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saida_produto" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f012faa1-26e9-4107-a397-ecc6a1d25dfe">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+        <parameter name="DATA_INICIO" class="java.util.Date"/>
+        <parameter name="DATA_FIM" class="java.util.Date"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT controleestoque.estoque.quantidade,
 	controleestoque.estoque.tipo_estoque,
@@ -17,7 +19,8 @@ FROM controleestoque.estoque
 	 controleestoque.produto.unidade_medida_id = controleestoque.unidade_medida.id 
 	LEFT JOIN controleestoque.setor ON 
 	 controleestoque.estoque.setor_id = controleestoque.setor.id
-	 where tipo_estoque='ENTRADA']]>
+	 where tipo_estoque='ENTRADA'
+            and controleestoque.estoque.data_movimento between $P{DATA_INICIO} and $P{DATA_FIM}]]>
 	</queryString>
 	<field name="quantidade" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>

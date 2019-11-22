@@ -14,8 +14,13 @@
           
             <br></br>
             <br></br>
+            <p:outputLabel value="Data:" ></p:outputLabel>
+            <p:calendar value="#{relatorioEntradaBean.dataInicio}"></p:calendar>
+            <p:outputLabel value=" até " ></p:outputLabel>
+            <p:calendar value="#{relatorioEntradaBean.dataFim}"></p:calendar>
+            
             <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-arrow-down">
-                <p:fileDownload contentDisposition="inline" value="#{relatorioBean.relatorioMovimento()}" />
+                <p:fileDownload contentDisposition="inline" value="#{relatorioEntradaBean.relatorioMovimento()}" />
             </p:commandButton>
         </h:form>
         <br></br>

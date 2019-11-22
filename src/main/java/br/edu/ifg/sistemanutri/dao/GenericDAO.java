@@ -19,6 +19,7 @@ public class GenericDAO<E, ID extends Serializable> implements Serializable {
             entityManager.getTransaction().begin();
             entity = entityManager.merge(entity);
             entityManager.getTransaction().commit();
+            entityManager.flush();
             return entity;
         } catch (Exception ex) {
             if(entityManager.getTransaction().isActive()){

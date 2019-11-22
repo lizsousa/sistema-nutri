@@ -35,15 +35,14 @@
                 <h:graphicImage class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
             </div>
 
-            
+
             <div class="extras">
                 <div class="extras-item">
-                    <p:button value="#{request.userPrincipal.name}">
-                            <a href="logout">
-                                <i class="fa fa-fw fa-sign-out"></i>
-                            </a>
-                    </p:button>
-   
+                    <a href="logout">
+                        <p>#{request.userPrincipal.name}
+                            <i class="fa fa-fw fa-sign-out"></i>
+                        </p>
+                    </a>
                 </div>
             </div>
         </header>

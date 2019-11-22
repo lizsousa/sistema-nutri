@@ -10,6 +10,18 @@
         <cc:attribute name="crudBean" 
                       displayName="Bean que extenda GenericCrud"
                       required="true"></cc:attribute>
+        <cc:attribute name="salvarRendered" 
+                      displayName="Permite exibir ou ocultar o botao salvar"
+                      required="false" default="true"></cc:attribute>
+        <cc:attribute name="salvarDisabled" 
+                      displayName="Permite desatilitar o botao salvar"
+                      default="false"></cc:attribute>
+        <cc:attribute name="novoRendered" 
+                      displayName="Permite exibir ou ocultar o botao novo"
+                      default="true"></cc:attribute>
+        <cc:attribute name="novoDisabled" 
+                      displayName="Permite desabilitar o botao novo"
+                      default="false"></cc:attribute>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
@@ -25,13 +37,16 @@
                 
                 <p:separator></p:separator>
                 
-                <p:commandButton value="Novo" actionListener="#{cc.attrs.crudBean.novo()}"
+                 <p:commandButton value="Novo" actionListener="#{cc.attrs.crudBean.novo()}"
+                                 rendered="#{cc.attrs.novoRendered}"
+                                 disabled="#{cc.attrs.novoDisabled}"
                                  update="@form" icon="fa fa-file-o"
                                  ></p:commandButton>
                 
                 <p:commandButton value="Salvar" actionListener="#{cc.attrs.crudBean.salvar()}"
+                                 disabled="#{cc.attrs.salvarDisabled}"
                                  update="@form" icon="fa fa-save"
-                                 rendered="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO'}"></p:commandButton>
+                                 rendered="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO' and cc.attrs.salvarRendered}"></p:commandButton>
                 
                 <cc:insertChildren></cc:insertChildren>
             </p:toolbarGroup>
