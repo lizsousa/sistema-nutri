@@ -347,7 +347,7 @@ i.card-icon {
 .container .info span .fa {
   color: #EF3B3A;
 }
-body {
+body login{
   background: #8FBC8F;
 /*  background:#DCDCDC;*/
   background: -webkit-linear-gradient(right, #8FBC8F, #8DC26F);
