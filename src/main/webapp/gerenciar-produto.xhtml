@@ -14,7 +14,7 @@
         <p:fieldset legend="#{produtoBean.statusTela == 'PESQUISANDO'?'Pesquisa de':produtoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Produto">
             <si:toolbar-crud crudBean="#{produtoBean}"/>
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{produtoBean.statusTela != 'PESQUISANDO'}">
 
                 <p:outputLabel value="Descrição"></p:outputLabel>
@@ -32,7 +32,7 @@
                 
             </p:panelGrid>
 
-            <p:dataTable value="#{produtoBean.entitys}" var="produto"
+            <p:dataTable reflow="true" value="#{produtoBean.entitys}" var="produto"
                          rendered="#{produtoBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">

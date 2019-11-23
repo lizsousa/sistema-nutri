@@ -13,7 +13,7 @@
         <p:fieldset legend="#{setorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':setorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Setor">
             <si:toolbar-crud crudBean="#{setorBean}"/>
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{setorBean.statusTela != 'PESQUISANDO'}">
                 
                 <p:outputLabel value="Nome"></p:outputLabel>
@@ -23,7 +23,7 @@
                 <p:inputText value="#{setorBean.entity.descricao}"></p:inputText>
             </p:panelGrid>
             
-            <p:dataTable value="#{setorBean.entitys}" var="setor"
+            <p:dataTable reflow="true" value="#{setorBean.entitys}" var="setor"
                          rendered="#{setorBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">

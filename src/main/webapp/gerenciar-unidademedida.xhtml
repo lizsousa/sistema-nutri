@@ -14,7 +14,7 @@
         <p:fieldset legend="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'?'Pesquisa de':unidadeMedidaBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Unidade de Medida">
             <si:toolbar-crud crudBean="#{unidadeMedidaBean}"/>
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{unidadeMedidaBean.statusTela != 'PESQUISANDO'}">
                 <p:outputLabel value="Nome"></p:outputLabel>
                 <p:inputText value="#{unidadeMedidaBean.entity.nome}"></p:inputText>
@@ -24,7 +24,7 @@
               
             </p:panelGrid>
 
-            <p:dataTable value="#{unidadeMedidaBean.entitys}" var="unidadeMedida"
+            <p:dataTable reflow="true" value="#{unidadeMedidaBean.entitys}" var="unidadeMedida"
                          rendered="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">

@@ -11,14 +11,14 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Fornecedores"></ui:param>
     <h:form>
- 
-           <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
+
+        <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
             <si:toolbar-crud crudBean="#{fornecedorBean}"/>                
 
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"
                          rendered="#{fornecedorBean.statusTela != 'PESQUISANDO'}">
-                
+
                 <p:outputLabel value="Pessoa"></p:outputLabel>
                 <p:selectOneRadio value="#{fornecedorBean.tipoPessoa}">
                     <p:ajax update="@form"></p:ajax>
@@ -27,18 +27,18 @@
                     <f:selectItem itemValue="0"  itemLabel="Jurídica">
                     </f:selectItem>
                 </p:selectOneRadio>
-                
+
                 <p:outputLabel value="Tipo Fornecedor" ></p:outputLabel>
                 <p:selectOneRadio  value="#{fornecedorBean.entity.tipoFornecedor}"  >
                     <p:ajax update="@form" ></p:ajax>                    
                     <f:selectItem  itemValue="false" itemLabel="Aquisição"></f:selectItem>
                     <f:selectItem  itemValue="true"  itemLabel="Doação" ></f:selectItem>
                 </p:selectOneRadio>
-                     
+
                 <p:outputLabel value="#{fornecedorBean.tipoPessoa == 1 ?'Nome':'Razão Social'}" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.razaoSocial}"></p:inputText>
 
-                
+
                 <p:outputLabel value="#{fornecedorBean.tipoPessoa == 1 ?'Apelido':'Nome Fantasia'}" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.nomeFantasia}"></p:inputText>
 
@@ -47,10 +47,10 @@
 
                 <p:outputLabel value="CNPJ:" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:outputLabel>
                 <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:inputMask>
-                
+
                 <p:outputLabel value="CPF:" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:outputLabel>
                 <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:inputMask>
-                
+
                 <p:outputLabel value="EndereÇo:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.endereco}"></p:inputText>
 
@@ -59,52 +59,53 @@
 
                 <p:outputLabel value="Email:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.email}"></p:inputText>
-               
+
 
             </p:panelGrid>
             <p:spacer height="20px"></p:spacer>
+             
+                <p:dataTable reflow="true" value="#{fornecedorBean.entitys}" var="fornecedor"
+                             rendered="#{fornecedorBean.statusTela == 'PESQUISANDO'}">
 
-            <p:dataTable value="#{fornecedorBean.entitys}" var="fornecedor"
-                         rendered="#{fornecedorBean.statusTela == 'PESQUISANDO'}">
+                    <p:column width="100">
+                        <si:colunaAcoes crudBean="#{fornecedorBean}" entity="#{fornecedor}"></si:colunaAcoes>
+                    </p:column> 
 
-                <p:column width="100">
-                    <si:colunaAcoes crudBean="#{fornecedorBean}" entity="#{fornecedor}"></si:colunaAcoes>
-                </p:column> 
-                
-                <p:column headerText="Nome/Razão social">
-                    <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
-                </p:column>
+                    <p:column headerText="Nome/Razão social">
+                        <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
+                    </p:column>
 
-                <p:column headerText="Apelido/Nome Fantasia">
-                    <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
-                </p:column>
-                
-                <p:column headerText="IE">
-                    <h:outputText value="#{fornecedor.inscricao}"></h:outputText>
-                </p:column>
-                
-                
-                <p:column headerText="Tipo Fornecedor">
-                    <h:outputText value="#{fornecedor.tipoFornecedor==false ?'Aquisição':'Doação'}"></h:outputText>
-                </p:column>
-                
-                <p:column headerText="Endereço">
-                    <h:outputText value="#{fornecedor.endereco}"></h:outputText>
-                </p:column>
+                    <p:column headerText="Apelido/Nome Fantasia">
+                        <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
+                    </p:column>
 
-                <p:column headerText="Email">
-                    <h:outputText value="#{fornecedor.email}"></h:outputText>
-                
-                </p:column>
-                <p:column headerText="CPF/CNPJ">
-                    <h:outputText value="#{fornecedor.cnpjCpf}"></h:outputText>
-                </p:column>
-                
-                <p:column headerText="Telefone">
-                    <h:outputText value="#{fornecedor.telefone}"></h:outputText>
-                </p:column>
+                    <p:column headerText="IE">
+                        <h:outputText value="#{fornecedor.inscricao}"></h:outputText>
+                    </p:column>
+
+
+                    <p:column headerText="Tipo Fornecedor">
+                        <h:outputText value="#{fornecedor.tipoFornecedor==false ?'Aquisição':'Doação'}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Endereço">
+                        <h:outputText value="#{fornecedor.endereco}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{fornecedor.email}"></h:outputText>
+
+                    </p:column>
+                    <p:column headerText="CPF/CNPJ">
+                        <h:outputText value="#{fornecedor.cnpjCpf}"></h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Telefone">
+                        <h:outputText value="#{fornecedor.telefone}"></h:outputText>
+                    </p:column>
+
+                </p:dataTable>
          
-            </p:dataTable>
         </p:fieldset>
     </h:form>
 </ui:composition>

@@ -12,23 +12,23 @@
     <h:form>
         <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
-    
-    <si:toolbar-crud crudBean="#{usuarioBean}" novoDisabled="#{!loginBean.temPermissao('CADASTRAR_USUARIO')}">
+
+            <si:toolbar-crud crudBean="#{usuarioBean}" novoDisabled="#{!loginBean.temPermissao('CADASTRAR_USUARIO')}">
                 <f:facet name="opcoes">
                     <p:commandButton value="#{usuarioBean.entity.dataDesativacao == null?'Desativar':'Ativar'}"
                                      update="@form" rendered="#{usuarioBean.statusTela == 'EDITANDO'}"
                                      actionListener="#{usuarioBean.ativaesativar(usuarioBean.entity)}"
                                      style="color: #{usuarioBean.entity.dataDesativacao == null?'green':'red'}"
                                      icon="fa #{usuarioBean.entity.dataDesativacao == null?'fa-check-circle-o':'fa-close'}"
-                    ></p:commandButton>
+                                     ></p:commandButton>
                 </f:facet>
 
             </si:toolbar-crud>
             <c:if test="#{loginBean.temPermissao('CADASTRAR_USUARIO')}">
                 <h1>Tem permissao cadastrar usuario</h1>
             </c:if>
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
-                         rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}" layout="grid" columnClasses="colunaLabel, colunaInput">
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"
+                         rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
 
                 <p:outputLabel value="Nome"></p:outputLabel>
                 <p:inputText value="#{usuarioBean.entity.nome}"></p:inputText>
@@ -36,20 +36,22 @@
                 <p:inputText value="#{usuarioBean.entity.login}"></p:inputText>
                 <p:outputLabel value="Senha"></p:outputLabel>
                 <p:password value="#{usuarioBean.senha}"></p:password>
-                <p:outputLabel for="buttonEntrada" value="Data de Cadastro:" />
-                <p:calendar id="buttonEntrada" value="#{usuarioBean.entity.dataCadastro}" showOn="button" />
-             
+                <h:outputLabel value="Data do Cadastro"></h:outputLabel>
+                <h:outputText value="#{usuarioBean.entity.dataCadastro}">
+                    <f:convertDateTime></f:convertDateTime>
+                </h:outputText>
+
             </p:panelGrid>
             <p:spacer height="20px"></p:spacer>
-            <p:fieldset legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
+            <p:fieldset  legend="Selecione" rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
                 <p:selectManyButton value="#{usuarioBean.entity.permissoes}"  class="p-grid" converter="permissaoConverter">
-                <!-- collectionType="" - Também funciona, porém o Netbeans não reconhece o atributo -->
-                <f:selectItems value="#{usuarioBean.permissaos}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
+                    <!-- collectionType="" - Também funciona, porém o Netbeans não reconhece o atributo -->
+                    <f:selectItems value="#{usuarioBean.permissaos}" var="entity" itemLabel="#{entity.nome}" itemValue="#{entity}" />
                     <f:attribute name="collectionType" value="java.util.ArrayList"/>
                 </p:selectManyButton>
             </p:fieldset>
 
-            <p:dataTable value="#{usuarioBean.entitys}" var="user"
+            <p:dataTable reflow="true" value="#{usuarioBean.entitys}" var="user"
                          rendered="#{usuarioBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="135">
@@ -62,7 +64,7 @@
                     </si:colunaAcoes>
                 </p:column>
 
-                
+
                 <p:column headerText="Nome">
                     <h:outputText value="#{user.nome}"></h:outputText>
                 </p:column>

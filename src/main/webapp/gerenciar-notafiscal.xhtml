@@ -14,7 +14,7 @@
             <si:toolbar-crud crudBean="#{notaFiscalBean}"/>
 
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"  
                          rendered="#{notaFiscalBean.statusTela != 'PESQUISANDO'}">
                 
                 
@@ -42,7 +42,7 @@
             
             
             <p:dialog header="Adicionar Produto" widgetVar="dialodAddProduto" modal="true">
-                <p:panelGrid id="pnlgPedidoProduto" columns="2" styleClass="ui-noborder">
+                <p:panelGrid id="pnlgPedidoProduto" columns="1" layout="grid" styleClass="panelgrid-noborder">
                     <p:outputLabel value="Produto"></p:outputLabel>
                     <p:selectOneMenu id="advanced" value="#{notaFiscalBean.notaFiscalHasProduto.produto}" panelStyle="width:180px"
                                      effect="fade" var="prodDetalhe" style="width:200px" filter="true" filterMatchMode="startsWith">
@@ -61,7 +61,7 @@
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{notaFiscalBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>
             </p:dialog>
             
-            <p:dataTable  value="#{notaFiscalBean.entity.notaFiscalsHasProdutos}" var="chp" id="tblPedidoProdutos" rendered="#{notaFiscalBean.statusTela != 'PESQUISANDO'}">
+            <p:dataTable  reflow="true" value="#{notaFiscalBean.entity.notaFiscalsHasProdutos}" var="chp" id="tblPedidoProdutos" rendered="#{notaFiscalBean.statusTela != 'PESQUISANDO'}">
                 
                  <p:column>
                     <p:commandButton icon="fa fa-trash" update="@form"
@@ -77,7 +77,7 @@
 
             </p:dataTable>
 
-            <p:dataTable value="#{notaFiscalBean.entitys}" var="notaFiscal"
+            <p:dataTable reflow="true" value="#{notaFiscalBean.entitys}" var="notaFiscal"
                          rendered="#{notaFiscalBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">

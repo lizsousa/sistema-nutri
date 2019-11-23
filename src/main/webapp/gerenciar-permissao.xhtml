@@ -14,7 +14,7 @@
        
        
 
-            <p:panelGrid columns="2" styleClass="ui-noborder" 
+            <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{permissaoBean.statusTela != 'PESQUISANDO'}">
 
                 <p:outputLabel value="Nome"></p:outputLabel>
@@ -24,7 +24,7 @@
 
             </p:panelGrid>
 
-            <p:dataTable value="#{permissaoBean.entitys}" var="enity"
+            <p:dataTable reflow="true" value="#{permissaoBean.entitys}" var="enity"
                          rendered="#{permissaoBean.statusTela == 'PESQUISANDO'}">
                 
                 <p:column width="100">

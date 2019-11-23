@@ -15,7 +15,7 @@
             <si:toolbar-crud crudBean="#{estoqueBean}"/>
   
 
-            <p:panelGrid   columns="2" styleClass="ui-noborder" 
+            <p:panelGrid   columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{estoqueBean.statusTela != 'PESQUISANDO'}">
 
 
@@ -72,7 +72,7 @@
 
             </p:panelGrid>
 
-            <p:dataTable value="#{estoqueBean.entitys}" var="estoque"
+            <p:dataTable reflow="true" value="#{estoqueBean.entitys}" var="estoque"
                          rendered="#{estoqueBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="100">
