@@ -19,21 +19,19 @@ public class GenericDAO<E, ID extends Serializable> implements Serializable {
             entityManager.getTransaction().begin();
             entity = entityManager.merge(entity);
             entityManager.getTransaction().commit();
-            entityManager.flush();
             return entity;
         } catch (Exception ex) {
-            if(entityManager.getTransaction().isActive()){
+            if(entityManager.getTransaction() != null && entityManager.getTransaction().isActive()){
                 entityManager.getTransaction().rollback();
             }
+            ex.printStackTrace();
             throw new SistemaException("Erro ao salvar " + getEntityClass().getName(), ex);
         }
     }
     
     public void deletar(E entity) throws SistemaException {
         try {
-            if(!entityManager.getTransaction().isActive()){
-                entityManager.getTransaction().begin();
-            }
+            entityManager.getTransaction().begin();
             entityManager.remove(entity);
             entityManager.getTransaction().commit();
         } catch (Exception ex) {

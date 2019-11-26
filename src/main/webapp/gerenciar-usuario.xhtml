@@ -12,21 +12,20 @@
     <h:form>
         <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
-
             <si:toolbar-crud crudBean="#{usuarioBean}" novoDisabled="#{!loginBean.temPermissao('CADASTRAR_USUARIO')}">
                 <f:facet name="opcoes">
                     <p:commandButton value="#{usuarioBean.entity.dataDesativacao == null?'Desativar':'Ativar'}"
                                      update="@form" rendered="#{usuarioBean.statusTela == 'EDITANDO'}"
-                                     actionListener="#{usuarioBean.ativaesativar(usuarioBean.entity)}"
+                                     actionListener="#{usuarioBean.ativaDesativar(usuarioBean.entity)}"
                                      style="color: #{usuarioBean.entity.dataDesativacao == null?'green':'red'}"
                                      icon="fa #{usuarioBean.entity.dataDesativacao == null?'fa-check-circle-o':'fa-close'}"
                                      ></p:commandButton>
                 </f:facet>
 
             </si:toolbar-crud>
-            <c:if test="#{loginBean.temPermissao('CADASTRAR_USUARIO')}">
+<!--            <c:if test="#{loginBean.temPermissao('CADASTRAR_USUARIO')}">
                 <h1>Tem permissao cadastrar usuario</h1>
-            </c:if>
+            </c:if>-->
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"
                          rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
 
@@ -55,7 +54,7 @@
                          rendered="#{usuarioBean.statusTela == 'PESQUISANDO'}">
 
                 <p:column width="135">
-                    <si:colunaAcoes crudBean="#{usuarioBean}" entity="#{user}" rederedDelete="true">
+                    <si:colunaAcoes  deleteRendered="#{!loginBean.temPermissao('DELETAR_USUARIO')}" deleteDisabled="#{!loginBean.temPermissao('DELETAR_USUARIO')}" crudBean="#{usuarioBean}" entity="#{user}"  >
                         <p:commandButton icon="fa #{user.dataDesativacao == null?'fa-check-circle-o':'fa-close'}" update="@form"
                                          actionListener="#{usuarioBean.ativarDesativar(user)}"
                                          style="color: #{user.dataDesativacao == null?'green':'red'}">

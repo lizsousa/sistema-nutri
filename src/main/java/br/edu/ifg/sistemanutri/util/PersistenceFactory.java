@@ -12,10 +12,6 @@ public class PersistenceFactory {
 
     Flyway flyway;
 
-    public EntityManager getEntityManager(EntityManagerFactory factory) {
-        return factory.createEntityManager();
-    }
-
     @Bean
     @Produces
     public EntityManager getEntityManager() {
