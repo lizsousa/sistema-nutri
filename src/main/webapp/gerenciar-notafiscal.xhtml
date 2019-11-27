@@ -9,6 +9,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Cadastro de Notas Fiscais"></ui:param>
     <h:form>
        <p:fieldset legend="#{notaFiscalBean.statusTela == 'PESQUISANDO'?'Pesquisa de':notaFiscalBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Nota Fiscal">
             <si:toolbar-crud crudBean="#{notaFiscalBean}"/>
@@ -18,16 +19,16 @@
                          rendered="#{notaFiscalBean.statusTela != 'PESQUISANDO'}">
                 
                 
-                <p:outputLabel value="Numero da NFe"></p:outputLabel>
+                <p:outputLabel value="Numero da NFe:"></p:outputLabel>
                 <p:inputText value="#{notaFiscalBean.entity.numero}"></p:inputText>
 
-                <p:outputLabel for="buttonEmissao" value="Data Emissao:" />
+                <p:outputLabel for="buttonEmissao" value="Data de Emissão:" />
                 <p:calendar id="buttonEmissao" value="#{notaFiscalBean.entity.dataEmissao}" showOn="button" />
                 
-                <p:outputLabel for="buttonEntrada" value="Data Entrada:" />
+                <p:outputLabel for="buttonEntrada" value="Data de Entrada:" />
                 <p:calendar id="buttonEntrada" value="#{notaFiscalBean.entity.dataEntrada}" showOn="button" />
                 
-                <p:outputLabel value="Fornecedor"></p:outputLabel>
+                <p:outputLabel value="Fornecedor:"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{notaFiscalBean.entity.fornecedor}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{notaFiscalBean.fornecedor}" var="forn" 
@@ -49,7 +50,7 @@
 
                         <f:selectItems value="#{notaFiscalBean.produtos}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
                               
-                        <p:column headerText="Nome do produto">
+                        <p:column headerText="Nome do Produto">
                             <h:outputText value="${prodDetalhe.descricao}"></h:outputText>
                         </p:column>   
                   
@@ -83,11 +84,11 @@
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{notaFiscalBean}" entity="#{notaFiscal}"></si:colunaAcoes>
                 </p:column>                    
-                <p:column headerText="Fornecedor">
+                <p:column headerText="Nome do Fornecedor">
                     <h:outputText value="#{notaFiscal.fornecedor.razaoSocial}"></h:outputText>
                 </p:column>
                 
-                <p:column headerText="Numero NF-e">
+                <p:column headerText="Numero da NF-e">
                     <h:outputText value="#{notaFiscal.numero}"></h:outputText>
                 </p:column>
                 

@@ -9,6 +9,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Cadastro de Movimento de Estoque"></ui:param>
 
     <h:form>
         <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Pesquisa de':estoqueBean.statusTela == 'INSERINDO'?'Movimento de':'Editando'} Estoque">
@@ -28,7 +29,7 @@
                 </h:panelGrid>
 
 
-                <p:outputLabel value="Nome Produto"></p:outputLabel>
+                <p:outputLabel value="Nome do Produto:"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.produto}">
                     <p:ajax update="@form"></p:ajax>
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
@@ -36,7 +37,7 @@
                                    itemLabel="#{prod.descricao}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
 
-                <p:outputLabel value="Quantidade" rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
+                <p:outputLabel value="Quantidade:" rendered="#{estoqueBean.entity.produto != null}"></p:outputLabel>
                 <h:panelGroup rendered="#{estoqueBean.entity.produto != null}">
                     <div class="ui-inputgroup">
                         <p:inputText style="width:200px" value="#{estoqueBean.entity.quantidade}"></p:inputText>
@@ -44,7 +45,7 @@
                     </div>
                 </h:panelGroup>
               
-                <p:outputLabel  value="Nome Fornecedor"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
+                <p:outputLabel  value="Nome do Fornecedor:"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}" rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.fornecedores}" var="forne" 
@@ -52,19 +53,19 @@
                 </p:selectOneMenu>
 
 
-               <h:outputLabel value="Data do Movimento"></h:outputLabel>
+               <h:outputLabel value="Data do Movimento:"></h:outputLabel>
                <h:outputText value="#{estoqueBean.entity.dataMovimento}">
                 <f:convertDateTime></f:convertDateTime>
                 </h:outputText>
 
-                <p:outputLabel value="Nome Setor"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:outputLabel value="Nome do Setor:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
                 <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.setors}" var="set" 
                                    itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
                 </p:selectOneMenu>
                 
-                <p:outputLabel value="Discricao"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:outputLabel value="Discrição:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
                 <p:inputText  value="#{estoqueBean.entity.descricao}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:inputText>
             
 
@@ -84,23 +85,23 @@
                 </p:column>
 
 
-                <p:column headerText="Tipo Estoque">
+                <p:column headerText="Tipo de Estoque">
                     <h:outputText value="#{estoque.tipoEstoque.descricao}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Nome Fornecedor">
+                <p:column headerText="Nome do Fornecedor">
                     <h:outputText value="#{estoque.fornecedor.razaoSocial}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Nome Produto">
+                <p:column headerText="Nome do Produto">
                     <h:outputText value="#{estoque.produto.descricao}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Nome Setor">
+                <p:column headerText="Nome do Setor">
                     <h:outputText value="#{estoque.setor.nome}"></h:outputText>
                 </p:column>
                 
-                <p:column headerText="Descricao da Saída">
+                <p:column headerText="Descrição da Saída">
                     <h:outputText value="#{estoque.descricao}"></h:outputText>
                 </p:column>
                 

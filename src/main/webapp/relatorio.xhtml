@@ -8,6 +8,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
   <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+  <ui:param name="tituloPagina" value="Relatórios"></ui:param>
 
     <p:fieldset legend="Relatório de Entrada">
         <h:form>
@@ -16,7 +17,7 @@
             <br></br>
             <p:outputLabel value="Data:" ></p:outputLabel>
             <p:calendar value="#{relatorioEntradaBean.dataInicio}"></p:calendar>
-            <p:outputLabel value=" até " ></p:outputLabel>
+            <p:outputLabel value=" até: " ></p:outputLabel>
             <p:calendar value="#{relatorioEntradaBean.dataFim}"></p:calendar>
             
             <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-arrow-down">

@@ -8,6 +8,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Cadastro de Setor"></ui:param>
 
     <h:form>
         <p:fieldset legend="#{setorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':setorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Setor">
@@ -16,10 +17,10 @@
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{setorBean.statusTela != 'PESQUISANDO'}">
                 
-                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:outputLabel value="Nome:"></p:outputLabel>
                 <p:inputText value="#{setorBean.entity.nome}"></p:inputText>
 
-                <p:outputLabel value="Descrição"></p:outputLabel>
+                <p:outputLabel value="Descrição:"></p:outputLabel>
                 <p:inputText value="#{setorBean.entity.descricao}"></p:inputText>
             </p:panelGrid>
             

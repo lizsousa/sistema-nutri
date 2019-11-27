@@ -9,7 +9,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Gerenciar Fornecedores"></ui:param>
+    <ui:param name="tituloPagina" value="Cadastro de Fornecedor"></ui:param>
     <h:form>
 
         <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
@@ -28,7 +28,7 @@
                     </f:selectItem>
                 </p:selectOneRadio>
 
-                <p:outputLabel value="Tipo Fornecedor" ></p:outputLabel>
+                <p:outputLabel value="Tipo de Fornecedor" ></p:outputLabel>
                 <p:selectOneRadio  value="#{fornecedorBean.entity.tipoFornecedor}"  >
                     <p:ajax update="@form" ></p:ajax>                    
                     <f:selectItem  itemValue="false" itemLabel="Aquisição"></f:selectItem>
@@ -42,7 +42,7 @@
                 <p:outputLabel value="#{fornecedorBean.tipoPessoa == 1 ?'Apelido':'Nome Fantasia'}" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.nomeFantasia}"></p:inputText>
 
-                <p:outputLabel value="IE" ></p:outputLabel>
+                <p:outputLabel value="IE:" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.inscricao}"></p:inputText>
 
                 <p:outputLabel value="CNPJ:" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:outputLabel>
@@ -51,7 +51,7 @@
                 <p:outputLabel value="CPF:" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:outputLabel>
                 <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:inputMask>
 
-                <p:outputLabel value="EndereÇo:"></p:outputLabel>
+                <p:outputLabel value="Endereço:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.endereco}"></p:inputText>
 
                 <p:outputLabel value="Telefone:"></p:outputLabel>
@@ -71,11 +71,11 @@
                         <si:colunaAcoes crudBean="#{fornecedorBean}" entity="#{fornecedor}"></si:colunaAcoes>
                     </p:column> 
 
-                    <p:column headerText="Nome/Razão social">
+                    <p:column headerText="Nome/Razão social" width="120">
                         <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
                     </p:column>
 
-                    <p:column headerText="Apelido/Nome Fantasia">
+                    <p:column headerText="Apelido/Nome Fantasia" width="120">
                         <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
                     </p:column>
 
@@ -84,7 +84,7 @@
                     </p:column>
 
 
-                    <p:column headerText="Tipo Fornecedor">
+                    <p:column headerText="Tipo de Fornecedor">
                         <h:outputText value="#{fornecedor.tipoFornecedor==false ?'Aquisição':'Doação'}"></h:outputText>
                     </p:column>
 

@@ -67,14 +67,10 @@
                         <i class="fa fa-fw fa-edit"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
                     </a>
                     <ul class="submenu" id="submenu-cadastros">
+                        
                         <li>
-                            <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-users"></i>Usuários
-                            </a>
-                        </li>
-                        <li>
-                            <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Produto
+                            <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Cardápio
                             </a>
                         </li>
                         <li>
@@ -83,8 +79,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Cardápio
+                            <a href="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-file-text"></i>Nota Fiscal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
+                                <i class="fa fa-fw fa-tags"></i>Produto
                             </a>
                         </li>
                         <li>
@@ -92,14 +93,17 @@
                                 <i class="fa fa-fw fa-tags"></i>Setor
                             </a>
                         </li>
+                        
                         <li>
                             <a href="gerenciar-unidademedida.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-unidademedida.xhtml')?'active':''}">
                                 <i class="fa fa-fw fa-tags"></i>Unidade de Medida
                             </a>
                         </li>
+                        
+                        
                         <li>
-                            <a href="gerenciar-notafiscal.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-tags"></i>Notas Fiscais
+                            <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-user"></i>Usuário
                             </a>
                         </li>
                     </ul>
@@ -111,7 +115,7 @@
                     <ul class="submenu" id="submenu-estoque">
                         <li>
                             <a href="gerenciar-estoque.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-archive"></i>Movimento Estoque
+                                <i class="fa fa-fw fa-archive"></i>Movimento de Estoque
                             </a>
                         </li>
                     </ul>

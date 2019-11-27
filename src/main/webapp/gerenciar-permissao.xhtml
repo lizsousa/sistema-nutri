@@ -8,6 +8,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Gerenciar Permissões"></ui:param>
     <h:form>
          <p:fieldset legend="#{permissaoBean.statusTela == 'PESQUISANDO'?'Pesquisa de':permissaoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} permissao">
             <si:toolbar-crud crudBean="#{permissaoBean}"/>
@@ -17,9 +18,9 @@
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{permissaoBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:outputLabel value="Nome da Permissão:"></p:outputLabel>
                 <p:inputText value="#{permissaoBean.entity.nome}"  onkeyup="value=value.toUpperCase().replace(' ','_')"></p:inputText>
-                <p:outputLabel value="Descrição"></p:outputLabel>
+                <p:outputLabel value="Descrição:"></p:outputLabel>
                 <p:inputText value="#{permissaoBean.entity.descricao}"></p:inputText>
 
             </p:panelGrid>

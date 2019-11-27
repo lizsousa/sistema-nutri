@@ -8,7 +8,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-     <ui:param name="tituloPagina" value="Cadastrar unidades de medidas"></ui:param>
+     <ui:param name="tituloPagina" value="Cadastro de Unidade de Medida"></ui:param>
 
     <h:form>
         <p:fieldset legend="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'?'Pesquisa de':unidadeMedidaBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Unidade de Medida">
@@ -16,10 +16,10 @@
 
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{unidadeMedidaBean.statusTela != 'PESQUISANDO'}">
-                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:outputLabel value="Nome:"></p:outputLabel>
                 <p:inputText value="#{unidadeMedidaBean.entity.nome}"></p:inputText>
               
-                <p:outputLabel value="Sigla"></p:outputLabel>
+                <p:outputLabel value="Sigla:"></p:outputLabel>
                 <p:inputText value="#{unidadeMedidaBean.entity.sigla}"></p:inputText>
               
             </p:panelGrid>

@@ -8,6 +8,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Cadastro de Cardápio"></ui:param>
     <h:form>
         <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardápio">
             <si:toolbar-crud crudBean="#{cardapioBean}"/>
@@ -17,19 +18,19 @@
                          rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
 
 
-                <p:outputLabel value="Nome do Cardápio"></p:outputLabel>
+                <p:outputLabel value="Nome do Cardápio:"></p:outputLabel>
                 <p:inputText value="#{cardapioBean.entity.nomeCardapio}"></p:inputText>
 
 
-                <h:outputLabel value="Data do cardapio"></h:outputLabel>
+                <h:outputLabel value="Data do Cardápio:"></h:outputLabel>
                 <h:outputText value="#{cardapioBean.entity.dataCardapio}">
                     <f:convertDateTime></f:convertDateTime>
                 </h:outputText>
 
-                <p:outputLabel value="Quantidade Redimento"></p:outputLabel>
+                <p:outputLabel value="Quantidade de Redimento:"></p:outputLabel>
                 <p:inputText value="#{cardapioBean.entity.quantidadeRendimento}"></p:inputText>
 
-                <p:outputLabel value="Modo de Preparo"></p:outputLabel>
+                <p:outputLabel value="Modo de Preparo:"></p:outputLabel>
                 <p:inputTextarea style="width:500px"  value="#{cardapioBean.entity.modoPreparo}"></p:inputTextarea>
 
                 <h:outputText></h:outputText>
@@ -47,7 +48,7 @@
                         <f:selectItem itemLabel="Selecione"></f:selectItem>
                         <f:selectItems value="#{cardapioBean.produtos}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
 
-                        <p:column headerText="Nome do produto">
+                        <p:column headerText="Nome do Produto">
                             <h:outputText value="${prodDetalhe.descricao}"></h:outputText>
                         </p:column>   
 
@@ -85,7 +86,7 @@
 
                 <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" reflow="true" var="card" >
 
-                    <p:column headerText="Nome do ingredientes">
+                    <p:column headerText="Nome do Ingrediente">
                         <h:outputText value="#{card.produto.descricao}"></h:outputText>
                     </p:column>
 
@@ -103,7 +104,7 @@
             <p:dataTable value="#{cardapioBean.entitys}" reflow="true" var="cardapio"
                          rendered="#{cardapioBean.statusTela == 'PESQUISANDO'}">
 
-                <p:column width="100">
+                <p:column width="150">
                     <si:colunaAcoes crudBean="#{cardapioBean}" entity="#{cardapio}"></si:colunaAcoes>
                     <p:commandButton icon="fa fa-line-chart" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
                         <p:tooltip for="@parent" value="Usar Receita"></p:tooltip>
@@ -111,7 +112,7 @@
 
                 </p:column>
 
-                <p:column headerText="Nome Cardápio">
+                <p:column headerText="Nome do Cardápio">
                     <h:outputText value="#{cardapio.nomeCardapio}"></h:outputText>
                 </p:column>
 

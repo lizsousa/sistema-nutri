@@ -9,6 +9,7 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Pagina Cadastro de Produto"></ui:param>
 
     <h:form>
         <p:fieldset legend="#{produtoBean.statusTela == 'PESQUISANDO'?'Pesquisa de':produtoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Produto">
@@ -17,17 +18,17 @@
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
                          rendered="#{produtoBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Descrição"></p:outputLabel>
+                <p:outputLabel value="Descrição:"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.descricao}"></p:inputText>
 
-                <p:outputLabel value="Unidade Medida"></p:outputLabel>
+                <p:outputLabel value="Unidade de Medida:"></p:outputLabel>
                 <p:selectOneMenu value="#{produtoBean.entity.unidadeMedida}">
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{produtoBean.unidadeMedidas}" var="prod" 
                                    itemLabel="#{prod.sigla}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
                 
-                <p:outputLabel value="Defina o estoque Minimo"></p:outputLabel>
+                <p:outputLabel value="Defina o Estoque Mínimo:"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.estoqueMinimo}"></p:inputText>
                 
             </p:panelGrid>
@@ -42,7 +43,7 @@
                     <h:outputText value="#{produto.descricao}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Unidade Medida">
+                <p:column headerText="Unidade de Medida">
                     <h:outputText value="#{produto.unidadeMedida.sigla}"></h:outputText>
                 </p:column>
 
@@ -51,7 +52,7 @@
                 </p:column>
                 
                 
-                <p:column headerText="Estoque minimo">
+                <p:column headerText="Estoque Mínimo">
                      <h:outputText value="#{produto.estoqueMinimo}"></h:outputText>
                 </p:column>
                 
