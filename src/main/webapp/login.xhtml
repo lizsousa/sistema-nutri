@@ -1,6 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ph="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ph="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta charset="UTF-8"/>
         <title>Login - Sistema Nutri</title>  
@@ -13,33 +16,47 @@
 
     </h:head>
     <h:body>
-        
-       <!--  <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
-              <h:form prependId="false">
-                  <h:panelGrid style="margin: 0 auto;" columns="1">
-                      <h3>Sistema de Estoque e Cardápio - SisEc</h3>
-                      <h:outputText styleClass="fa fa-user fa-4x"/>
-  
-                      <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
-                      <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
-                      <p:commandButton ajax="false" value="Entrar"></p:commandButton>
-                  </h:panelGrid>
-                  
-                </h:form>
-          </p:dialog> -->
+        <f:view locale="pt_BR"></f:view>
+        <header>
+            <h:form>  
+                <p:growl id="messages"/>
+            </h:form>
+            <div>
+                <h:graphicImage style="margin: 0 auto;" class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
+            </div>
+        </header>
 
-         <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
+        <!--  <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
+               <h:form prependId="false">
+                   <h:panelGrid style="margin: 0 auto;" columns="1">
+                       <h3>Sistema de Estoque e Cardápio - SisEc</h3>
+                       <h:outputText styleClass="fa fa-user fa-4x"/>
+   
+                       <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
+                       <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
+                       <p:commandButton ajax="false" value="Entrar"></p:commandButton>
+                   </h:panelGrid>
+                   
+                 </h:form>
+           </p:dialog> -->
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
 
         <div class="login-page">
-            <div class="form" header="Acessar o Sistema" showHeader="false">          
+            <div class="form" header="Acessar o Sistema" showHeader="false"> 
                 <h:form class="login-form" prependId="false">
-                    <h:inputText id="username" ph:placeholder="Nome" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
-                    <h:inputSecret id="password" ph:placeholder="Senha" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                     <h3 class="log">Faça Login para Acessar ao Sistema Nutri</h3>
+                     <br></br>
+                     <p:inputText id="username" placeholder="Nome" 
+                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    <h:inputSecret id="password" ph:placeholder="Senha" 
+                                   class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    
                     <h:commandButton type="submit" value="Entrar"/>
+                   
                 </h:form>
             </div>
         </div>
-<!--teste-->
         <h:outputScript library="js" name="geral.js"></h:outputScript>
         <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
 

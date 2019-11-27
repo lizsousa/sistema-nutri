@@ -7,18 +7,40 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-  <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-  <ui:param name="tituloPagina" value="Relatórios"></ui:param>
+    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <ui:param name="tituloPagina" value="Relatórios"></ui:param>
 
     <p:fieldset legend="Relatório de Entrada">
         <h:form>
-          
+
             <br></br>
             <br></br>
             <p:outputLabel value="Data:" ></p:outputLabel>
             <p:calendar value="#{relatorioEntradaBean.dataInicio}"></p:calendar>
             <p:outputLabel value=" até: " ></p:outputLabel>
             <p:calendar value="#{relatorioEntradaBean.dataFim}"></p:calendar>
+            
+           <!-- <h3>Tipo Movimento</h3>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <p:selectOneRadio id="console" value="#{estoqueBean.entity.tipoEstoque}">
+                        <p:ajax update="@form"></p:ajax>
+                        <f:selectItems value="#{estoqueBean.tiposEstoque}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"></f:selectItems>
+                    </p:selectOneRadio>
+                </h:panelGrid>
+            
+            <p:outputLabel  value="Nome do Fornecedor:"  rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
+            <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.fornecedor}" rendered="#{estoqueBean.entity.tipoEstoque == 'ENTRADA'}">
+                <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
+                <f:selectItems value="#{estoqueBean.fornecedores}" var="forne" 
+                               itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>
+            </p:selectOneMenu>
+            
+            <p:outputLabel value="Nome do Setor:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}">
+                    <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
+                    <f:selectItems value="#{estoqueBean.setors}" var="set" 
+                                   itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
+                </p:selectOneMenu>-->
             
             <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-arrow-down">
                 <p:fileDownload contentDisposition="inline" value="#{relatorioEntradaBean.relatorioMovimento()}" />

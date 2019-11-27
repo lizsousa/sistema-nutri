@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saida_produto" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f012faa1-26e9-4107-a397-ecc6a1d25dfe">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saida_produto" whenNoDataType="AllSectionsNoDetail" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f012faa1-26e9-4107-a397-ecc6a1d25dfe">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
         <parameter name="DATA_INICIO" class="java.util.Date"/>
         <parameter name="DATA_FIM" class="java.util.Date"/>
+        <parameter name="LOGO" class="java.io.InputStream"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT controleestoque.estoque.quantidade,
 	controleestoque.estoque.tipo_estoque,
@@ -57,9 +58,9 @@ FROM controleestoque.estoque
 					</textElement>
 					<text><![CDATA[Entrada de Produtos]]></text>
 				</staticText>
-				<image>
+				<image onErrorType="Icon">
 					<reportElement x="20" y="33" width="90" height="30" uuid="c82053c7-fea2-4827-bd14-b390d5e7189a"/>
-					<imageExpression><![CDATA["/home/ifg/logo_nutri.png"]]></imageExpression>
+					<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 				</image>
 			</frame>
 		</band>

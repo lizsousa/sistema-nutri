@@ -14,8 +14,7 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     private Integer tipoPessoa = 0;
     private Boolean tipoFornecedor; 
     private String razaoSocial;
-    
-   
+
     @Inject
     private FornecedorLogic logic;
     
@@ -23,7 +22,6 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     public FornecedorLogic getLogic() {
         return logic;
     }
-
        
     @Override
     public void salvar() {

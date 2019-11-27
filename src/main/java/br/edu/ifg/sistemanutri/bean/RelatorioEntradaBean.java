@@ -1,7 +1,11 @@
 package br.edu.ifg.sistemanutri.bean;
 
+import br.edu.ifg.sistemanutri.entity.Fornecedor;
+import br.edu.ifg.sistemanutri.logic.FornecedorLogic;
 import br.edu.ifg.sistemanutri.util.JsfUtil;
 import br.edu.ifg.sistemanutri.util.ReportUtil;
+import br.edu.ifg.sistemanutri.util.exception.NegocioException;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -16,6 +20,7 @@ import java.time.temporal.TemporalField;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,13 +40,18 @@ public class RelatorioEntradaBean extends JsfUtil {
     @Inject
     private EntityManager entityManager;
 
+    @Inject
+    private FornecedorLogic fornecedorLogic;
+    
     private Date dataInicio;
     private Date dataFim;
+    private String nomeFornecedor;
 
     public RelatorioEntradaBean() {
         
         dataInicio = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).minusDays(15).toInstant());
         dataFim = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+        
     }
             
     
@@ -56,6 +66,7 @@ public class RelatorioEntradaBean extends JsfUtil {
             Map paramentros = new HashMap();
             paramentros.put("DATA_INICIO",dataInicio);
             paramentros.put("DATA_FIM",dataFim);
+            paramentros.put("FORNECEDOR",nomeFornecedor);
             
             
             byte[] relatorio = ReportUtil.reportToPDF(inputStream, null, getConnection());
@@ -68,6 +79,8 @@ public class RelatorioEntradaBean extends JsfUtil {
         }
         return null;
     }
+    
+    
 
     private Connection getConnection() {
         Session session = (Session) entityManager.getDelegate();
