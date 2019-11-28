@@ -85,16 +85,7 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
 //    }
 
     
-    public List<Estoque> geEstoques(){
-        try {
-            return estoquelogic.buscar(null);
-        } catch (NegocioException ex){
-            addMensagemErro(ex);
-        }catch(SistemaException ex) {
-            addMensagemFatal(ex);
-        }
-        return null;
-    }
+
         
     public List<Setor> getSetors(){
         try {

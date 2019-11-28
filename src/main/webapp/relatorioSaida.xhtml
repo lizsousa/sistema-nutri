@@ -10,7 +10,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Relatórios"></ui:param>
 
-    <p:fieldset legend="Relatório de Entrada">
+    <p:fieldset legend="Relatório de Saída">
         <h:form>
 
             <br></br>
@@ -22,15 +22,14 @@
             
          
             
-          <p:outputLabel  value="Nome do Fornecedor:"></p:outputLabel>
-          <p:selectOneMenu style="width:200px" value="#{relatorioEntradaBean.nomeFornecedor}">
-                <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
-                <f:selectItems value="#{relatorioEntradaBean.fornecedores}" var="forne" 
-                               itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>
-          
+          <p:outputLabel value="Setor:" ></p:outputLabel>
+          <p:selectOneMenu style="width:200px" value="#{relatorioSaidaBean.setor}">
+                    <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
+                    <f:selectItems value="#{relatorioSaidaBean.setors}" var="set" 
+                                   itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
           </p:selectOneMenu>
             <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-arrow-down">
-                <p:fileDownload contentDisposition="inline" value="#{relatorioEntradaBean.relatorioMovimento()}" />
+                <p:fileDownload contentDisposition="inline" value="#{relatorioSaidaBean.relatorioMovimento()}" />
             </p:commandButton>
         </h:form>
         <br></br>

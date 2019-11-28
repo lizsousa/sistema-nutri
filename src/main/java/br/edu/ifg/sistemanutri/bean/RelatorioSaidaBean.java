@@ -1,8 +1,9 @@
 package br.edu.ifg.sistemanutri.bean;
 
-import br.edu.ifg.sistemanutri.entity.Fornecedor;
+import br.edu.ifg.sistemanutri.entity.Setor;
 import br.edu.ifg.sistemanutri.logic.EstoqueLogic;
-import br.edu.ifg.sistemanutri.logic.FornecedorLogic;
+
+import br.edu.ifg.sistemanutri.logic.SetorLogic;
 import br.edu.ifg.sistemanutri.logic.enuns.TipoEstoque;
 import br.edu.ifg.sistemanutri.util.JsfUtil;
 import br.edu.ifg.sistemanutri.util.ReportUtil;
@@ -37,44 +38,42 @@ import org.primefaces.model.StreamedContent;
 
 @Named
 @SessionScoped
-public class RelatorioEntradaBean extends JsfUtil {
-
+public class RelatorioSaidaBean extends JsfUtil {
+    
     @Inject
     private EntityManager entityManager;
-
-    @Inject
-    private FornecedorLogic fornecedorLogic;
     
     @Inject
     private EstoqueLogic estoqueLogic;
+     
+    @Inject
+    private SetorLogic setorLogic;
     
-    FornecedorLogic logic;
+    SetorLogic logic;
     
     private String tipoEstoque;
     private Date dataInicio;
     private Date dataFim;
-    private String nomeFornecedor;
-
-    public RelatorioEntradaBean() {
+    private String setor;
+     
+    public RelatorioSaidaBean() {
         
         dataInicio = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).minusDays(15).toInstant());
         dataFim = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
         
     }
-            
-    
     
     private Connection connection;
 
     public StreamedContent relatorioMovimento() {
         try {
             DefaultStreamedContent file;
-            InputStream inputStream = getClass().getResourceAsStream("/br/edu/ifg/sistemanutri/relatorios/ENTRADA_produto.jrxml");
+            InputStream inputStream = getClass().getResourceAsStream("/br/edu/ifg/sistemanutri/relatorios/SAIDA_produto.jrxml");
             
             Map paramentros = new HashMap();
             paramentros.put("DATA_INICIO",dataInicio);
             paramentros.put("DATA_FIM",dataFim);
-            paramentros.put("FORNECEDOR",nomeFornecedor);
+            paramentros.put("SETOR",setor);
             
             
             byte[] relatorio = ReportUtil.reportToPDF(inputStream, null, getConnection());
@@ -122,13 +121,6 @@ public class RelatorioEntradaBean extends JsfUtil {
         this.dataFim = dataFim;
     }
 
-    public FornecedorLogic getFornecedorLogic() {
-        return fornecedorLogic;
-    }
-
-    public void setFornecedorLogic(FornecedorLogic fornecedorLogic) {
-        this.fornecedorLogic = fornecedorLogic;
-    }
     public String getTipoEstoque() {
         return tipoEstoque;
     }
@@ -145,36 +137,19 @@ public class RelatorioEntradaBean extends JsfUtil {
         this.entityManager = entityManager;
     }
 
-    public FornecedorLogic getLogic() {
-        return logic;
-    }
-
-    public void setLogic(FornecedorLogic logic) {
-        this.logic = logic;
-    }
-
-    public String getNomeFornecedor() {
-        return nomeFornecedor;
-    }
-
-    public void setNomeFornecedor(String nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
-    }
-    
-    
-    
-    public List<Fornecedor> getFornecedores(){
+   public List<Setor> getSetors(){
         try {
-            return fornecedorLogic.buscar(null);
+            return setorLogic.buscar(null);
         } catch (SistemaException ex) {
             addMensagemFatal(ex);
         } catch (NegocioException ex) {
             addMensagemErro(ex);
         }
         return null;
-    }
+   }
+
      public TipoEstoque[] getTiposEstoque(){
         return TipoEstoque.values();
     }
-    
+
 }
