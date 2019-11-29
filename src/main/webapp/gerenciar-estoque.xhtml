@@ -59,13 +59,13 @@
                 </h:outputText>
 
                 <p:outputLabel value="Nome do Setor:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
-                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}">
+                <p:selectOneMenu style="width:200px" value="#{estoqueBean.entity.setor}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}" >
                     <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
                     <f:selectItems value="#{estoqueBean.setors}" var="set" 
                                    itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
                 </p:selectOneMenu>
                 
-                <p:outputLabel value="Discrição:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+                <p:outputLabel value="Observação:"  rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:outputLabel>
                 <p:inputText  value="#{estoqueBean.entity.descricao}" rendered="#{estoqueBean.entity.tipoEstoque == 'SAIDA'}"></p:inputText>
 
             </p:panelGrid>
@@ -80,25 +80,30 @@
                 <p:column headerText="Quantidade">
                     <h:outputText value="#{estoque.quantidade}"></h:outputText>
                 </p:column>
-
-
-                <p:column headerText="Tipo de Estoque">
+<!--                <p:column headerText="Movimento">
                     <h:outputText value="#{estoque.tipoEstoque.descricao}"></h:outputText>
+                </p:column>-->
+           
+                <p:column headerText="Movimento" >
+                    <div style="color: #{estoque.tipoEstoque == 'ENTRADA' ?'green':'red'}">
+                     <h:outputText value="#{estoque.tipoEstoque.descricao}"></h:outputText>
+                    <i class="fa #{estoque.tipoEstoque == 'ENTRADA' ? 'fa-arrow-circle-down': 'fa-arrow-circle-up'}"></i>
+                    </div>
                 </p:column>
 
-                <p:column headerText="Nome do Fornecedor">
+                <p:column headerText="Fornecedor">
                     <h:outputText value="#{estoque.fornecedor.razaoSocial}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Nome do Produto">
+                <p:column headerText="Produto">
                     <h:outputText value="#{estoque.produto.descricao}"></h:outputText>
                 </p:column>
 
-                <p:column headerText="Nome do Setor">
+                <p:column headerText="Setor">
                     <h:outputText value="#{estoque.setor.nome}"></h:outputText>
                 </p:column>
                 
-                <p:column headerText="Descrição da Saída">
+                <p:column headerText="Observação">
                     <h:outputText value="#{estoque.descricao}"></h:outputText>
                 </p:column>
                 

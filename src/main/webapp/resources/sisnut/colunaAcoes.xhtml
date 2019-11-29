@@ -33,8 +33,8 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-
-        <p:commandButton icon="fa fa-trash" update="@form"
+        
+        <p:commandButton class="red-button" icon="fa fa-trash" update="@form"
                          rendered="#{cc.attrs.deleteRendered}"
                          disabled="#{cc.attrs.deleteDisabled}"
                          actionListener="#{cc.attrs.crudBean.remover(cc.attrs.entity)}">
@@ -42,8 +42,8 @@
             <p:tooltip for="@parent" value="Deletar"></p:tooltip>
         </p:commandButton>
        
-
-        <p:commandButton icon="fa fa-edit" update="@form" 
+     
+        <p:commandButton class="green-button" icon="fa fa-edit" update="@form" 
                          actionListener="#{cc.attrs.crudBean.editar(cc.attrs.entity)}"
                          rendered="#{cc.attrs.editeRendered}"
                          disabled="#{cc.attrs.editeDisabled}">

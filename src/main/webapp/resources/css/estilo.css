@@ -110,7 +110,7 @@ nav.sidebar::-webkit-scrollbar {
     width: 5px;
 }
 nav.sidebar::-webkit-scrollbar-thumb {
-    background: #8FBC8F; /*barra de rolagem*/
+    background: #344f63; /*barra de rolagem*/
 }
 nav.sidebar > ul {
     padding-bottom: 80px;
@@ -397,7 +397,7 @@ body login{
 
 .green-button.ui-button.ui-state-default:enabled:hover, 
 .green-button.ui-button.ui-state-default:focus {
-    background-color: #4cae4c;
+    background-color: blue;
     border-color: #5cb85c;
 }
 
