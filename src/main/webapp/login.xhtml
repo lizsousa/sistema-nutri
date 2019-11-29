@@ -40,25 +40,39 @@
                  </h:form>
            </p:dialog> -->
 
-        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
+
 
         <div class="login-page">
             <div class="form" header="Acessar o Sistema" showHeader="false"> 
                 <h:form class="login-form" prependId="false">
-                     <h3 class="log">Faça Login para Acessar ao Sistema Nutri</h3>
-                     <br></br>
-                     <p:inputText id="username" placeholder="Nome" 
-                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    <h3 class="log">Sistema Nutri</h3>
+                    <br></br>
+                    <!--<h:outputText styleClass="fa fa-user"/>
+                    <p:inputText id="username" placeholder="Nome" 
+                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
+                    </p:inputText>-->
+
+                    <!--primefaces    <div class="ui-g ui-fluid">
+                            <div class="ui-g-12 ui-md-4">
+                                <div class="ui-inputgroup">
+                                    <span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                    <p:inputText placeholder="Username" />      
+                                </div>
+                            </div> 
+                        </div> -->
+                    <p:inputText id="username" placeholder="Nome" 
+                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
+                    </p:inputText>
                     <h:inputSecret id="password" ph:placeholder="Senha" 
                                    class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
-                    
+
                     <h:commandButton type="submit" value="Entrar"/>
-                   
+
                 </h:form>
             </div>
         </div>
         <h:outputScript library="js" name="geral.js"></h:outputScript>
         <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
-
+        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
     </h:body>
 </html>

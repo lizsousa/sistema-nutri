@@ -27,8 +27,7 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     
     @Inject
     private FornecedorLogic fornecedorLogic;
-    
-    
+     
     @Inject
     private SetorLogic setorLogic;
     
@@ -39,8 +38,7 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
     private String tipoEstoque;
     private String Discricao;
     
-    
-    
+   
     @Override
     public void editar(Estoque entity) {
         try {

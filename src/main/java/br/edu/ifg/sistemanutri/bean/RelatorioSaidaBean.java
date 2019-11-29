@@ -38,7 +38,7 @@ import org.primefaces.model.StreamedContent;
 
 @Named
 @SessionScoped
-public class RelatorioSaidaBean extends JsfUtil {
+public class RelatorioSaidaBean extends JsfUtil{
     
     @Inject
     private EntityManager entityManager;
@@ -151,5 +151,31 @@ public class RelatorioSaidaBean extends JsfUtil {
      public TipoEstoque[] getTiposEstoque(){
         return TipoEstoque.values();
     }
+
+    public SetorLogic getSetorLogic() {
+        return setorLogic;
+    }
+
+    public void setSetorLogic(SetorLogic setorLogic) {
+        this.setorLogic = setorLogic;
+    }
+
+    public SetorLogic getLogic() {
+        return logic;
+    }
+
+    public void setLogic(SetorLogic logic) {
+        this.logic = logic;
+    }
+
+    public String getSetor() {
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
+    }
+     
+    
 
 }
