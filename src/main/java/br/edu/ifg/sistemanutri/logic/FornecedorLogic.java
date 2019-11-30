@@ -15,50 +15,49 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
 
     @Override
     public Fornecedor salvar(Fornecedor entity) throws NegocioException, SistemaException {
-
         if ("".equals(entity.getNomeFantasia().trim())) {
             throw new NegocioException("Nome do fornecedor é obrigatório.");
         }
-        if ((entity.getCnpjCpf() != null) && (entity.getCnpjCpf().length() == 11)) {
-            if (!Assert.isCpf(entity.getCnpjCpf())) {
-                throw new NegocioException("CPF inválido.");
-            } else if ((entity.getCnpjCpf() != null) && (entity.getCnpjCpf().length() == 14)) {
-                if (!Assert.isCnpjValido(entity.getCnpjCpf())) {
-                    throw new NegocioException("CNPJ inválido.");
-                }
-
+        if (entity.getCnpj() == null && entity.getCpf() == null){
+            if (!Assert.isCnpjValido(entity.getCnpj())) {
+                throw new NegocioException("CNPJ inválido.");
             }
-
+            if(!Assert.isCpf(entity.getCpf())){
+                 throw new NegocioException("CPF inválido.");
+            }
+        }
+        if (entity.getTelefone() == null){
+            if (!Assert.isValidTelefone(entity.getTelefone())){
+                throw new NegocioException("Telefone inválido");
+            }  
         }else{
-            if ((entity.getCnpjCpf() != null) && (entity.getCnpjCpf().length() == 11)) {
-                if (!Assert.isCpf(entity.getCnpjCpf())) {
+              if (entity.getCnpj() == null && !Assert.isCpf(entity.getCpf())){
                     throw new NegocioException("CPF inválido.");
                 }
+                if(entity.getCpf()== null && !Assert.isCnpjValido(entity.getCnpj())){
+                throw new NegocioException("CNPJ inválido.");
             }
-            else if ((entity.getCnpjCpf() == null) && (entity.getCnpjCpf().length() == 14)) {
-                if (!Assert.isCnpjValido(entity.getCnpjCpf())) {
-                    throw new NegocioException("CNPJ inválido.");
-                }
-            }
-            
-        }
 
-        if (!Assert.isValidEmail(entity.getEmail())) {
-            throw new NegocioException("Email inválido.");
         }
-        
-        if (entity.getId() == null && verificarFornecedorExistente((entity.getCnpjCpf()))) {
-            throw new NegocioException("O fornecedor já cadastrado.");
-        }
+        if ((entity.getCnpj() != null) && entity.getCpf() != null &&  Assert.isCnpjValido(entity.getCnpj())){
+                entity.setCpf("");
+            }
+            if(entity.getCnpj()!= null && entity.getCpf() != null && Assert.isCpf(entity.getCpf())){           
+            entity.setCnpj("");        
+            }
+            if(!Assert.isValidEmail(entity.getEmail())){
+             throw new NegocioException("Email inválido.");
+            }
+            if(entity.getCnpj()== null) entity.setCnpj("");
         dao.salvar(entity);
-        return null;
-    }
-
-    @Override
+        return null; 
+        }
+    
+     @Override
     public void deletar(Fornecedor entity) throws NegocioException, SistemaException {
         dao.deletar(entity);
     }
-
+    
     @Override
     public Fornecedor buscarPorId(Integer id) throws NegocioException, SistemaException {
         Fornecedor fornecedor = dao.buscarPorId(id);
@@ -68,14 +67,7 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
 
     @Override
     public List<Fornecedor> buscar(Fornecedor entity) throws NegocioException, SistemaException {
-        List<Fornecedor> fornecedores = dao.listar();
-        return fornecedores;
+        return dao.listar();
     }
     
-    public Boolean verificarFornecedorExistente(String cnpjCpf) {
-        Fornecedor forne = dao.buscar(cnpjCpf);
-        return forne != null;
-    }
-
-
 }

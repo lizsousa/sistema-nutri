@@ -11,7 +11,6 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Cadastro de Fornecedor"></ui:param>
     <h:form>
-
         <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
             <si:toolbar-crud crudBean="#{fornecedorBean}"/>                
 
@@ -19,7 +18,7 @@
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"
                          rendered="#{fornecedorBean.statusTela != 'PESQUISANDO'}">
 
-                <p:outputLabel value="Pessoa"></p:outputLabel>
+                <p:outputLabel value="Pessoa:"></p:outputLabel>
                 <p:selectOneRadio value="#{fornecedorBean.tipoPessoa}">
                     <p:ajax update="@form"></p:ajax>
                     <f:selectItem itemValue="1" itemLabel="Física"> 
@@ -44,18 +43,18 @@
 
                 <p:outputLabel value="IE:" ></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.inscricao}"></p:inputText>
-
+                
                 <p:outputLabel value="CNPJ:" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:outputLabel>
-                <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:inputMask>
-
+                <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpj}" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:inputMask>
+                
                 <p:outputLabel value="CPF:" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:outputLabel>
-                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cnpjCpf}" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:inputMask>
-
+                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cpf}" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:inputMask>
+                
                 <p:outputLabel value="Endereço:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.endereco}"></p:inputText>
 
-                <p:outputLabel value="Telefone:"></p:outputLabel>
-                <p:inputText value="#{fornecedorBean.entity.telefone}"></p:inputText>
+                <p:outputLabel value="Telefone:" ></p:outputLabel>
+                <p:inputMask size="11" mask="#{String.valueOf(telefone).length()==11 ? '(99)99999-9999':'(99)9999-9999'}" value="#{fornecedorBean.entity.telefone}"></p:inputMask>
 
                 <p:outputLabel value="Email:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.email}"></p:inputText>
@@ -94,12 +93,16 @@
 
                     <p:column headerText="Email">
                         <h:outputText value="#{fornecedor.email}"></h:outputText>
-
                     </p:column>
-                    <p:column headerText="CPF/CNPJ">
+                    
+                   <!--<p:column headerText="CPF/CNPJ">
                         <h:outputText value="#{fornecedor.cnpjCpf}"></h:outputText>
+                    </p:column>-->
+                   
+                   <p:column headerText="CPF/CNPJ">
+                        <h:outputText value="#{fornecedor.cnpj.isEmpty() || null ? fornecedor.cpf : fornecedor.cnpj}"></h:outputText>
                     </p:column>
-
+                    
                     <p:column headerText="Telefone">
                         <h:outputText value="#{fornecedor.telefone}"></h:outputText>
                     </p:column>

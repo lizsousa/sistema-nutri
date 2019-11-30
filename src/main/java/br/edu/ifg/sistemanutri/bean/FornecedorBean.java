@@ -11,65 +11,44 @@ import javax.inject.Named;
 @SessionScoped
 public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     
-    private Integer tipoPessoa = 0;
-    private Boolean tipoFornecedor; 
-    private String razaoSocial;
-
     @Inject
     private FornecedorLogic logic;
+    private Boolean tipoFornecedor; 
+    private Integer tipoPessoa = 0; /*no prof é boolean e n recebe zero*/
+    private String razaoSocial;
+    
+    public Boolean getTipoFornecedor() {
+        return tipoFornecedor;
+    }
+
+    public void setTipoFornecedor(Boolean tipoFornecedor) {
+        this.tipoFornecedor = tipoFornecedor;
+    }
     
     @Override
     public FornecedorLogic getLogic() {
         return logic;
     }
     
-    public void verificarCnpjCpf() {
-        if (Status.INSERINDO.equals(getStatus())) {
-            Boolean fornecedorExiste = logic.verificarFornecedorExistente(getEntity().getCnpjCpf());
-            if (fornecedorExiste) {
-                addMensagemAviso("Digite outro valor, pois o digitado já existe.");
-
-            }
-        }
-    }
-   
-    @Override
-    public void salvar() {
-        if(razaoSocial != null && !"".equals(razaoSocial.trim())){
-            getEntity().setRazaoSocial(razaoSocial);
-        }
-        super.salvar();
-    }
-
-    @Override
-    public void editar(Fornecedor entity) {
-        try {
-            entity = getLogic().buscarPorId(entity.getId());
-            super.editar(entity);
-        } catch (Exception ex) {
-            addMensagemErro(ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-    
-    
-    public List<Fornecedor> getFornecedors(){
+    public List<Fornecedor> getFornecedores() {
         try {
             return getLogic().buscar(null);
         } catch (Exception ex) {
             addMensagemErro(ex.getMessage());
             return null;
-        }
+       }
     }
 
-    public String getRazaoSocial() {
-        return razaoSocial;
-    }
-
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
-    }
     
+ 
+//    public String getRazaoSocial() {
+//        return razaoSocial;
+//    }
+//
+//    public void setRazaoSocial(String razaoSocial) {
+//        this.razaoSocial = razaoSocial;
+//    }
+//    
     public Integer getTipoPessoa() {
         return tipoPessoa;
     }
@@ -78,16 +57,41 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
         this.tipoPessoa = tipoPessoa;
     }
 
-    public Boolean getTipoFornecedor() {
-        return tipoFornecedor;
-    }
-
-    public void setTipoFornecedor(Boolean tipoFornecedor) {
-        this.tipoFornecedor = tipoFornecedor;
-    }
-
+}
+//
+//   
+//    public void verificarCnpjCpf() { /*nao tem no do prof*/
+//        if (Status.INSERINDO.equals(getStatus())) {
+//            Boolean fornecedorExiste = logic.verificarFornecedorExistente(getEntity().getCnpj());
+//            if (fornecedorExiste) {
+//                addMensagemAviso("O CPF/CNPJ já existe.");
+//
+//            }
+//        }
+//    }
+//   
+//    @Override
+//    public void salvar() {
+//        if(razaoSocial != null && !"".equals(razaoSocial.trim())){
+//            getEntity().setRazaoSocial(razaoSocial);
+//        }
+//        super.salvar();
+//    }
+//
+//    @Override
+//    public void editar(Fornecedor entity) { /*nao tem no do prof*/
+//        try {
+//            entity = getLogic().buscarPorId(entity.getId());
+//            super.editar(entity);
+//        } catch (Exception ex) {
+//            addMensagemErro(ex.getMessage());
+//            ex.printStackTrace();
+//        }
+//    }
     
- }
+    
+    
+
 
     
 

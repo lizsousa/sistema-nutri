@@ -2,6 +2,7 @@
 package br.edu.ifg.sistemanutri.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +26,8 @@ public class Fornecedor implements Serializable {
 
     @Column(name = "nome_fantasia")
     private String nomeFantasia;
-    @Column(name = "cnpj_cpf")
-    private String cnpjCpf;
+    private String cnpj;
+    private String cpf;
     private String inscricao;
     private String endereco;
     private String telefone;
@@ -65,13 +66,23 @@ public class Fornecedor implements Serializable {
         this.nomeFantasia = nomeFantasia;
     }
 
-    public String getCnpjCpf() {
-        return cnpjCpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCnpjCpf(String cnpjCpf) {
-        this.cnpjCpf = cnpjCpf;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
+    
 
     public String getInscricao() {
         return inscricao;
@@ -123,19 +134,27 @@ public class Fornecedor implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
+        /*esta sem objects equals do prof
         final Fornecedor other = (Fornecedor) obj;
         if (this.id != other.id) {
             return false;
         }
         return true;
+    }*/
+final Fornecedor other = (Fornecedor) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
-public Object getCnpjcpf() {
+    
+/*public Object getCnpjcpf() {//nao tem no do prof
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setCnpjcpf(String string) {
+    public void setCnpjcpf(String string) {//nao tem no do prof
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }
 
 
