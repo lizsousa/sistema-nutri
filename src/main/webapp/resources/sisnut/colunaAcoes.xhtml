@@ -16,6 +16,10 @@
         <cc:attribute name="rederedDelete" default="true" 
                       shortDescription="Coloque falso quando não quiser o botão delete. 
                       True por padrão."></cc:attribute>
+   
+        <cc:attribute name="disabledDelete" 
+                      displayName="Permite desabilitar o botao delete"
+                      default="false"></cc:attribute>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
@@ -23,7 +27,7 @@
 
         <p:commandButton icon="fa fa-trash" update="@form"
                          rendered="#{cc.attrs.rederedDelete}"
-                         disabled="#{cc.attrs.rederedDelete}"
+                         disabled="#{cc.attrs.disabledDelete}"
                          actionListener="#{cc.attrs.crudBean.remover(cc.attrs.entity)}">
             <p:confirm header="Confirmação" message="Tem certeza que deseja apagar para sempre?" icon="fa fa-exclamation-triangle" />
             <p:tooltip for="@parent" value="Deletar"></p:tooltip>
