@@ -6,19 +6,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public class UsuarioDAO extends GenericDAO<Usuario,  Integer> implements UserDetailsService{
+public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements UserDetailsService {
 
     public Usuario buscar(String login) {
-        try{
+        try {
             Usuario usuario = (Usuario) getEntityManager().createQuery(
-                        "from " + getEntityClass().getName()
-                        +" where login = "+login
-                        +" and data_desativacao is null").getSingleResult();
+                    "from " + getEntityClass().getName()
+                    + " where login = '" + login + "'").getSingleResult();
             return usuario;
-        } catch (NoResultException ex){
+        } catch (NoResultException ex) {
             return null;
         }
     }
+
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         String jpql = "from Usuario u where u.login = :login";

@@ -11,71 +11,78 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Named
 @SessionScoped
-public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
+public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic> {
 
     @Inject
     private UsuarioLogic logic;
-    
+
     @Inject
     private PermissaoLogic permissaoLogic;
-    
+
     private Permissao Permissao = new Permissao();
-    
+
     private String senha;
-    
-    public void novaPermissao(){
+
+    public void novaPermissao() {
         Permissao = new Permissao();
     }
-    
-    
+
+    public void verificarLogin() {
+        if (Status.INSERINDO.equals(getStatus())) {
+            Boolean usuarioExiste = logic.verificarLoginExistente(getEntity().getLogin());
+            if (usuarioExiste) {
+                addMensagemAviso("Digite outro usuário, pois o digitado já existe.");
+
+            }
+        }
+    }
+
     @Override
     public void salvar() {
-        if(senha != null && !"".equals(senha.trim())){
+        if (senha != null && !"".equals(senha.trim())) {
             senha = criptografar(senha);
             getEntity().setSenha(senha);
         }
         super.salvar();
     }
-    
-    public void adicionarPermissao(){
-        if(getEntity().getPermissoes()== null){
+
+    public void adicionarPermissao() {
+        if (getEntity().getPermissoes() == null) {
             getEntity().setPermissoes(new ArrayList<Permissao>());
         }
-        if(!getEntity().getPermissoes().contains(Permissao)){
+        if (!getEntity().getPermissoes().contains(Permissao)) {
             getEntity().getPermissoes().add(Permissao);
         }
         novaPermissao();
     }
-    public void removerPermissao(Permissao permissao){
-         if(getEntity().getPermissoes().contains(permissao)){
+
+    public void removerPermissao(Permissao permissao) {
+        if (getEntity().getPermissoes().contains(permissao)) {
             getEntity().getPermissoes().remove(permissao);
         }
-       
-        
+
     }
-    
-    public String criptografar(String senha){
+
+    public String criptografar(String senha) {
         return new BCryptPasswordEncoder().encode(senha);
-        
+
     }
-    
+
     @Override
     public UsuarioLogic getLogic() {
         return logic;
     }
-    
-    public List<Permissao> getPermissaos(){
+
+    public List<Permissao> getPermissaos() {
         try {
             return permissaoLogic.buscar(null);
-        } catch (NegocioException ex){
+        } catch (NegocioException ex) {
             addMensagemErro(ex);
-        }catch(SistemaException ex) {
+        } catch (SistemaException ex) {
             addMensagemFatal(ex);
         }
         return null;
@@ -88,9 +95,9 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic>{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     public Permissao getPermissao() {
         return Permissao;
     }
-    
+
 }

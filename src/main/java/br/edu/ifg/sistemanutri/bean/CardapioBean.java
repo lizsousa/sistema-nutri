@@ -29,7 +29,16 @@ public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
     public void novoCardapioHasProduto() {
         cardapioHasProduto = new CardapioHasProduto();
     }
+    
+    public void verificarNomeCardapio() {
+        if (Status.INSERINDO.equals(getStatus())) {
+            Boolean cardapioExiste = logic.verificarCardapioExistente(getEntity().getNomeCardapio());
+            if (cardapioExiste) {
+                addMensagemAviso("Digite outro cardapio, pois o digitado já existe.");
 
+            }
+        }
+    }
     public void adicionarProduto() {
         if (getEntity().getCardapiosHasProdutos() == null) {
             getEntity().setCardapiosHasProdutos(new ArrayList<CardapioHasProduto>());

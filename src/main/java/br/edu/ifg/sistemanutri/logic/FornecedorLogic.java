@@ -46,6 +46,10 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
         if (!Assert.isValidEmail(entity.getEmail())) {
             throw new NegocioException("Email inválido.");
         }
+        
+        if (entity.getId() == null && verificarFornecedorExistente((entity.getCnpjCpf()))) {
+            throw new NegocioException("O fornecedor já cadastrado.");
+        }
         dao.salvar(entity);
         return null;
     }
@@ -67,5 +71,11 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
         List<Fornecedor> fornecedores = dao.listar();
         return fornecedores;
     }
+    
+    public Boolean verificarFornecedorExistente(String cnpjCpf) {
+        Fornecedor forne = dao.buscar(cnpjCpf);
+        return forne != null;
+    }
+
 
 }

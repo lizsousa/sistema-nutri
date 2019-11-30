@@ -28,6 +28,12 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
 
         List<CardapioHasProduto> listaCardapioProduto = entity.getCardapiosHasProdutos();
         entity.setCardapiosHasProdutos(null);
+        
+        
+        if (entity.getId() == null && verificarCardapioExistente(entity.getNomeCardapio())) {
+            throw new NegocioException("O cardápio já cadastrado.");
+        }
+
         entity = dao.salvar(entity);
         
         if(listaCardapioProduto != null && !listaCardapioProduto.isEmpty()){
@@ -52,8 +58,6 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
      
         return cardapio;
     }
-    
-    
     @Override
     public void deletar(Cardapio entity) throws  NegocioException, SistemaException {
         dao.deletar(entity);
@@ -68,5 +72,11 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
     public List<Cardapio> buscar(Cardapio entity) throws  NegocioException, SistemaException {
         return dao.listar();
     }
+
+    public Boolean verificarCardapioExistente(String nomeCardapio) {
+        Cardapio card = dao.buscar(nomeCardapio);
+        return card != null;
+    }
+
     
 }

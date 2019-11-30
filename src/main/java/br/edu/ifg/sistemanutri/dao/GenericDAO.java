@@ -38,7 +38,7 @@ public class GenericDAO<E, ID extends Serializable> implements Serializable {
             if(entityManager.getTransaction().isActive()){
                 entityManager.getTransaction().rollback();
             }
-            throw new SistemaException("Erro ao deletar " + getEntityClass().getName(), ex);
+            throw new SistemaException("Erro ao deletar, pois contem relacionamento");
         }
     }
 

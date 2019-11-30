@@ -29,6 +29,7 @@
                          rendered="#{cc.attrs.rederedDelete}"
                          disabled="#{cc.attrs.disabledDelete}"
                          actionListener="#{cc.attrs.crudBean.remover(cc.attrs.entity)}">
+            
             <p:confirm header="Confirmação" message="Tem certeza que deseja apagar para sempre?" icon="fa fa-exclamation-triangle" />
             <p:tooltip for="@parent" value="Deletar"></p:tooltip>
         </p:commandButton>

@@ -24,11 +24,14 @@ public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
     private EstoqueLogic estoquelogic;
     
     @Override
-    public NotaFiscal salvar(NotaFiscal notaFiscal) throws  NegocioException, SistemaException {        
+    public NotaFiscal salvar(NotaFiscal notaFiscal) throws  NegocioException, SistemaException {  
+        
         boolean novaNota = notaFiscal.getId() == null;
         
         List<NotaFiscalHasProduto> listaNotaFiscalProduto = notaFiscal.getNotaFiscalsHasProdutos();
         notaFiscal.setNotaFiscalsHasProdutos(null);
+         
+        
         notaFiscal = dao.salvar(notaFiscal);
         
         if(listaNotaFiscalProduto != null && !listaNotaFiscalProduto.isEmpty()){
@@ -49,6 +52,10 @@ public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
                 estoquelogic.salvar(estoque);
             }
         }
+//        
+//        if (entity.getId() == null && verificarNFExistente(entity.getNumero())) {
+//            throw new NegocioException("O nota fiscal já cadastrado.");
+//        }
         return notaFiscal;
     }
 
@@ -66,5 +73,11 @@ public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
     public List<NotaFiscal> buscar(NotaFiscal entity) throws  NegocioException, SistemaException {
         return dao.listar();
     }
+    
+    public Boolean verificarNFExistente(int numero) {
+        NotaFiscal nf = dao.buscar(numero);
+        return nf != null;
+    }
+
     
 }

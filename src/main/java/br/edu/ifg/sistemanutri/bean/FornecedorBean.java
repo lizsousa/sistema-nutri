@@ -22,7 +22,17 @@ public class FornecedorBean extends GenericCrud<Fornecedor, FornecedorLogic>{
     public FornecedorLogic getLogic() {
         return logic;
     }
-       
+    
+    public void verificarCnpjCpf() {
+        if (Status.INSERINDO.equals(getStatus())) {
+            Boolean fornecedorExiste = logic.verificarFornecedorExistente(getEntity().getCnpjCpf());
+            if (fornecedorExiste) {
+                addMensagemAviso("Digite outro valor, pois o digitado já existe.");
+
+            }
+        }
+    }
+   
     @Override
     public void salvar() {
         if(razaoSocial != null && !"".equals(razaoSocial.trim())){
