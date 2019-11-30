@@ -11,42 +11,26 @@
                       shortDescription="Bean que extenda GenericCrud"></cc:attribute>
         
         <cc:attribute name="entity" shortDescription="Entidade para ações"
-                      required="true"></cc:attribute>
-        
-        <cc:attribute name="editeRendered" 
-                      displayName="Permite exibir ou ocultar o botao editar"
-                      default="true"></cc:attribute>
-        
-        <cc:attribute name="editeDisabled" 
-                      displayName="Permite desatilitar o botao editar"
-                      default="false"></cc:attribute>
-        
-        <cc:attribute name="deleteRendered" 
-                      displayName="Permite exibir ou ocultar o botao deletar"
-                      default="true"></cc:attribute>
-        
-        <cc:attribute name="deleteDisabled" 
-                      displayName="Permite desabilitar o botao deletar"
-                      default="false"></cc:attribute>
-        
+                      required="true"
+                      ></cc:attribute>
+        <cc:attribute name="rederedDelete" default="true" 
+                      shortDescription="Coloque falso quando não quiser o botão delete. 
+                      True por padrão."></cc:attribute>
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        
-        <p:commandButton class="red-button" icon="fa fa-trash" update="@form"
-                         rendered="#{cc.attrs.deleteRendered}"
-                         disabled="#{cc.attrs.deleteDisabled}"
+
+        <p:commandButton icon="fa fa-trash" update="@form"
+                         rendered="#{cc.attrs.rederedDelete}"
+                         disabled="#{cc.attrs.rederedDelete}"
                          actionListener="#{cc.attrs.crudBean.remover(cc.attrs.entity)}">
             <p:confirm header="Confirmação" message="Tem certeza que deseja apagar para sempre?" icon="fa fa-exclamation-triangle" />
             <p:tooltip for="@parent" value="Deletar"></p:tooltip>
         </p:commandButton>
        
-     
-        <p:commandButton class="green-button" icon="fa fa-edit" update="@form" 
-                         actionListener="#{cc.attrs.crudBean.editar(cc.attrs.entity)}"
-                         rendered="#{cc.attrs.editeRendered}"
-                         disabled="#{cc.attrs.editeDisabled}">
+        <p:commandButton icon="fa fa-edit" update="@form" 
+                         actionListener="#{cc.attrs.crudBean.editar(cc.attrs.entity)}">
             <p:tooltip for="@parent" value="Editar"></p:tooltip>
         </p:commandButton>
         
@@ -54,3 +38,4 @@
         
     </cc:implementation>
 </html>
+

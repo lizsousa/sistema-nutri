@@ -1,13 +1,16 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:ph="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
     <h:head>
         <meta charset="UTF-8"/>
         <title>Login - Sistema Nutri</title>  
-        <!--<link href="resources/css/estilo.css" rel="stylesheet"/>-->
+        <link href="resources/css/estilo.css" rel="stylesheet"/>
         <meta name="viewport" content="width=device-width"></meta>
         <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
@@ -17,55 +20,57 @@
     </h:head>
     <h:body>
         <f:view locale="pt_BR"></f:view>
-        <header>
+<!--        <header>
             <h:form>  
                 <p:growl id="messages"/>
             </h:form>
             <div>
                 <h:graphicImage style="margin: 0 auto;" class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
             </div>
-        </header>
+        </header>-->
 
-        <!--  <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
-               <h:form prependId="false">
-                   <h:panelGrid style="margin: 0 auto;" columns="1">
-                       <h3>Sistema de Estoque e Cardápio - SisEc</h3>
-                       <h:outputText styleClass="fa fa-user fa-4x"/>
-   
-                       <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
-                       <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
-                       <p:commandButton ajax="false" value="Entrar"></p:commandButton>
-                   </h:panelGrid>
-                   
-                 </h:form>
-           </p:dialog> -->
-
-
+        <!--          <p:dialog visible="true" width="600" height="500" header="Acessar o Sistema" showHeader="false" modal="true" resizable="false">            
+                       <h:form prependId="false">
+                           <h:panelGrid style="margin: 0 auto;" columns="1">
+                               <h3>Sistema de Estoque e Cardápio - SisEc</h3>
+                               <h:outputText styleClass="fa fa-user fa-4x"/>
+           
+                               <p:inputText id="username" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Login"/>
+                               <p:password id="password" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control" placeholder="Senha"/>
+                               <p:commandButton ajax="false" value="Entrar"></p:commandButton>
+                           </h:panelGrid>
+                           
+                         </h:form>
+                   </p:dialog> 
+        
+        -->
 
         <div class="login-page">
-            <div class="form" header="Acessar o Sistema" showHeader="false"> 
+            <div class="form" header="Acessar o Sistema" > 
                 <h:form class="login-form" prependId="false">
-                    <h3 class="log">Sistema Nutri</h3>
+
+
+
+                    <h:graphicImage style="margin: 0 " class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
                     <br></br>
-                    <h:outputText styleClass="fa fa-user"/>
-                    
-<!--                   <p:inputText id="username" placeholder="Nome" 
-                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
-                    </p:inputText>
-                 
 
-                        <div class="ui-inputgroup ui-inputgroup-addon">                             
-                                    <p:inputText styleClass="fa fa-user" placeholder="Username"/>      
-                                </div>
-                          -->
-                    <p:inputText  id="username" placeholder="Nome" 
-                                 class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
-                    </p:inputText>
-                    <h:inputSecret id="password" ph:placeholder="Senha" 
-                                   class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control"/>
+                    <br></br>
+                    <br></br>
+                    <div class="ui-inputgroup">
+                        <p:inputText id="username" placeholder="Nome" 
+                                     class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
+                            <span Style="width:10px; height: 37px" class="fa fa-user ui-inputgroup-addon"></span>
+                        </p:inputText>
+                    </div>
+                    <div class="ui-inputgroup">
+                        <h:inputSecret id="password" ph:placeholder="Senha"
+                                       class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
+                            <span Style="width:10px; height: 37px" class="ui-inputgroup-addon fa fa-lock"></span>
+                           
+                        </h:inputSecret>
+                    </div>
 
-                    <h:commandButton type="submit" value="Entrar"/>
-
+                    <p:commandButton ajax="false" value="Entrar"></p:commandButton>
                 </h:form>
             </div>
         </div>
@@ -73,4 +78,5 @@
         <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
         <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
     </h:body>
+
 </html>
