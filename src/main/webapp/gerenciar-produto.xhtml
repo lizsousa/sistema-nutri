@@ -53,7 +53,9 @@
                 
                 
                 <p:column headerText="Estoque Mínimo">
+                    <div style="color:#{estoque.estoqueAtual == produto.estoqueMinimo ? 'red':'green'}">                        
                      <h:outputText value="#{produto.estoqueMinimo}"></h:outputText>
+                    </div>
                 </p:column>
                 
             </p:dataTable>

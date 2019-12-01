@@ -17,6 +17,10 @@ public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> 
         if("".equals(entity.getSigla().trim())){
             throw new NegocioException("a unidade de medida é obrigatório.");
         }
+        
+        if (entity.getId() == null && verificarUnidadeDeMedidaExistente(entity.getSigla())) {
+            throw new NegocioException("O unidade de medida já cadastrado.");
+        }
         entity = dao.salvar(entity);
         return entity;
     }
@@ -37,5 +41,11 @@ public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> 
         List<UnidadeMedida> unidadeMedidas = dao.listar();
         return unidadeMedidas;
     }
-    
+
+    public Boolean verificarUnidadeDeMedidaExistente(String sigla) {
+        UnidadeMedida user = dao.buscar(sigla);
+        return user != null;
+    }
+
+
 }

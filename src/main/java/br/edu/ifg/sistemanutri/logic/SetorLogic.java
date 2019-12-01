@@ -17,6 +17,9 @@ public class SetorLogic implements GenericLogic<Setor, Integer> {
         if("".equals(entity.getNome().trim())){
             throw new NegocioException("Nome do setor é obrigatório.");
         }
+        if (entity.getId() == null && verificarSetorExistente(entity.getNome())) {
+            throw new NegocioException("O setor já cadastrado.");
+        }
         entity = dao.salvar(entity);
         return entity;
     }
@@ -37,5 +40,11 @@ public class SetorLogic implements GenericLogic<Setor, Integer> {
         List<Setor> setores = dao.listar();
         return setores;
     }
+    
+    public Boolean verificarSetorExistente(String nome) {
+        Setor set = dao.buscar(nome);
+        return set != null;
+    }
+
     
 }

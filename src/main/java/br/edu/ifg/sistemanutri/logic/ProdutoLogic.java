@@ -17,6 +17,10 @@ public class ProdutoLogic implements GenericLogic<Produto, Integer> {
         if("".equals(entity.getDescricao().trim())){
             throw new NegocioException("a descricao do produto é obrigatório.");
         }
+        
+        if (entity.getId() == null && verificarProdutoExistente(entity.getDescricao())) {
+            throw new NegocioException("O produto já cadastrado.");
+        }
         entity = dao.salvar(entity);
         return entity;
     }
@@ -35,6 +39,11 @@ public class ProdutoLogic implements GenericLogic<Produto, Integer> {
     public List<Produto>buscar(Produto entity) throws  NegocioException, SistemaException {
         List<Produto> produtos = dao.listar();
         return produtos;
+    }
+    
+    public Boolean verificarProdutoExistente(String descricao) {
+        Produto prod = dao.buscar(descricao);
+        return prod != null;
     }
     
 }
