@@ -10,7 +10,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Cadastro de Cardápio"></ui:param>
     <h:form>
-        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardápio">
+        <p:fieldset legend="#{cardapioBean.statusTela == 'PESQUISANDO'?'Gerenciar ':cardapioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Cardápio">
             <si:toolbar-crud crudBean="#{cardapioBean}"/>
 
 
@@ -106,7 +106,7 @@
 
                 <p:column width="150">
                     <si:colunaAcoes crudBean="#{cardapioBean}" entity="#{cardapio}"></si:colunaAcoes>
-                    <p:commandButton icon="fa fa-line-chart" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
+                    <p:commandButton icon="fa fa-check-square-o" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
                         <p:tooltip for="@parent" value="Usar Receita"></p:tooltip>
                     </p:commandButton>
 

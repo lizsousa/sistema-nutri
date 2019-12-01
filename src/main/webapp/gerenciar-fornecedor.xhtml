@@ -11,7 +11,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Cadastro de Fornecedor"></ui:param>
     <h:form>
-        <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedores">
+        <p:fieldset legend="#{fornecedorBean.statusTela == 'PESQUISANDO'?'Gerenciar ':fornecedorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Fornecedor ">
             <si:toolbar-crud crudBean="#{fornecedorBean}"/>                
 
 

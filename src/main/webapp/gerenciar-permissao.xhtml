@@ -10,7 +10,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Gerenciar Permissões"></ui:param>
     <h:form>
-         <p:fieldset legend="#{permissaoBean.statusTela == 'PESQUISANDO'?'Pesquisa de':permissaoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} permissao">
+         <p:fieldset legend="#{permissaoBean.statusTela == 'PESQUISANDO'?'Gerenciar ':permissaoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} permissao">
             <si:toolbar-crud crudBean="#{permissaoBean}"/>
        
        

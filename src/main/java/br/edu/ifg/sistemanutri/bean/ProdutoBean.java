@@ -1,5 +1,6 @@
 package br.edu.ifg.sistemanutri.bean;
 
+import br.edu.ifg.sistemanutri.dao.ProdutoDAO;
 import br.edu.ifg.sistemanutri.entity.Produto;
 import br.edu.ifg.sistemanutri.entity.UnidadeMedida;
 import br.edu.ifg.sistemanutri.logic.ProdutoLogic;
@@ -20,13 +21,15 @@ public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
     @Inject
     private ProdutoLogic logic;
     @Inject
+    private ProdutoDAO dao;
+    @Inject
     private UnidadeMedidaLogic unidadeMedidalogic;
     
     
     private String descricao;
     private Date dataValidade;
     private BigDecimal estoqueMinimo;
-     private BigDecimal estoqueAtual;
+    private BigDecimal estoqueAtual;
 
     
     @Override
@@ -37,7 +40,9 @@ public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
         
         super.salvar();
     }
-
+//    public void notificarEstoque(Produto entity){
+//        entity = dao.notificar(entity.getEstoqueAtual(), entity.getEstoqueMinimo());
+//    }
     @Override
     public void editar(Produto entity) {
         try {
@@ -117,8 +122,6 @@ public class ProdutoBean extends GenericCrud<Produto, ProdutoLogic>{
     public void setEstoqueAtual(BigDecimal estoqueAtual) {
         this.estoqueAtual = estoqueAtual;
     }
-    
-
 
 }
 

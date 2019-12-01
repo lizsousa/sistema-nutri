@@ -44,7 +44,8 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
         try {
             getLogic().salvar(entity);
             addMensagem("Salvo com sucesso!");
-            pesquisar();
+            listar();
+            Pesquisar();
         } catch (NegocioException ex) {
             addMensagemErro(ex);
         } catch(SistemaException ex){
@@ -69,7 +70,25 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
         statusTela = Status.EDITANDO;
     }
     
-    public void pesquisar(){
+    public void listar(){
+        try {
+            if(!statusTela.equals(Status.PESQUISANDO)){
+                statusTela = Status.PESQUISANDO;
+                return;
+            }
+            entitys = getLogic().buscar(null);// <-----trocar de entityDAO.listar()
+            if(entitys == null || entitys.isEmpty()){
+                addMensagemAviso("Nenhum registro encontrado.");
+            }
+        } catch (NegocioException ex) {
+            addMensagemErro(ex);
+        } catch(SistemaException ex){
+            addMensagemFatal(ex);
+        }
+    }
+
+    
+    public void Pesquisar(){
         try {
             if(!statusTela.equals(Status.PESQUISANDO)){
                 statusTela = Status.PESQUISANDO;
@@ -85,6 +104,7 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
             addMensagemFatal(ex);
         }
     }
+
     
     public E getEntity() {
         return entity;

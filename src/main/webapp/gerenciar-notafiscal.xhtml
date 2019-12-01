@@ -11,7 +11,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Cadastro de Notas Fiscais"></ui:param>
     <h:form>
-       <p:fieldset legend="#{notaFiscalBean.statusTela == 'PESQUISANDO'?'Pesquisa de':notaFiscalBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Nota Fiscal">
+       <p:fieldset legend="#{notaFiscalBean.statusTela == 'PESQUISANDO'?'Gerenciar ':notaFiscalBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Nota Fiscal">
             <si:toolbar-crud crudBean="#{notaFiscalBean}"/>
 
 

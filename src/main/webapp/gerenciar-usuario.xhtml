@@ -11,7 +11,7 @@
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
     <ui:param name="tituloPagina" value="Cadastro de Usuário"></ui:param>
     <h:form>
-        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Pesquisa de':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
+        <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Gerenciar':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
             <si:toolbar-crud crudBean="#{usuarioBean}"
                              novoDisabled="#{loginBean.temPermissao('CADASTRAR_USUARIO')}" 

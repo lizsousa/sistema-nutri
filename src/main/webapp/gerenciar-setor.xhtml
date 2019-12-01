@@ -11,7 +11,7 @@
     <ui:param name="tituloPagina" value="Cadastro de Setor"></ui:param>
 
     <h:form>
-        <p:fieldset legend="#{setorBean.statusTela == 'PESQUISANDO'?'Pesquisa de':setorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Setor">
+        <p:fieldset legend="#{setorBean.statusTela == 'PESQUISANDO'?'Gerenciar ':setorBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Setor">
             <si:toolbar-crud crudBean="#{setorBean}"/>
 
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 

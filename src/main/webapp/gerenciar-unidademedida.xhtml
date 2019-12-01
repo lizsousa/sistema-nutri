@@ -11,7 +11,7 @@
      <ui:param name="tituloPagina" value="Cadastro de Unidade de Medida"></ui:param>
 
     <h:form>
-        <p:fieldset legend="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'?'':unidadeMedidaBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Unidade de Medida">
+        <p:fieldset legend="#{unidadeMedidaBean.statusTela == 'PESQUISANDO'?'Gerenciar ':unidadeMedidaBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Unidade de Medida">
             <si:toolbar-crud crudBean="#{unidadeMedidaBean}"/>
 
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 

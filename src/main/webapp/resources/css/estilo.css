@@ -402,7 +402,17 @@ body login{
     background-color: blue;
     border-color: #5cb85c;
 }
-
+/*cores para botoes*/
+.fa-trash{
+    color: chocolate;
+}
+.fa-edit{
+    color: #673E9B;
+}
+.fa-check-square-o{
+    color: #46C83F;
+    
+}
 .red-button.ui-button.ui-state-default {
     background-color: #d9534f;
     border-color: #d9534f;

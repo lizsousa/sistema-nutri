@@ -12,7 +12,7 @@
     <ui:param name="tituloPagina" value="Cadastro de Movimento de Estoque"></ui:param>
 
     <h:form>
-        <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Pesquisa de':estoqueBean.statusTela == 'INSERINDO'?'Movimento de':'Editando'} Estoque">
+        <p:fieldset legend="#{estoqueBean.statusTela == 'PESQUISANDO'?'Gerenciar ':estoqueBean.statusTela == 'INSERINDO'?'Movimento de':'Editando'} Estoque">
             <si:toolbar-crud crudBean="#{estoqueBean}"/>
   
 

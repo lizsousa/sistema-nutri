@@ -40,7 +40,10 @@
                 <div class="extras-item">
                     <a href="logout">
                         <p>#{request.userPrincipal.name}
-                            <i class="fa fa-fw fa-sign-out"></i>
+                            <i class="fa fa-fw fa-sign-out">
+                            </i>
+                    
+                                <p:tooltip for="@parent" value="Sair"></p:tooltip>
                         </p>
                     </a>
                 </div>
@@ -64,18 +67,18 @@
                 </li>
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-cadastros">
-                        <i class="fa fa-fw fa-edit"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
+                        <i class="fa fa-fw fa-folder-open"></i>Cadastros<i class="fa fa-fw fa-angle-down"></i>
                     </a>
                     <ul class="submenu" id="submenu-cadastros">
                         
                         <li>
                             <a href="gerenciar-cardapio.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-file-text-o"></i>Cardápio
+                                <i class="fa fa-fw fa-cutlery"></i>Cardápio
                             </a>
                         </li>
                         <li>
                             <a href="gerenciar-fornecedor.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-sort-amount-asc"></i>Fornecedor
+                                <i class="fa fa-fw fa-truck"></i>Fornecedor
                             </a>
                         </li>
                         <li>
@@ -85,7 +88,7 @@
                         </li>
                         <li>
                             <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
-                                <i class="fa fa-fw fa-recycle"></i>Produto
+                                <i class="fa fa-fw fa-cubes"></i>Produto
                             </a>
                         </li>
                         <li>
@@ -124,7 +127,7 @@
 
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-                        <i class="fa fa-fw fa-file-pdf-o"></i> Relatórios
+                        <i class="fa fa-fw fa-file-pdf-o"></i> Relatórios<i class="fa fa-fw fa-angle-down"></i>
                     </a>
 
                     <ul class="submenu" id="submenu-configuracao">

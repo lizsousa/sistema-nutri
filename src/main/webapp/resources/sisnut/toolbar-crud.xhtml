@@ -33,25 +33,28 @@
         <p:toolbar id="toolbaraction">
             <p:toolbarGroup>
                 
-                <p:commandButton value="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO'?'Voltar':'Pesquisar'}" 
+                <p:commandButton value="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO'?'Voltar':'Listar'}" 
                                  actionListener="#{cc.attrs.crudBean.pesquisar()}"
                                  update="@form"
-                                 icon="fa #{cc.attrs.crudBean.statusTela != 'PESQUISANDO'?'fa-reply':'fa-search'}"
+                                 icon="fa #{cc.attrs.crudBean.statusTela != 'PESQUISANDO'?'fa-reply':'fa-list-alt'}"
                 ></p:commandButton>
                 
                 <p:separator></p:separator>
                 
-                 <p:commandButton value="Novo" actionListener="#{cc.attrs.crudBean.novo()}"
+                 <p:commandButton value="Novo" actionListener="#{cc.attrs.crudBean.novo()}" icon="fa fa-plus-square-o"
                                  rendered="#{cc.attrs.novoRendered}"
                                  disabled="#{cc.attrs.novoDisabled}"
-                                 update="@form" icon="fa fa-file-o"
-                                 ></p:commandButton>
+                                 update="@form" >
+                                 
+                </p:commandButton>
                 
                 <p:commandButton value="Salvar" actionListener="#{cc.attrs.crudBean.salvar()}"
                                  disabled="#{cc.attrs.salvarDisabled}"
                                  update="@form" icon="fa fa-save"
-                                 rendered="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO' and cc.attrs.salvarRendered}"></p:commandButton>
-                
+                                 rendered="#{cc.attrs.crudBean.statusTela != 'PESQUISANDO' and cc.attrs.salvarRendered}">
+                                
+                </p:commandButton>
+                                 
                 <cc:insertChildren></cc:insertChildren>
             </p:toolbarGroup>
             
