@@ -14,9 +14,9 @@
         <h:form>
 
             <p:outputLabel value="Data:" ></p:outputLabel>
-            <p:calendar value="#{relatorioBean.dataInicio}"></p:calendar>
+            <p:calendar value="#{relatorioEntradaBean.dataInicio}"></p:calendar>
             <p:outputLabel value=" até: " ></p:outputLabel>
-            <p:calendar value="#{relatorioBean.dataFim}"></p:calendar>
+            <p:calendar value="#{relatorioEntradaBean.dataFim}"></p:calendar>
 
             <br></br>
             <br></br>
@@ -24,31 +24,31 @@
             <h3>Tipo Movimento</h3>
             <br></br>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-                <p:selectOneRadio id="console" value="#{relatorioBean.tipoEstoque}">
+                <p:selectOneRadio id="console" value="#{relatorioEntradaBean.tipoEstoque}">
                     <p:ajax update="@form"></p:ajax>
-                    <f:selectItems value="#{relatorioBean.tiposEstoque}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"></f:selectItems>
+                    <f:selectItems value="#{relatorioEntradaBean.tiposEstoque}" var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}"></f:selectItems>
                 </p:selectOneRadio>
             </h:panelGrid>
             <br></br>
        
-            <p:outputLabel  value="Nome do Fornecedor:  "  rendered="#{relatorioBean.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
-            <p:selectOneMenu style="width:200px" value="#{relatorioBean.fornecedorSelecionado}" rendered="#{relatorioBean.tipoEstoque == 'ENTRADA'}">
+            <p:outputLabel  value="Nome do Fornecedor:  "  rendered="#{relatorioEntradaBean.tipoEstoque == 'ENTRADA'}"></p:outputLabel>
+            <p:selectOneMenu style="width:200px" value="#{relatorioEntradaBean.fornecedores}" rendered="#{relatorioEntradaBean.tipoEstoque == 'ENTRADA'}">
                 <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
-                <f:selectItems value="#{relatorioBean.fornecedores}" var="forne" 
+                <f:selectItems value="#{relatorioEntradaBean.fornecedores}" var="forne" 
                                itemLabel="#{forne.razaoSocial}" itemValue="#{forne}"></f:selectItems>
             </p:selectOneMenu>
             <br></br>
             <br></br>
-            <p:outputLabel value="Nome do Setor:  "  rendered="#{relatorioBean.tipoEstoque == 'SAIDA'}"></p:outputLabel>
-            <p:selectOneMenu style="width:200px" value="#{relatorioBean.setor}" rendered="#{relatorioBean.tipoEstoque == 'SAIDA'}" >
+            <p:outputLabel value="Nome do Setor:  "  rendered="#{relatorioSaidaBean.tipoEstoque == 'SAIDA'}"></p:outputLabel>
+            <p:selectOneMenu style="width:200px" value="#{relatorioSaidaBean.setors}" rendered="#{relatorioSaidaBean.tipoEstoque == 'SAIDA'}" >
                 <f:selectItem itemLabel="Selecione" itemValue=""></f:selectItem>
-                <f:selectItems value="#{relatorioBean.setors}" var="set" 
+                <f:selectItems value="#{relatorioSaidaBean.setors}" var="set" 
                                itemLabel="#{set.nome}" itemValue="#{set}"></f:selectItems>
             </p:selectOneMenu>
             <br></br>
      
             <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-arrow-down">
-                <p:fileDownload contentDisposition="inline" value="#{relatorioBean.relatorioMovimentoEntrada()}" />
+                <p:fileDownload contentDisposition="inline" value="#{relatorioEntradaBean.relatorioMovimento()}" />
             </p:commandButton> 
 
         </h:form>

@@ -81,7 +81,10 @@ public class EstoqueBean extends GenericCrud<Estoque, EstoqueLogic>{
 //        }
 //     
 //    }
-  
+
+    
+
+        
     public List<Setor> getSetors(){
         try {
             return setorLogic.buscar(null);

@@ -127,16 +127,22 @@
 
                 <li>
                     <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
-                        <i class="fa fa-fw fa-file-pdf-o"></i> Relatório<i class="fa fa-fw fa-angle-down"></i>
+                        <i class="fa fa-fw fa-file-pdf-o"></i> Relatórios<i class="fa fa-fw fa-angle-down"></i>
                     </a>
 
                     <ul class="submenu" id="submenu-configuracao">
 
                         <li>
                             <a href="relatorio.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorio.xhtml')?'active':''}">
-                                <i class="fa fa-fw fa-list"></i>Entrada e Saída de Material
+                                <i class="fa fa-fw fa-list"></i>Entrada de Material
                             </a>
                         </li>
+                        <li>
+                            <a href="relatorioSaida.xhtml" class="sidebar-item #{view.viewId.endsWith('relatorioSaida.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Saída de Material
+                            </a>
+                        </li>
+                       
                     </ul>
                 </li>
             </ul>

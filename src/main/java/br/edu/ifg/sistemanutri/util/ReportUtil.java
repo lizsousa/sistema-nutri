@@ -24,7 +24,7 @@ public class ReportUtil {
             if(map == null){
                 map = new HashMap<String, Object>();
             }
-            map.put("LOGO", ReportUtil.class.getResourceAsStream("/br/edu/ifg/sistemanutri/relatorios/logo_nutri.png"));
+            map.put("LOGO", ReportUtil.class.getResourceAsStream("/br/edu/ifg/sistemanutri/relatorios/logo.png"));
             JasperReport report = JasperCompileManager.compileReport(reportInputStream);
             jasperPrint = JasperFillManager.fillReport(report, map, connection);
             byte[] rep = JasperExportManager.exportReportToPdf(jasperPrint);
