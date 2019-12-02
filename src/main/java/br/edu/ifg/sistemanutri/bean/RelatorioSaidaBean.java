@@ -14,13 +14,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalField;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,10 +37,7 @@ public class RelatorioSaidaBean extends JsfUtil{
     
     @Inject
     private EntityManager entityManager;
-    
-    @Inject
-    private EstoqueLogic estoqueLogic;
-     
+   
     @Inject
     private SetorLogic setorLogic;
     

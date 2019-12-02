@@ -5,54 +5,136 @@
                 template="template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:view>
-    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Pagina Inicial"></ui:param>
-    <h:body>
-        <p:outputLabel>Bem vindo ao sistema de nutrição!</p:outputLabel>
- 
-    </h:body>
-    <!--<p:fieldset legend="Sistema Nutri">       </p:fieldset>
-        <div class="ui-grid">
-            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                <div class="card c1">
-                    <i class="card-icon fa fa-usd"></i>
-                    <div class="card-title">
-                        Vendas
-                    </div>
-                    <div class="card-content">
-                        25 vendas
-                    </div>
-                </div>
+        <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+        <ui:param name="tituloPagina" value="Página Inicial"></ui:param>
+
+
+        <p:fieldset legend="Bem vindo ao Sistema de Nutrição!">      
+            <div>
+
             </div>
-            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                <div class="card c2">
-                    <i class="card-icon fa fa-line-chart"></i>
-                    <div class="card-title">
-                        Resumo do mês
-                    </div>
-                    <div class="card-content">
-                        <div class="despesa">R$ 9.000,00 <i class="fa fa-caret-down"></i></div>
-                        <div class="receita">R$ 13.000,00 <i class="fa fa-caret-up"></i></div>
-                    </div>
-                </div>
+            <div class="ui-grid">
+                <h:form>                
+                    <h:commandLink>
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+                                <a href="gerenciar-cardapio.xhtml" class="sidebar-item
+                                   #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
+
+                                    <h:outputText styleClass="fa fa-fw fa-cutlery fa-3x"></h:outputText>
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Cardápio
+                                </div>
+                            </div>
+                        </div>
+                    </h:commandLink>
+                </h:form>           
+                <h:form>
+                    <p:commandLink>
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+                                <a href="gerenciar-fornecedor.xhtml" class="sidebar-item card-title
+                                   #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
+                                    <h:outputText class="fa fa-fw fa-truck fa-2x"></h:outputText>
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Fornecedor
+                                </div>
+
+                            </div>
+                        </div>
+                    </p:commandLink>
+                </h:form>           
+                <h:form>
+                    <p:commandLink>
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+
+                                <a href="gerenciar-notafiscal.xhtml" class="sidebar-item card-title
+                                   #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
+                                    <p:tooltip for="@parent" value="Gerenciar Nota Fiscal"></p:tooltip>
+                                    <h:outputText  class="fa fa-fw fa-files-o fa-2x">
+                                    </h:outputText>
+                                    
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Nota Fiscal
+                                </div>
+
+                            </div>
+                        </div>
+                    </p:commandLink>
+                </h:form>
             </div>
-            
-            <div class="ui-g-12 ui-md-6 ui-lg-4">
-                <div class="card c3">
-                    <i class="card-icon fa fa-battery-quarter"></i>
-                    <div class="card-title">
-                        Estoque baixo
-                    </div>
-                    <div class="card-content">
-                        13 itens estoque mínimo
-                    </div>
-                </div>
+            <div class="ui-grid">
+                <h:form>
+                    <p:commandLink>
+
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+                                <a href="gerenciar-produto.xhtml" class="sidebar-item card-title
+                                   #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
+                                    <h:outputText class="fa fa-fw fa-cubes fa-2x"></h:outputText>
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Produto
+                                </div>
+
+                            </div>
+                        </div>
+                    </p:commandLink>
+                </h:form>
+
+                <h:form>
+                    <p:commandLink>
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+                                <a href="relatorio.xhtml" class="sidebar-item card-title 
+                                   #{view.viewId.endsWith('relatorio.xhtml')?'active':''}">
+                                    <h:outputText class="fa fa-fw fa-file-pdf-o fa-2x"></h:outputText>
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Relatório
+                                </div>
+
+                            </div>
+                        </div>
+                    </p:commandLink>
+                </h:form>
+                <h:form>
+                    <p:commandLink>
+                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div class="card c1">
+                                <a href="gerenciar-estoque.xhtml" class="sidebar-item card-title 
+                                   #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
+                                    <h:outputText class="fa fa-fw fa-bar-chart-o fa-2x"></h:outputText>
+                                </a>
+                                <br></br>
+                                <br></br>
+                                <div style="color: #000000" class=" card-title">
+                                    Estoque
+                                </div>
+                            </div>
+                        </div>
+                    </p:commandLink>
+                </h:form>
+
             </div>
-        </div>
-            -->
-    
+        </p:fieldset>
     </f:view>
 </ui:composition>
 

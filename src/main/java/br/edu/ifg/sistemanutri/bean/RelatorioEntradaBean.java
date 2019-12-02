@@ -50,10 +50,11 @@ public class RelatorioEntradaBean extends JsfUtil {
     
     FornecedorLogic logic;
     
-    private String tipoEstoque;
+
     private Date dataInicio;
     private Date dataFim;
     private String nomeFornecedor;
+    private String tipoEstoque;
 
     public RelatorioEntradaBean() {
         
