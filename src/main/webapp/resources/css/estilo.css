@@ -228,20 +228,18 @@ nav.sidebar .usuario .nome {
 }
 .card-title {
     font-size: 1.5em;
-    padding-left: 10px;
+    padding-left: 20px;
+    text-decoration: none;
 }
 .card-content {
     /*line-height: 2em;*/
     font-size: 2em;
     padding: 10px 0 0 10px;
-}
-i.card-icon {
-    float: right;
-    font-size: 3em;
-}
+}  
+
 .c1 {
     background: #eee;
-    color: white;
+    color: #2f6151;
     height:150px;
     
 }
@@ -282,36 +280,7 @@ fa-files-o{
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.form input {
-    font-family: "Roboto", sans-serif;
-    outline: 0;
-    background: #f2f2f2;
-    width: 100%;
-    border: 0;
-    margin: 0 0 15px;
-    padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-.form button {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #eff8ef;
-    width: 150;
-    border: 0;
-    padding: 15px;
-    color: #000000;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    border-radius: 10px;
-    height: 50px;
-}
-.form button:hover,.form button:active,.form button:focus {
-    background: #eff8ef;
-}
+
 .form .message {
     margin: 15px 0 0;
     color: #b3b3b3;
@@ -409,6 +378,18 @@ body login{
 .fa-check-square-o{
     color: #46C83F;
     
+}
+.fa-plus-square-o{
+    color: green;
+}
+.fa-save{
+    color: #808000;
+}
+.fa-reply{
+    color: #808000;
+}
+.fa-list-alt{
+    color: #808000;
 }
 .red-button.ui-button.ui-state-default {
     background-color: #d9534f;

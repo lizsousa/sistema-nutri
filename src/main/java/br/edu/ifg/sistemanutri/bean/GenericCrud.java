@@ -9,6 +9,8 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUtil {
@@ -26,8 +28,13 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
     
     @PostConstruct
     public void init(){
-        entitys = new ArrayList<>();   
-        statusTela = Status.PESQUISANDO;
+        try {
+            entitys = new ArrayList<>();
+            statusTela = Status.PESQUISANDO;
+            entity = getEntityClass().getDeclaredConstructor().newInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(GenericCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void novo(){
@@ -75,7 +82,7 @@ public abstract class GenericCrud<E, L extends GenericLogic<E, ?>> extends JsfUt
                 statusTela = Status.PESQUISANDO;
                 return;
             }
-            entitys = getLogic().buscar(null);// <-----trocar de entityDAO.listar()
+            entitys = getLogic().buscar(entity);// <-----trocar de entityDAO.listar()
             if(entitys == null || entitys.isEmpty()){
                 addMensagemAviso("Nenhum registro cadastrado.");
             }

@@ -41,7 +41,11 @@ public class GenericDAO<E, ID extends Serializable> implements Serializable {
             throw new SistemaException("Erro ao deletar, pois contem relacionamento");
         }
     }
-
+    
+    public List<E> buscar(E entity) throws SistemaException{
+        return listar();
+    }
+        
     public List<E> listar() throws SistemaException {
         try {
             entityManager.clear();

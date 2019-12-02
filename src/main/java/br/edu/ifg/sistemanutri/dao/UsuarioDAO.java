@@ -22,7 +22,9 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements UserDeta
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         String jpql = "from Usuario u where u.login = :login";
-        Usuario usuario = getEntityManager().createQuery(jpql, Usuario.class).setParameter("login", login).getSingleResult();
+        Usuario usuario = getEntityManager().createQuery(jpql, Usuario.class)
+                .setParameter("login", login)
+                .getSingleResult(); /*result*/
         if (usuario == null) {
             throw new UsernameNotFoundException("O login " + login + " não existe");
         }

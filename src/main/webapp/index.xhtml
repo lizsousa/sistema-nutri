@@ -12,127 +12,91 @@
         <ui:param name="tituloPagina" value="Página Inicial"></ui:param>
 
 
-        <p:fieldset legend="Bem vindo ao Sistema de Nutrição!">      
-            <div>
-
-            </div>
+        <p:fieldset>    
+            <h1 align="center">Bem Vindo ao Sistema de Nutrição!</h1>
             <div class="ui-grid">
-                <h:form>                
-                    <h:commandLink>
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-                                <a href="gerenciar-cardapio.xhtml" class="sidebar-item
-                                   #{view.viewId.endsWith('gerenciar-cardapio.xhtml')?'active':''}">
 
-                                    <h:outputText styleClass="fa fa-fw fa-cutlery fa-3x"></h:outputText>
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Cardápio
-                                </div>
+
+                <h:outputLink id="cardapio" value="gerenciar-cardapio.xhtml" class="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center" >
+                        <div class="card c1">
+                            <h:outputText class="fa fa-fw fa-cutlery fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="cardapio" position="bottom" value="Gerenciar Cardápio"></p:tooltip>
+                                Cardápio
+                            </div>
+
+                        </div>
+                    </div>
+                </h:outputLink>
+                <h:outputLink id="fornecedor" value="gerenciar-fornecedor.xhtml" class="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center" >
+                        <div class="card c1">
+                            <h:outputText class="fa fa-fw fa-truck fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="fornecedor" position="bottom" value="Gerenciar Fornecedor"></p:tooltip>
+                                Fornecedor
+                            </div>
+
+                        </div>
+                    </div>
+                </h:outputLink>
+
+
+                <h:outputLink id="notaFiscal"  value="gerenciar-notafiscal.xhtml" styleClass="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center" >
+                        <div class="card c1">
+
+
+                            <h:outputText  class="fa fa-fw fa-files-o fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="notaFiscal" position="bottom" value="Gerenciar Nota Fiscal"></p:tooltip>
+                                Nota Fiscal
+                            </div>
+
+                        </div>
+                    </div>
+                </h:outputLink>
+
+
+                <h:outputLink id="produto" value="gerenciar-produto.xhtml" class="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center" >
+                        <div class="card c1">
+                            <h:outputText class="fa fa-fw fa-cubes fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="produto" position="bottom" value="Gerenciar Produto"></p:tooltip>
+                                Produto
+                            </div>
+
+                        </div>
+                    </div>
+                </h:outputLink>
+
+
+                <h:outputLink id="relatorio" value="relatorio.xhtml" class="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center" >
+                        <div class="card c1">
+                            <h:outputText class="fa fa-fw fa-file-pdf-o fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="relatorio" position="bottom" value="Gerenciar Relatório"></p:tooltip>
+                                Relatório
+                            </div>
+
+                        </div>
+                    </div>
+                </h:outputLink>
+
+                <h:outputLink id="estoque" value="gerenciar-estoque.xhtml" class="sidebar-item card-title ui-g-12 ui-md-6 ui-lg-4">
+                    <div align="center">
+                        <div class="card c1">
+                            <h:outputText class="fa fa-fw fa-bar-chart-o fa-2x"></h:outputText>
+                            <div class=" card-title">
+                                <p:tooltip for="estoque" position="bottom" value="Gerenciar Estoque"></p:tooltip>
+                                Estoque
                             </div>
                         </div>
-                    </h:commandLink>
-                </h:form>           
-                <h:form>
-                    <p:commandLink>
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-                                <a href="gerenciar-fornecedor.xhtml" class="sidebar-item card-title
-                                   #{view.viewId.endsWith('gerenciar-fornecedor.xhtml')?'active':''}">
-                                    <h:outputText class="fa fa-fw fa-truck fa-2x"></h:outputText>
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Fornecedor
-                                </div>
-
-                            </div>
-                        </div>
-                    </p:commandLink>
-                </h:form>           
-                <h:form>
-                    <p:commandLink>
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-
-                                <a href="gerenciar-notafiscal.xhtml" class="sidebar-item card-title
-                                   #{view.viewId.endsWith('gerenciar-notafiscal.xhtml')?'active':''}">
-                                    <p:tooltip for="@parent" value="Gerenciar Nota Fiscal"></p:tooltip>
-                                    <h:outputText  class="fa fa-fw fa-files-o fa-2x">
-                                    </h:outputText>
-                                    
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Nota Fiscal
-                                </div>
-
-                            </div>
-                        </div>
-                    </p:commandLink>
-                </h:form>
-            </div>
-            <div class="ui-grid">
-                <h:form>
-                    <p:commandLink>
-
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-                                <a href="gerenciar-produto.xhtml" class="sidebar-item card-title
-                                   #{view.viewId.endsWith('gerenciar-produto')?'active':''}">
-                                    <h:outputText class="fa fa-fw fa-cubes fa-2x"></h:outputText>
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Produto
-                                </div>
-
-                            </div>
-                        </div>
-                    </p:commandLink>
-                </h:form>
-
-                <h:form>
-                    <p:commandLink>
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-                                <a href="relatorio.xhtml" class="sidebar-item card-title 
-                                   #{view.viewId.endsWith('relatorio.xhtml')?'active':''}">
-                                    <h:outputText class="fa fa-fw fa-file-pdf-o fa-2x"></h:outputText>
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Relatório
-                                </div>
-
-                            </div>
-                        </div>
-                    </p:commandLink>
-                </h:form>
-                <h:form>
-                    <p:commandLink>
-                        <div align="center" class="ui-g-12 ui-md-6 ui-lg-4">
-                            <div class="card c1">
-                                <a href="gerenciar-estoque.xhtml" class="sidebar-item card-title 
-                                   #{view.viewId.endsWith('gerenciar-estoque.xhtml')?'active':''}">
-                                    <h:outputText class="fa fa-fw fa-bar-chart-o fa-2x"></h:outputText>
-                                </a>
-                                <br></br>
-                                <br></br>
-                                <div style="color: #000000" class=" card-title">
-                                    Estoque
-                                </div>
-                            </div>
-                        </div>
-                    </p:commandLink>
-                </h:form>
-
+                    </div>
+                </h:outputLink>
             </div>
         </p:fieldset>
     </f:view>

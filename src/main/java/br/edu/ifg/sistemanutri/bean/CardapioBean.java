@@ -12,12 +12,16 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import net.sf.jasperreports.export.Exporter;
+import org.primefaces.component.datatable.DataTable;
 
 @Named
 @SessionScoped
 public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
     private Cardapio cardapioTemp;
-
+     
+   
+    
     @Inject
     private CardapioLogic logic;
 

@@ -60,12 +60,15 @@
                             <span class="ui-inputgroup-addon">#{cardapioBean.cardapioHasProduto.produto.unidadeMedida.sigla}</span>      
                         </div>
                     </h:panelGroup>
-                    
+
                 </p:panelGrid>
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{cardapioBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>
             </p:dialog>
 
-            <p:dataTable  value="#{cardapioBean.entity.cardapiosHasProdutos}" reflow="true" var="chp" id="tblPedidoProdutos" rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
+            <p:dataTable  value="#{cardapioBean.entity.cardapiosHasProdutos}" reflow="true" var="chp" id="tblPedidoProdutos" rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}"
+                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                          paginator="true" rows="10" style="margin-bottom:20px">
+
 
                 <p:column>
                     <p:commandButton icon="fa fa-trash" update="@form"

@@ -37,7 +37,7 @@ public class ProdutoLogic implements GenericLogic<Produto, Integer> {
 
     @Override
     public List<Produto>buscar(Produto entity) throws  NegocioException, SistemaException {
-        List<Produto> produtos = dao.listar();
+        List<Produto> produtos = dao.buscar(entity);
         return produtos;
     }
     

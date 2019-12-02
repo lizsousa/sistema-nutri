@@ -1,7 +1,9 @@
 package br.edu.ifg.sistemanutri.dao;
 
 import br.edu.ifg.sistemanutri.entity.Produto;
+import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.NoResultException;
 
 public class ProdutoDAO extends GenericDAO<Produto, Integer> {
@@ -18,6 +20,8 @@ public class ProdutoDAO extends GenericDAO<Produto, Integer> {
         }
 
     }
+    
+    
 //
 //    public Produto notificar(BigDecimal estoqueAtual, BigDecimal estoqueMinimo) {
 //        try {
@@ -31,5 +35,11 @@ public class ProdutoDAO extends GenericDAO<Produto, Integer> {
 //            return null;
 //        }
 //    }
+
+    @Override
+    public List<Produto> buscar(Produto entity) throws SistemaException {
+        
+        return super.buscar(entity);
+    }
 
 }

@@ -9,8 +9,7 @@
 
     <h:head>
         <meta charset="UTF-8"/>
-        <title>Login - Sistema Nutri</title>  
-        <link href="resources/css/estilo.css" rel="stylesheet"/>
+        <title>Login - Sistema Nutri</title> 
         <meta name="viewport" content="width=device-width"></meta>
         <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
         <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
@@ -57,18 +56,29 @@
                     <br></br>
                     <br></br>
                     <div class="ui-inputgroup">
-                        <p:inputText id="username" placeholder="Nome" 
-                                     class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
-                            <span Style="width:10px; height: 37px" class="fa fa-user ui-inputgroup-addon"></span>
+                        <div class="ui-g-12 ui-md-4">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <p:inputText id="username" placeholder="Nome" />      
+                            </div>
+                            <br></br>
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-lock"></i></span>
+                                <p:password id="password" placeholder="Senha"></p:password>
+                             </div>
+                        </div>
+                    </div>
+<!--                        <p:inputText id="username" placeholder="Nome" 
+                                     >
+                            <span class="fa fa-user ui-inputgroup-addon"></span>
                         </p:inputText>
                     </div>
                     <div class="ui-inputgroup">
-                        <h:inputSecret id="password" ph:placeholder="Senha"
-                                       class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all form-control">
-                            <span Style="width:10px; height: 37px" class="ui-inputgroup-addon fa fa-lock"></span>
+                        <h:inputSecret id="password" ph:placeholder="Senha">
+                            <span class="ui-inputgroup-addon fa fa-lock"></span>
                            
                         </h:inputSecret>
-                    </div>
+                    </div>-->
 
                     <p:commandButton ajax="false" value="Entrar"></p:commandButton>
                 </h:form>
