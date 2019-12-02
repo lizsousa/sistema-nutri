@@ -9,10 +9,11 @@
                 xmlns:si="http://xmlns.jcp.org/jsf/composite/sisnut">
 
     <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
-    <ui:param name="tituloPagina" value="Pagina Cadastro de Produto"></ui:param>
+    <ui:param name="tituloPagina" value="Cadastro de Produto"></ui:param>
 
     <h:form>
         <p:fieldset legend="#{produtoBean.statusTela == 'PESQUISANDO'?'Gerenciar':produtoBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Produto">
+
             <si:toolbar-crud crudBean="#{produtoBean}"/>
 
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder" 
@@ -27,10 +28,10 @@
                     <f:selectItems value="#{produtoBean.unidadeMedidas}" var="prod" 
                                    itemLabel="#{prod.sigla}" itemValue="#{prod}"></f:selectItems>
                 </p:selectOneMenu>
-                
+
                 <p:outputLabel value="Defina o Estoque Mínimo:"></p:outputLabel>
                 <p:inputText value="#{produtoBean.entity.estoqueMinimo}"></p:inputText>
-                
+
             </p:panelGrid>
 
             <p:dataTable reflow="true" value="#{produtoBean.entitys}" var="produto"
@@ -39,7 +40,7 @@
                 <p:column width="100">
                     <si:colunaAcoes crudBean="#{produtoBean}" entity="#{produto}"></si:colunaAcoes>
                 </p:column>
-                
+
                 <p:column headerText="Descrição">
                     <div style="color:#{produto.estoqueAtual le produto.estoqueMinimo ? 'red':''}">  
                         <h:outputText value="#{produto.descricao}"></h:outputText>
@@ -50,20 +51,20 @@
                         <h:outputText value="#{produto.unidadeMedida.sigla}"></h:outputText>
                     </div>
                 </p:column>
-                
+
 
                 <p:column headerText="Estoque Atual">
                     <div style="color:#{produto.estoqueAtual le produto.estoqueMinimo ? 'red':''}">  
                         <h:outputText value="#{produto.estoqueAtual}"></h:outputText>
                     </div>
                 </p:column>
-                
+
                 <p:column headerText="Estoque Mínimo">
                     <div style="color:#{produto.estoqueAtual le produto.estoqueMinimo ? 'red':''}">  
                         <h:outputText value="#{produto.estoqueMinimo}"></h:outputText>
                     </div>
                 </p:column>
-                
+
             </p:dataTable>
         </p:fieldset>
 
