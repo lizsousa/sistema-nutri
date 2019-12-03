@@ -65,11 +65,12 @@
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{cardapioBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>
             </p:dialog>
 
-            <p:dataTable  value="#{cardapioBean.entity.cardapiosHasProdutos}" reflow="true" var="chp" id="tblPedidoProdutos" rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}"
-                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                          paginator="true" rows="10" style="margin-bottom:20px">
+            <p:dataTable  value="#{cardapioBean.entity.cardapiosHasProdutos}" reflow="true" var="chp" id="tblPedidoProdutos" rendered="#{cardapioBean.statusTela != 'PESQUISANDO'}">
 
-
+<!--
+                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                          paginator="true" rows="10" style="margin-bottom:20px-->
+                
                 <p:column>
                     <p:commandButton icon="fa fa-trash" update="@form"
                                      actionListener="#{cardapioBean.removerProduto(chp)}">
@@ -84,8 +85,10 @@
 
             </p:dataTable>
 
-            <p:dialog width="500px" responsive="true" visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio" modal="true" height="100">
-                <p:ajax event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
+            <p:dialog width="500px" responsive="true" 
+                      visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio"
+                      modal="true" height="100">
+                <p:ajax  event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
 
                 <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" reflow="true" var="card" >
 

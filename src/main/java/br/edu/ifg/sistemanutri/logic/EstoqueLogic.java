@@ -22,6 +22,7 @@ public class EstoqueLogic implements GenericLogic<Estoque, Integer>{
             throw new NegocioException("Por favor informe a quantidade diferente de zero.");
         }
         
+        
         if(TipoEstoque.SAIDA.equals(entity.getTipoEstoque()) && entity.getQuantidade().compareTo(BigDecimal.ZERO) > 0){
             entity.setQuantidade(entity.getQuantidade().negate());
         }

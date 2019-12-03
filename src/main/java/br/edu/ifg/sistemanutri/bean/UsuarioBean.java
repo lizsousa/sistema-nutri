@@ -43,7 +43,7 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic> {
 
     @Override
     public void salvar() {
-        if (senha != null && !"".equals(senha.trim())) {
+        if ( Status.INSERINDO.equals(getStatus()) || (senha != null && !"".equals(senha.trim()))   ) {
             senha = criptografar(senha);
             getEntity().setSenha(senha);
         }

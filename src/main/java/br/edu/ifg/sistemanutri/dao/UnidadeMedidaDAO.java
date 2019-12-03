@@ -7,10 +7,10 @@ public class UnidadeMedidaDAO extends GenericDAO<UnidadeMedida, Integer> {
 
     public UnidadeMedida buscar(String sigla) {
         try {
-            UnidadeMedida usuario = (UnidadeMedida) getEntityManager().createQuery(
+            UnidadeMedida unidadeDeMedida = (UnidadeMedida) getEntityManager().createQuery(
                     "from " + getEntityClass().getName()
                     + " where sigla = '" + sigla + "'").getSingleResult();
-            return usuario;
+            return unidadeDeMedida;
         } catch (NoResultException ex) {
             return null;
         }

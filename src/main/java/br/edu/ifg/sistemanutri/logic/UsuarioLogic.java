@@ -19,14 +19,23 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
     @Override
     public Usuario salvar(Usuario entity) throws NegocioException, SistemaException {
         if ("".equals(entity.getNome().trim())) {
-            throw new NegocioException("Nome do usuário é obrigatório.");
+            throw new NegocioException("Nome é obrigatório.");
+        }
+        if ("".equals(entity.getLogin().trim())) {
+            throw new NegocioException("Login é obrigatório.");
+        }
+        if ("".equals(entity.getSenha().trim())) {
+            throw new NegocioException("Senha é obrigatória.");
+        }
+        if ("".equals(entity.getDataCadastro()== null)) {
+            throw new NegocioException("Senha é obrigatória.");
         }
         if (entity.getDataCadastro() == null) {
             entity.setDataCadastro(new Date());
         }
 
         if (entity.getId() == null && verificarLoginExistente(entity.getLogin())) {
-            throw new NegocioException("O usuário já cadastrado.");
+            throw new NegocioException(" Usuário já cadastrado.");
         }
         entity = dao.salvar(entity);
         return entity;

@@ -19,6 +19,8 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> implements UserDeta
         }
     }
 
+    
+    
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         String jpql = "from Usuario u where u.login = :login";

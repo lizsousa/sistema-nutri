@@ -51,6 +51,10 @@ public class Usuario implements Serializable, UserDetails{
             inverseJoinColumns = @JoinColumn(name="permissao_id"))
     private List<Permissao> permissoes;
     
+    public Usuario() {
+        this.dataCadastro = new Date();
+        //this.dataDesativacao = new Date();
+    }
     public Integer getId() {
         return id;
     }

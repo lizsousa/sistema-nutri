@@ -14,8 +14,8 @@
         <p:fieldset legend="#{usuarioBean.statusTela == 'PESQUISANDO'?'Gerenciar':usuarioBean.statusTela == 'INSERINDO'?'Cadastro de':'Editando'} Usuários">
 
             <si:toolbar-crud crudBean="#{usuarioBean}"
-                             novoDisabled="#{loginBean.temPermissao('CADASTRAR_USUARIO')}" 
-                             salvarDisabled="#{loginBean.temPermissao('CADASTRAR_USUARIO')}" >      
+                             novoDisabled="#{!loginBean.temPermissao('CADASTRAR_USUARIO')}" 
+                             salvarDisabled="#{!loginBean.temPermissao('CADASTRAR_USUARIO')}" >      
 
                 <f:facet name="opcoes">
                     <p:commandButton value="#{usuarioBean.entity.dataDesativacao == null?'Desativar':'Ativar'}"
@@ -27,7 +27,8 @@
                 </f:facet>
 
             </si:toolbar-crud>
-
+            #{loginBean.loggedUser.permissoesString}
+            #{loginBean.temPermissao('CADASTRAR_USUARIO')}
             <p:panelGrid columns="1" layout="grid" styleClass="panelgrid-noborder"
                          rendered="#{usuarioBean.statusTela != 'PESQUISANDO'}">
 

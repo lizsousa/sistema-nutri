@@ -15,11 +15,14 @@ public class ProdutoLogic implements GenericLogic<Produto, Integer> {
     @Override
     public Produto salvar(Produto entity) throws  NegocioException, SistemaException {
         if("".equals(entity.getDescricao().trim())){
-            throw new NegocioException("a descricao do produto é obrigatório.");
+            throw new NegocioException("Descricao é obrigatório.");
+        }
+        if(entity.getUnidadeMedida()==null){
+            throw new NegocioException("Unidade de Medida é obrigatório.");
         }
         
         if (entity.getId() == null && verificarProdutoExistente(entity.getDescricao())) {
-            throw new NegocioException("O produto já cadastrado.");
+            throw new NegocioException("Produto já cadastrado.");
         }
         entity = dao.salvar(entity);
         return entity;

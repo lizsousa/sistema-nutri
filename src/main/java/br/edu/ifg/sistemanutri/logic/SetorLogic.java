@@ -15,7 +15,7 @@ public class SetorLogic implements GenericLogic<Setor, Integer> {
     @Override
     public Setor salvar(Setor entity) throws  NegocioException, SistemaException {
         if("".equals(entity.getNome().trim())){
-            throw new NegocioException("Nome do setor é obrigatório.");
+            throw new NegocioException("Nome é obrigatório.");
         }
         if (entity.getId() == null && verificarSetorExistente(entity.getNome())) {
             throw new NegocioException("O setor já cadastrado.");

@@ -46,14 +46,17 @@
 
         <div class="login-page">
             <div class="form" header="Acessar o Sistema" > 
+                #{param.get('error')}
                 <h:form class="login-form" prependId="false">
 
 
 
-                    <h:graphicImage style="margin: 0 " class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
+                    <h:graphicImage class="logo" library="imagens" name="logo_nutri.png"></h:graphicImage>
                     <br></br>
-
                     <br></br>
+                    <h:panelGroup rendered="#{param.get('error') != null}">
+                        <h1 class="ui-messages-fatal ui-corner-all">ERRO: Usuário ou senha inválidos.</h1>
+                    </h:panelGroup>
                     <br></br>
                     <div class="ui-inputgroup">
                         <div class="ui-g-12 ui-md-4">

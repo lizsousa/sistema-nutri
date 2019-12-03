@@ -15,12 +15,17 @@ public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> 
     @Override
     public UnidadeMedida salvar(UnidadeMedida entity) throws  NegocioException, SistemaException {
         if("".equals(entity.getSigla().trim())){
-            throw new NegocioException("a unidade de medida é obrigatório.");
+            throw new NegocioException("Sigla é obrigatória.");
+        }
+        
+        if("".equals(entity.getNome().trim())){
+            throw new NegocioException("Nome é obrigatório.");
         }
         
         if (entity.getId() == null && verificarUnidadeDeMedidaExistente(entity.getSigla())) {
-            throw new NegocioException("O unidade de medida já cadastrado.");
+            throw new NegocioException("A unidade de medida já cadastrado.");
         }
+    
         entity = dao.salvar(entity);
         return entity;
     }
@@ -43,8 +48,8 @@ public class UnidadeMedidaLogic implements GenericLogic<UnidadeMedida, Integer> 
     }
 
     public Boolean verificarUnidadeDeMedidaExistente(String sigla) {
-        UnidadeMedida user = dao.buscar(sigla);
-        return user != null;
+        UnidadeMedida un = dao.buscar(sigla);
+        return un != null;
     }
 
 
