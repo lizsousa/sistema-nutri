@@ -42,7 +42,7 @@
                 <p:inputText value="#{fornecedorBean.entity.nomeFantasia}"></p:inputText>
 
                 <p:outputLabel value="IE:" ></p:outputLabel>
-                <p:inputText value="#{fornecedorBean.entity.inscricao}"></p:inputText>
+                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.inscricao}"></p:inputMask>
                 
                 <p:outputLabel value="CNPJ:" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:outputLabel>
                 <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpj}" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:inputMask>

@@ -15,8 +15,14 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
 
     @Override
     public Fornecedor salvar(Fornecedor entity) throws NegocioException, SistemaException {
-        if ("".equals(entity.getNomeFantasia().trim())) {
+        if ("".equals(entity.getRazaoSocial().trim())) {
             throw new NegocioException("Nome do fornecedor é obrigatório.");
+        }
+        if ("".equals(entity.getInscricao().trim())) {
+            throw new NegocioException("Inscrição Estadual é obrigatório.");
+        }
+        if(entity.getTipoFornecedor()==null){
+            throw new NegocioException("Tipo Fornecedor é obrigatório.");
         }
         if (entity.getCnpj() == null && entity.getCpf() == null) {
             if (!Assert.isCnpjValido(entity.getCnpj())) {
@@ -52,9 +58,9 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
             entity.setCnpj("");
         }
         if (entity.getId() == null && verificarFornecedorExistente(entity.getCnpj(), entity.getCnpj())) {
-                throw new NegocioException("Fornecedor já cadastrado");
-            
+                throw new NegocioException("Fornecedor já cadastrado");   
         }
+        
         dao.salvar(entity);
         return null;
     }
