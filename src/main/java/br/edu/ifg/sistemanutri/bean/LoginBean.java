@@ -16,19 +16,25 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Named
 @SessionScoped
-public class LoginBean extends JsfUtil implements Serializable{
-  
+public class LoginBean extends JsfUtil implements Serializable {
+
     @Inject
     private UsuarioLogic logic;
-    
+
+    private String antiga;
+    private String nova;
+    private String confirma;
+
     private Usuario usuarioLogado;
-    
-    public Usuario getLoggedUser(){
-        if(usuarioLogado == null){
+
+    public Usuario getLoggedUser() {
+        if (usuarioLogado == null) {
             UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            if(user instanceof Usuario){
+            if (user instanceof Usuario) {
                 try {
                     usuarioLogado = (Usuario) user;
                     usuarioLogado = logic.buscarPorId(usuarioLogado.getId());
@@ -43,6 +49,7 @@ public class LoginBean extends JsfUtil implements Serializable{
         }
         return usuarioLogado;
     }
+
     public String logOff() {
         SecurityContextHolder.clearContext();
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -51,7 +58,7 @@ public class LoginBean extends JsfUtil implements Serializable{
         return "/login.xhtml?faces-redirect=true";
     }
 
-      public boolean temPermissao(String nomePermissao) {
+    public boolean temPermissao(String nomePermissao) {
         try {
             Usuario usuario = getLoggedUser();
             if (usuario != null && usuario.getPermissoes() != null && !usuario.getPermissoes().isEmpty()) {
@@ -66,6 +73,54 @@ public class LoginBean extends JsfUtil implements Serializable{
         }
         return false;
     }
-      
+
+    public void trocarSenha() {
+        try {
+            logic.trocarSenha(antiga, nova, confirma, getLoggedUser());
+        } catch (SistemaException ex) {
+            addMensagemFatal(ex);
+        } catch (NegocioException ex) {
+            addMensagemErro(ex);
+        }
+    }
+
+    public UsuarioLogic getLogic() {
+        return logic;
+    }
+
+    public void setLogic(UsuarioLogic logic) {
+        this.logic = logic;
+    }
+
+    public String getAntiga() {
+        return antiga;
+    }
+
+    public void setAntiga(String antiga) {
+        this.antiga = antiga;
+    }
+
+    public String getNova() {
+        return nova;
+    }
+
+    public void setNova(String nova) {
+        this.nova = nova;
+    }
+
+    public String getConfirma() {
+        return confirma;
+    }
+
+    public void setConfirma(String confirma) {
+        this.confirma = confirma;
+    }
+
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        this.usuarioLogado = usuarioLogado;
+    }
+
 }
 
+// $2a$10$AIUuO6CSZjpXM2KKEaIgxukUlUxeQ/J9S2lSrxwJDS2XQprjzS9SS
+// $2a$10$LXPdRLV2e4hbf/0tC5C/SO..t4i7z6YU6uvQvrOKEiJOF.5jGA2a.

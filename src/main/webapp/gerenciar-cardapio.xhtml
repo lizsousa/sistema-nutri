@@ -85,14 +85,14 @@
 
             </p:dataTable>
 
-            <p:dialog width="500px" responsive="true" 
-                      visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio"
-                      modal="true" height="100">
+            <p:dialog width="500px" responsive="true"  visible="#{cardapioBean.cardapioTemp != null}" widgetVar="dialogBaixaCardapio" 
+                      modal="true" >
+                <p:outputLabel value="#{cardapioBean.cardapioTemp.nomeCardapio}"></p:outputLabel>
                 <p:ajax  event="close" update="@form" listener="#{cardapioBean.usarReceita(null)}" />
 
-                <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}" reflow="true" var="card" >
+                <p:dataTable value="#{cardapioBean.cardapioTemp.cardapiosHasProdutos}"  reflow="true" var="card" >
 
-                    <p:column headerText="Nome do Ingrediente">
+                    <p:column headerText="Ingrediente">
                         <h:outputText value="#{card.produto.descricao}"></h:outputText>
                     </p:column>
 
@@ -108,12 +108,11 @@
 
 
             <p:dataTable value="#{cardapioBean.entitys}" reflow="true" var="cardapio"
-                         rendered="#{cardapioBean.statusTela == 'PESQUISANDO'}">
+                         rendered="#{cardapioBean.statusTela == 'PESQUISANDO'}" widgetVar="carsTable1">
 
                 <p:column width="150">
                     <si:colunaAcoes crudBean="#{cardapioBean}" entity="#{cardapio}"></si:colunaAcoes>
-                    <p:commandButton icon="fa fa-check-square-o" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
-                        <p:tooltip for="@parent" value="Usar Receita"></p:tooltip>
+                    <p:commandButton title="Usar receita (Dar Baixa)" icon="fa fa-check-square-o" update="@form" oncomplete="PF('dialogBaixaCardapio').show()" actionListener="#{cardapioBean.usarReceita(cardapio)}">
                     </p:commandButton>
 
                 </p:column>

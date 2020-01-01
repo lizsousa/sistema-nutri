@@ -8,6 +8,7 @@ public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplic
 
     public SecurityWebApplicationInitializer() {
         super(SecurityConfiguration.class, UsuarioDAO.class, PersistenceFactory.class);
+        System.setProperty("org.apache.el.parser.COERCE_TO_ZERO", "false");
     }
 
     

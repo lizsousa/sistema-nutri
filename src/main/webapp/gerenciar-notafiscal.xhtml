@@ -47,16 +47,22 @@
                     <p:outputLabel value="Produto"></p:outputLabel>
                     <p:selectOneMenu id="advanced" value="#{notaFiscalBean.notaFiscalHasProduto.produto}" panelStyle="width:180px"
                                      effect="fade" var="prodDetalhe" style="width:200px" filter="true" filterMatchMode="startsWith">
-
+                        <p:ajax update="pnlgPedidoProduto"></p:ajax>
                         <f:selectItems value="#{notaFiscalBean.produtos}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
                               
                         <p:column headerText="Nome do Produto">
                             <h:outputText value="${prodDetalhe.descricao}"></h:outputText>
+                            
                         </p:column>   
                   
                     </p:selectOneMenu>
                     <p:outputLabel value="Quantidade"></p:outputLabel>
-                    <p:inputText value="#{notaFiscalBean.notaFiscalHasProduto.quantidade}"></p:inputText>
+                    <h:panelGroup rendered="#{notaFiscalBean.notaFiscalHasProduto.produto != null}">
+                        <div class="ui-inputgroup">
+                            <p:inputText value="#{notaFiscalBean.notaFiscalHasProduto.quantidade}"></p:inputText>
+                            <span class="ui-inputgroup-addon">#{notaFiscalBean.notaFiscalHasProduto.produto.unidadeMedida.sigla}</span>      
+                        </div>
+                    </h:panelGroup>
                
                 </p:panelGrid>
                 <p:commandButton value="Adiconar" update="pnlgPedidoProduto tblPedidoProdutos " actionListener="#{notaFiscalBean.adicionarProduto()}" icon="fa fa-plus"></p:commandButton>

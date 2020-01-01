@@ -42,14 +42,14 @@
                 <p:inputText value="#{fornecedorBean.entity.nomeFantasia}"></p:inputText>
 
                 <p:outputLabel value="IE:" ></p:outputLabel>
-                <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.inscricao}"></p:inputMask>
-                
+                <p:inputText value="#{fornecedorBean.entity.inscricao}"></p:inputText>
+
                 <p:outputLabel value="CNPJ:" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:outputLabel>
                 <p:inputMask size="15" mask="99.999.999/9999-99" value="#{fornecedorBean.entity.cnpj}" rendered="#{fornecedorBean.tipoPessoa == 0}"></p:inputMask>
-                
+
                 <p:outputLabel value="CPF:" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:outputLabel>
                 <p:inputMask size="15" mask="999.999.999-99" value="#{fornecedorBean.entity.cpf}" rendered="#{fornecedorBean.tipoPessoa == 1}"></p:inputMask>
-                
+
                 <p:outputLabel value="Endereço:"></p:outputLabel>
                 <p:inputText value="#{fornecedorBean.entity.endereco}"></p:inputText>
 
@@ -62,53 +62,33 @@
 
             </p:panelGrid>
             <p:spacer height="20px"></p:spacer>
-             
-                <p:dataTable reflow="true" value="#{fornecedorBean.entitys}" var="fornecedor"
-                             rendered="#{fornecedorBean.statusTela == 'PESQUISANDO'}">
 
-                    <p:column width="100">
-                        <si:colunaAcoes crudBean="#{fornecedorBean}" entity="#{fornecedor}"></si:colunaAcoes>
-                    </p:column> 
+            <p:dataTable reflow="true" value="#{fornecedorBean.entitys}" var="fornecedor"
+                         rendered="#{fornecedorBean.statusTela == 'PESQUISANDO'}">
 
-                    <p:column headerText="Nome/Razão social" width="120">
-                        <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
-                    </p:column>
+                <p:column width="100">
+                    <si:colunaAcoes crudBean="#{fornecedorBean}" entity="#{fornecedor}"></si:colunaAcoes>
+                </p:column> 
 
-                    <p:column headerText="Apelido/Nome Fantasia" width="120">
-                        <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
-                    </p:column>
+                <p:column headerText="Nome/Razão social" width="120">
+                    <h:outputText value="#{fornecedor.razaoSocial}"></h:outputText>
+                </p:column>
 
-                    <p:column headerText="IE">
-                        <h:outputText value="#{fornecedor.inscricao}"></h:outputText>
-                    </p:column>
+                <p:column headerText="Apelido/Nome Fantasia" width="120">
+                    <h:outputText value="#{fornecedor.nomeFantasia}"></h:outputText>
+                </p:column>
 
 
-                    <p:column headerText="Tipo de Fornecedor">
-                        <h:outputText value="#{fornecedor.tipoFornecedor==false ?'Aquisição':'Doação'}"></h:outputText>
-                    </p:column>
+                <p:column headerText="CPF/CNPJ">
+                    <h:outputText value="#{fornecedor.cnpj == null || fornecedor.cnpj.isEmpty() ? fornecedor.cpf : fornecedor.cnpj}"></h:outputText>
+                </p:column>
 
-                    <p:column headerText="Endereço">
-                        <h:outputText value="#{fornecedor.endereco}"></h:outputText>
-                    </p:column>
+                <p:column headerText="Telefone">
+                    <h:outputText value="#{fornecedor.telefone}"></h:outputText>
+                </p:column>
 
-                    <p:column headerText="Email">
-                        <h:outputText value="#{fornecedor.email}"></h:outputText>
-                    </p:column>
-                    
-                   <!--<p:column headerText="CPF/CNPJ">
-                        <h:outputText value="#{fornecedor.cnpjCpf}"></h:outputText>
-                    </p:column>-->
-                   
-                   <p:column headerText="CPF/CNPJ">
-                        <h:outputText value="#{fornecedor.cnpj.isEmpty() || null ? fornecedor.cpf : fornecedor.cnpj}"></h:outputText>
-                    </p:column>
-                    
-                    <p:column headerText="Telefone">
-                        <h:outputText value="#{fornecedor.telefone}"></h:outputText>
-                    </p:column>
+            </p:dataTable>
 
-                </p:dataTable>
-         
         </p:fieldset>
     </h:form>
 </ui:composition>

@@ -16,60 +16,71 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
 
     @Inject
     private CardapioDAO dao;
-  
+
     @Inject
     private CardapioHasProdutoDAO cardHasProdutoDAO;
-    
+
     @Inject
     private EstoqueLogic estoquelogic;
-    
+
     @Override
-    public Cardapio salvar(Cardapio entity) throws  NegocioException, SistemaException {        
+    public Cardapio salvar(Cardapio entity) throws NegocioException, SistemaException {
 
         List<CardapioHasProduto> listaCardapioProduto = entity.getCardapiosHasProdutos();
         entity.setCardapiosHasProdutos(null);
-        
-        
+
         if (entity.getId() == null && verificarCardapioExistente(entity.getNomeCardapio())) {
             throw new NegocioException("O cardápio já cadastrado.");
         }
 
+        if ("".equals(entity.getNomeCardapio().trim())) {
+            throw new NegocioException("Nome é obrigatória.");
+        }
+        if (entity.getQuantidadeRendimento()==null) {
+            throw new NegocioException("Quantidade é obrigatória.");
+        }
+        if(listaCardapioProduto == null || listaCardapioProduto.size() == 0 ){
+            throw new NegocioException("Produto é obrigatorio.");
+        }
         entity = dao.salvar(entity);
-        
-        if(listaCardapioProduto != null && !listaCardapioProduto.isEmpty()){
+
+        if (listaCardapioProduto != null && !listaCardapioProduto.isEmpty()) {
             for (CardapioHasProduto cardapioProduto : listaCardapioProduto) {
                 cardapioProduto.setCardapio(entity);
+                
                 cardapioProduto = cardHasProdutoDAO.salvar(cardapioProduto);
             }
             entity.setCardapiosHasProdutos(listaCardapioProduto);
         }
         return entity;
     }
-    public Cardapio baixarEstoque(Cardapio cardapio) throws  NegocioException, SistemaException {        
-       
-            for(CardapioHasProduto chp : cardapio.getCardapiosHasProdutos()){
-                Estoque estoque = new Estoque();
-                estoque.setTipoEstoque(TipoEstoque.SAIDA);
-                estoque.setProduto(chp.getProduto());
-                estoque.setQuantidade(chp.getQuantidade());
-                estoque.setDataMovimento(new Date());
-                estoquelogic.salvar(estoque);
-            }
-     
+
+    public Cardapio baixarEstoque(Cardapio cardapio) throws NegocioException, SistemaException {
+
+        for (CardapioHasProduto chp : cardapio.getCardapiosHasProdutos()) {
+            Estoque estoque = new Estoque();
+            estoque.setTipoEstoque(TipoEstoque.SAIDA);
+            estoque.setProduto(chp.getProduto());
+            estoque.setQuantidade(chp.getQuantidade());
+            estoque.setDataMovimento(new Date());
+            estoquelogic.salvar(estoque);
+        }
+
         return cardapio;
     }
+
     @Override
-    public void deletar(Cardapio entity) throws  NegocioException, SistemaException {
+    public void deletar(Cardapio entity) throws NegocioException, SistemaException {
         dao.deletar(entity);
     }
 
     @Override
-    public Cardapio buscarPorId(Integer id) throws  NegocioException, SistemaException {
+    public Cardapio buscarPorId(Integer id) throws NegocioException, SistemaException {
         return dao.buscarPorId(id);
     }
 
     @Override
-    public List<Cardapio> buscar(Cardapio entity) throws  NegocioException, SistemaException {
+    public List<Cardapio> buscar(Cardapio entity) throws NegocioException, SistemaException {
         return dao.listar();
     }
 
@@ -78,5 +89,4 @@ public class CardapioLogic implements GenericLogic<Cardapio, Integer> {
         return card != null;
     }
 
-    
 }

@@ -7,7 +7,10 @@ import br.edu.ifg.sistemanutri.logic.PermissaoLogic;
 import br.edu.ifg.sistemanutri.util.exception.NegocioException;
 import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,22 +34,24 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic> {
         Permissao = new Permissao();
     }
 
-    public void verificarLogin() {
+    public void verificarLogin() throws NegocioException {
         if (Status.INSERINDO.equals(getStatus())) {
             Boolean usuarioExiste = logic.verificarLoginExistente(getEntity().getLogin());
             if (usuarioExiste) {
                 addMensagemAviso("Digite outro usuário, pois o digitado já existe.");
 
             }
+            
         }
     }
 
     @Override
     public void salvar() {
-        if ( Status.INSERINDO.equals(getStatus()) || (senha != null && !"".equals(senha.trim()))   ) {
+        if (Status.INSERINDO.equals(getStatus()) || (senha != null && !"".equals(senha.trim()))) {
             senha = criptografar(senha);
             getEntity().setSenha(senha);
         }
+    
         super.salvar();
     }
 
@@ -65,6 +70,20 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic> {
             getEntity().getPermissoes().remove(permissao);
         }
 
+    }
+    
+    public void ativarDesativar(Usuario usuario) {
+        try {
+            if (usuario.getDataDesativacao() == null) {
+                usuario.setDataDesativacao(new Date());
+            } else {
+                usuario.setDataDesativacao(null);
+            }
+       
+            usuario = getLogic().salvar(usuario);
+        } catch (Exception ex) {
+            addMensagemErro(ex.getMessage());
+        }
     }
 
     public String criptografar(String senha) {
@@ -99,5 +118,6 @@ public class UsuarioBean extends GenericCrud<Usuario, UsuarioLogic> {
     public Permissao getPermissao() {
         return Permissao;
     }
+    
 
 }

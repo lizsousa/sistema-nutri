@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:cc="http://xmlns.jcp.org/jsf/composite"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <!-- INTERFACE -->
     <cc:interface>
@@ -31,14 +32,19 @@
                          actionListener="#{cc.attrs.crudBean.remover(cc.attrs.entity)}">
             
             <p:confirm header="Confirmação" message="Tem certeza que deseja apagar para sempre?" icon="fa fa-exclamation-triangle" />
-            <p:tooltip for="@parent" value="Deletar"></p:tooltip>
         </p:commandButton>
        
-        <p:commandButton icon="fa fa-edit" update="@form" 
+        <p:commandButton icon="fa fa-edit" update="@form" title="Editar"
                          actionListener="#{cc.attrs.crudBean.editar(cc.attrs.entity)}">
-            <p:tooltip for="@parent" value="Editar"></p:tooltip>
         </p:commandButton>
         
+         <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('carsTable1').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+ 
         <cc:insertChildren></cc:insertChildren>
         
     </cc:implementation>

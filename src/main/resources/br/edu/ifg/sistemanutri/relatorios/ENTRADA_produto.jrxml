@@ -6,7 +6,7 @@
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="734"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="671"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="315"/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="iara"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Nutri"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -19,13 +19,14 @@
 	<parameter name="DATA_INICIO" class="java.util.Date"/>
 	<parameter name="DATA_FIM" class="java.util.Date"/>
 	<parameter name="LOGO" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="TIPO_ESTOQUE" class="java.lang.String"/>
 	<parameter name="FORNECEDOR" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT controleestoque.estoque.quantidade,
 	controleestoque.estoque.tipo_estoque,
 	controleestoque.estoque.data_movimento,
 	controleestoque.fornecedor.nome_fantasia,
-	controleestoque.fornecedor.tipo_fornecedor,
+	controleestoque.fornecedor.tipo_pessoa,
 	controleestoque.fornecedor.razao_social,
 	controleestoque.unidade_medida.Sigla,
 	controleestoque.produto.descricao
@@ -39,7 +40,8 @@ FROM controleestoque.estoque
 WHERE 
 	 controleestoque.estoque.tipo_estoque = 'ENTRADA' 
 	 AND controleestoque.estoque.data_movimento BETWEEN $P{DATA_INICIO} AND $P{DATA_FIM} 
-	 AND controleestoque.estoque.fornecedor_id = $P{FORNECEDOR}]]>
+	 AND controleestoque.estoque.fornecedor_id = $P{FORNECEDOR}
+	 AND controleestoque.estoque.tipo_estoque = $P{TIPO_ESTOQUE}]]>
 	</queryString>
 	<field name="quantidade" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
@@ -66,7 +68,7 @@ WHERE
 		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
 	</field>
 	<field name="razao_social" class="java.lang.String"/>
-	<field name="tipo_fornecedor" class="java.lang.Integer"/>
+	<field name="tipo_pessoa" class="java.lang.Integer"/>
 	<title>
 		<band height="72">
 			<frame>
@@ -76,11 +78,32 @@ WHERE
 					<imageExpression><![CDATA[$P{LOGO}]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement x="570" y="34" width="230" height="44" forecolor="#FFFFFF" uuid="2a6cb200-ac16-48ea-b6ed-0a3c6cf50ffd"/>
+					<reportElement x="250" y="34" width="270" height="44" forecolor="#FFFFFF" uuid="2a6cb200-ac16-48ea-b6ed-0a3c6cf50ffd"/>
 					<textElement>
 						<font size="22"/>
 					</textElement>
-					<text><![CDATA[Entrada de Material]]></text>
+					<text><![CDATA[Entrada de Produto de]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="510" y="34" width="130" height="37" forecolor="#FFFFFF" uuid="a9921801-aef0-400c-8c47-de60f9d454a8"/>
+					<textElement textAlignment="Right">
+						<font size="22"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{DATA_INICIO}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="690" y="34" width="130" height="37" forecolor="#FFFFFF" uuid="c4a22ac7-ed7a-4fd0-9653-50c3a2c1453b"/>
+					<textElement textAlignment="Left">
+						<font size="22"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{DATA_FIM}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="640" y="35" width="51" height="30" forecolor="#FFFFFF" uuid="186d8a61-2d6e-4c7c-9d63-70971eb24d4d"/>
+					<textElement>
+						<font size="22"/>
+					</textElement>
+					<text><![CDATA[ até]]></text>
 				</staticText>
 			</frame>
 		</band>
@@ -188,7 +211,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tipo_fornecedor}==1? $F{razao_social}: $F{nome_fantasia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tipo_pessoa}==1? $F{razao_social}: $F{nome_fantasia}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yy hh:mm">
 				<reportElement x="691" y="0" width="110" height="20" uuid="5613590e-652a-407c-bb0d-a356b12a4db6">

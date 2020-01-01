@@ -1,5 +1,6 @@
 package br.edu.ifg.sistemanutri.logic;
 
+import br.edu.ifg.sistemanutri.bean.LoginBean;
 import br.edu.ifg.sistemanutri.bean.UsuarioBean;
 import br.edu.ifg.sistemanutri.dao.UsuarioDAO;
 import br.edu.ifg.sistemanutri.entity.Usuario;
@@ -8,6 +9,7 @@ import br.edu.ifg.sistemanutri.util.exception.SistemaException;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
 
@@ -15,6 +17,9 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
     private UsuarioDAO dao;
     @Inject
     private UsuarioBean bean;
+
+    @Inject
+    private LoginBean loginBean;
 
     @Override
     public Usuario salvar(Usuario entity) throws NegocioException, SistemaException {
@@ -27,7 +32,7 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
         if ("".equals(entity.getSenha().trim())) {
             throw new NegocioException("Senha é obrigatória.");
         }
-        if ("".equals(entity.getDataCadastro()== null)) {
+        if ("".equals(entity.getDataCadastro() == null)) {
             throw new NegocioException("Senha é obrigatória.");
         }
         if (entity.getDataCadastro() == null) {
@@ -39,6 +44,21 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
         }
         entity = dao.salvar(entity);
         return entity;
+    }
+
+    public void trocarSenha(String antiga, String nova, String confirma, Usuario usuario) throws NegocioException, SistemaException {
+
+        boolean antigaVerifica = new BCryptPasswordEncoder().matches(antiga, usuario.getSenha());
+        
+        if (!antigaVerifica) {
+            throw new NegocioException("Senha digitada diferente da atual.");
+        }
+        if (!nova.equals(confirma)) {
+            throw new NegocioException("Nova nao confere com confirmacao.");
+        }
+        usuario.setSenha(new BCryptPasswordEncoder().encode(nova));
+        dao.salvar(usuario);
+
     }
 
     @Override
@@ -64,4 +84,9 @@ public class UsuarioLogic implements GenericLogic<Usuario, Integer> {
         return user != null;
     }
 
+     public String criptografar(String senha) {
+        return new BCryptPasswordEncoder().encode(senha);
+
+    }
+    
 }

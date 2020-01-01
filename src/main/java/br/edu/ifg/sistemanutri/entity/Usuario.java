@@ -53,7 +53,7 @@ public class Usuario implements Serializable, UserDetails{
     
     public Usuario() {
         this.dataCadastro = new Date();
-        //this.dataDesativacao = new Date();
+        this.dataDesativacao = new Date();
     }
     public Integer getId() {
         return id;
@@ -72,12 +72,8 @@ public class Usuario implements Serializable, UserDetails{
     }
 
     public String getSenha() {
-        if("123".equals(senha)){
-            senha = new BCryptPasswordEncoder().encode(senha);
-        }
         return senha;
     }
-
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -101,6 +97,10 @@ public class Usuario implements Serializable, UserDetails{
 
     public Date getDataDesativacao() {
         return dataDesativacao;
+    }
+
+    public void setDataDesativacao(Date dataDesativacao) {
+        this.dataDesativacao = dataDesativacao;
     }
 
      public List<Permissao> getPermissoes() {

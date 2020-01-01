@@ -20,8 +20,7 @@ import org.primefaces.component.datatable.DataTable;
 public class CardapioBean extends GenericCrud<Cardapio, CardapioLogic> {
     private Cardapio cardapioTemp;
      
-   
-    
+       
     @Inject
     private CardapioLogic logic;
 

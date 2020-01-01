@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saida_produto" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f012faa1-26e9-4107-a397-ecc6a1d25dfe">
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="saida_produto" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f012faa1-26e9-4107-a397-ecc6a1d25dfe">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="iara"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
@@ -15,6 +15,7 @@
 	<parameter name="SETOR" class="java.lang.String"/>
 	<parameter name="DATA_INICIO" class="java.util.Date"/>
 	<parameter name="LOGO" class="java.io.InputStream"/>
+	<parameter name="TIPO_ESTOQUE" class="java.lang.String"/>
 	<parameter name="DATA_FIM" class="java.util.Date"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT controleestoque.estoque.quantidade,
@@ -31,7 +32,9 @@ FROM controleestoque.estoque
 	LEFT JOIN controleestoque.setor ON 
 	 controleestoque.estoque.setor_id = controleestoque.setor.id
 	 where tipo_estoque='SAIDA'
-	 and controleestoque.setor.id=$P{SETOR}]]>
+	 AND controleestoque.estoque.data_movimento BETWEEN $P{DATA_INICIO} AND $P{DATA_FIM} 
+	 and controleestoque.setor.id=$P{SETOR}
+	 and controleestoque.estoque.tipo_estoque = $P{TIPO_ESTOQUE}]]>
 	</queryString>
 	<field name="quantidade" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
@@ -62,16 +65,37 @@ FROM controleestoque.estoque
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="842" height="92" backcolor="#2E8B57" uuid="71c9db7a-be01-482c-9c2f-6ab370e26cc3"/>
 				<staticText>
-					<reportElement x="590" y="33" width="240" height="37" forecolor="#FFFFFF" uuid="5fb6c91b-5ec1-49a4-873a-6fb553b31139"/>
+					<reportElement x="260" y="38" width="240" height="37" forecolor="#FFFFFF" uuid="5fb6c91b-5ec1-49a4-873a-6fb553b31139"/>
 					<textElement textAlignment="Right">
 						<font size="20" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Saída de Material]]></text>
+					<text><![CDATA[Saída de Produto de]]></text>
 				</staticText>
 				<image onErrorType="Blank">
 					<reportElement x="20" y="33" width="90" height="30" uuid="c82053c7-fea2-4827-bd14-b390d5e7189a"/>
 					<imageExpression><![CDATA["$P{LOGO}"]]></imageExpression>
 				</image>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="510" y="36" width="130" height="37" forecolor="#FFFFFF" uuid="45e4d899-ce31-45ba-9d09-a5cbbc1eb6eb"/>
+					<textElement textAlignment="Right">
+						<font size="22"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{DATA_INICIO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="640" y="35" width="51" height="30" forecolor="#FFFFFF" uuid="e89b452b-9628-4c6b-bbc0-96ca09544f6f"/>
+					<textElement>
+						<font size="22"/>
+					</textElement>
+					<text><![CDATA[ até]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="690" y="36" width="130" height="37" forecolor="#FFFFFF" uuid="657a9915-92ed-4094-be91-4df54a83d2fd"/>
+					<textElement textAlignment="Left">
+						<font size="22"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{DATA_FIM}]]></textFieldExpression>
+				</textField>
 			</frame>
 		</band>
 	</title>

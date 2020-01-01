@@ -18,50 +18,27 @@ public class FornecedorLogic implements GenericLogic<Fornecedor, Integer> {
         if ("".equals(entity.getRazaoSocial().trim())) {
             throw new NegocioException("Nome do fornecedor é obrigatório.");
         }
-        if ("".equals(entity.getInscricao().trim())) {
-            throw new NegocioException("Inscrição Estadual é obrigatório.");
-        }
-        if(entity.getTipoFornecedor()==null){
-            throw new NegocioException("Tipo Fornecedor é obrigatório.");
-        }
-        if (entity.getCnpj() == null && entity.getCpf() == null) {
-            if (!Assert.isCnpjValido(entity.getCnpj())) {
-                throw new NegocioException("CNPJ inválido.");
-            }
-            if (!Assert.isCpf(entity.getCpf())) {
-                throw new NegocioException("CPF inválido.");
-            }
-        }
-        if (entity.getTelefone() == null) {
-            if (!Assert.isValidTelefone(entity.getTelefone())) {
-                throw new NegocioException("Telefone inválido");
-            }
-        } else {
-            if (entity.getCnpj() == null && !Assert.isCpf(entity.getCpf())) {
-                throw new NegocioException("CPF inválido.");
-            }
-            if (entity.getCpf() == null && !Assert.isCnpjValido(entity.getCnpj())) {
-                throw new NegocioException("CNPJ inválido.");
-            }
 
+        if (entity.getCnpj() == null && entity.getCpf() == null) {
+            throw new NegocioException("CPF/CNPJ obrigatório.");
         }
-        if ((entity.getCnpj() != null) && entity.getCpf() != null && Assert.isCnpjValido(entity.getCnpj())) {
-            entity.setCpf("");
+        if (entity.getCnpj() == null && !Assert.isCpf(entity.getCpf())) {
+            throw new NegocioException("CPF inválido.");
         }
-        if (entity.getCnpj() != null && entity.getCpf() != null && Assert.isCpf(entity.getCpf())) {
-            entity.setCnpj("");
+        if (entity.getCpf() == null && !Assert.isCnpjValido(entity.getCnpj())) {
+            throw new NegocioException("CNPJ inválido.");
         }
+
         if (!Assert.isValidEmail(entity.getEmail())) {
             throw new NegocioException("Email inválido.");
         }
-        if (entity.getCnpj() == null) {
-            entity.setCnpj("");
-        }
+
         if (entity.getId() == null && verificarFornecedorExistente(entity.getCnpj(), entity.getCnpj())) {
-                throw new NegocioException("Fornecedor já cadastrado");   
+            throw new NegocioException("Fornecedor já cadastrado");
         }
-        
+
         dao.salvar(entity);
+
         return null;
     }
 

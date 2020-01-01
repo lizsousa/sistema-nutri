@@ -31,7 +31,9 @@ public class NotaFiscalLogic implements GenericLogic<NotaFiscal, Integer> {
         List<NotaFiscalHasProduto> listaNotaFiscalProduto = notaFiscal.getNotaFiscalsHasProdutos();
         notaFiscal.setNotaFiscalsHasProdutos(null);
          
-        
+        if(listaNotaFiscalProduto == null || listaNotaFiscalProduto.size() == 0 ){
+            throw new NegocioException("Produto é obrigatorio.");
+        }
         notaFiscal = dao.salvar(notaFiscal);
         
         if(listaNotaFiscalProduto != null && !listaNotaFiscalProduto.isEmpty()){
